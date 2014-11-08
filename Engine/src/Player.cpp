@@ -4,19 +4,21 @@ Player::Player() {
 }
 
 Player::~Player() {
-}
-
-void Player::Init(Texture * texture) {
-    _texture = texture;
 
 }
+
+void Player::Init(SpriteAnimation * spriteAnimation) {
+    _spriteAnimation =spriteAnimation;
+}
+
 void Player::SetPosition(int x, int y) {
     _x = x;
     _y = y;
 }
 
 void Player::Draw() {
-    _texture->render(_x,_y);
+
+    _spriteAnimation->Draw(_currentSprite,_x,_y);
 }
 
 void Player::Update(float delta) {
@@ -37,10 +39,13 @@ void Player::Update(float delta) {
 
 void Player::ToRight(float delta) {
     _x+=delta;
+
+    _calculateNexSprite();
 }
 
 void Player::ToLeft(float delta) {
     _x-=delta;
+    _calculateNexSprite();
 }
 
 void Player::Jump(int delta) {
@@ -51,6 +56,14 @@ void Player::Jump(int delta) {
     _jump = true;
     _jumpSize = delta;
     _jumpPosStart = _y;
+}
+
+void Player::_calculateNexSprite() {
+    _currentSprite +=0.09;
+    if((int)_currentSprite>1) {
+        _currentSprite =0;
+    }
+
 }
 
 

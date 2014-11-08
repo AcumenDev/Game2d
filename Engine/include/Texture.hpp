@@ -6,10 +6,8 @@
 #include <iostream>
 class Texture {
 public:
-    Texture();
+    Texture(SDL_Renderer* render, SDL_Texture* texture, int w, int h);
     ~Texture();
-    void Init(SDL_Renderer* render);
-    bool loadFromFile(std::string path );
     void free();
     void render(int x, int y );
     int getWidth();
@@ -17,7 +15,7 @@ public:
 private:
     SDL_Texture* _texture;
     SDL_Renderer* _render;
-    int mWidth;
-    int mHeight;
+    int _h;
+    int _w;
 };
 #endif // TEXTURE_H

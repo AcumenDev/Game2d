@@ -52,9 +52,11 @@
 		</Linker>
 		<Unit filename="include/Engine.hpp" />
 		<Unit filename="include/Player.hpp" />
+		<Unit filename="include/ResourceManager.hpp" />
 		<Unit filename="include/SpriteAnimation.hpp" />
 		<Unit filename="include/Texture.hpp" />
 		<Unit filename="src/Player.cpp" />
+		<Unit filename="src/ResourceManager.cpp" />
 		<Unit filename="src/SpriteAnimation.cpp" />
 		<Unit filename="src/Texture.cpp" />
 		<Extensions>
