@@ -2,7 +2,7 @@
 #ifdef _WIN32
 #include <windows.h>
 #endif
-
+#include <SDL_opengl.h>
 #include <SDL.h>
 #include <SDL_image.h>
 #include <string>
@@ -14,15 +14,9 @@ const int SCREEN_HEIGHT = 480;
 
 bool init();
 
-void close();
-
-
 SDL_Window* gWindow = NULL;
 
 SDL_Renderer* gRenderer = NULL;
-
-
-//Texture gBackgroundTexture;
 
 Player player;
 
@@ -57,23 +51,14 @@ bool init() {
             }
         }
     }
-
+    SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 1 );
+    SDL_GL_SetAttribute( SDL_GL_CONTEXT_MAJOR_VERSION, 3 );
+    SDL_GL_SetAttribute( SDL_GL_CONTEXT_MINOR_VERSION, 1 );
+    SDL_GL_SetAttribute( SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE );
     return success;
 }
 
-void close() {
-    // gFooTexture.free();
-    //  gBackgroundTexture.free();
-    SDL_DestroyRenderer( gRenderer );
-    SDL_DestroyWindow( gWindow );
-    gWindow = NULL;
-    gRenderer = NULL;
-    IMG_Quit();
-    SDL_Quit();
-}
-
 float _deltaTime;
-
 
 Uint32 currentTime =  SDL_GetTicks();
 
@@ -106,8 +91,6 @@ int main(int argc, char* argv[])
         SpriteAnimation * spriteAnimation = new SpriteAnimation(texstures, 0.1);
         player.Init(spriteAnimation);
 
-
-
         bool quit = false;
         SDL_Event event;
 
@@ -126,11 +109,11 @@ int main(int argc, char* argv[])
                     std::cout<<"Key press"<<event.key.keysym.sym<<std::endl;
                     switch(event.key.keysym.sym) {
                     case SDLK_LEFT: {
-                        player.ToLeft(_deltaTime*1.2);
+                        player.ToLeft(_deltaTime);
                         break;
                     }
                     case SDLK_RIGHT: {
-                        player.ToRight(_deltaTime*1.2);
+                        player.ToRight(_deltaTime);
                         break;
                     }
                     case SDLK_UP: {
@@ -148,10 +131,15 @@ int main(int argc, char* argv[])
             gBackgroundTexture->render( 0, 0 );
             player.Update(_deltaTime);
             player.Draw();
-            //   gFooTexture.render( 240, 190 );
-            SDL_RenderPresent( gRenderer );
+              SDL_RenderPresent( gRenderer );
+           // SDL_GL_SwapWindow(gWindow);
         }
     }
-    close();
+    SDL_DestroyRenderer( gRenderer );
+    SDL_DestroyWindow( gWindow );
+    gWindow = NULL;
+    gRenderer = NULL;
+    IMG_Quit();
+    SDL_Quit();
     return 0;
 }

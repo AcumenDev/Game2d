@@ -24,12 +24,12 @@ void Player::Draw() {
 void Player::Update(float delta) {
     if(_jump) {
         if(_jumpStateUp) {
-            _y-=delta*1.2;
+            _y-=delta;
             if(_y<=_jumpPosStart-_jumpSize) {
                 _jumpStateUp = false;
             }
         } else {
-            _y+=delta*1.2;
+            _y+=delta;
             if(_y>=_jumpPosStart) {
                 _jump = false;
             }
