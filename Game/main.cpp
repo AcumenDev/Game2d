@@ -103,7 +103,7 @@ int main(int argc, char* argv[])
 
         std::vector<Texture *> texstures = {gFooTexture, gFooTexture1};
 
-        SpriteAnimation * spriteAnimation = new SpriteAnimation(texstures);
+        SpriteAnimation * spriteAnimation = new SpriteAnimation(texstures, 0.1);
         player.Init(spriteAnimation);
 
 
@@ -142,8 +142,8 @@ int main(int argc, char* argv[])
                 }
 
             }
-             SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
-             SDL_RenderClear( gRenderer );
+            SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
+            SDL_RenderClear( gRenderer );
 
             gBackgroundTexture->render( 0, 0 );
             player.Update(_deltaTime);

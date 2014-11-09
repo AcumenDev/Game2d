@@ -1,6 +1,5 @@
 #ifndef RESOURCEMANAGER_H
 #define RESOURCEMANAGER_H
-
 #include "Texture.hpp"
 
 class ResourceManager {
