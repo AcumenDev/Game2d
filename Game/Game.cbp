@@ -34,6 +34,7 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add option="-std=c++11" />
 			<Add option="-fexceptions" />
 			<Add directory="../../lib/SDL2_image-2.0.0/i686-w64-mingw32/include/SDL2" />
 			<Add directory="../../lib/SDL2-2.0.3/i686-w64-mingw32/include/SDL2" />
