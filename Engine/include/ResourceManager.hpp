@@ -1,6 +1,7 @@
 #ifndef RESOURCEMANAGER_H
 #define RESOURCEMANAGER_H
 #include "Texture.hpp"
+#include "Logger.hpp"
 
 class ResourceManager {
 public:
