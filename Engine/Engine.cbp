@@ -16,6 +16,7 @@
 					<Add option="-Wall" />
 					<Add option="-DBUILD_DLL" />
 					<Add option="-g" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add library="user32" />
@@ -31,6 +32,7 @@
 					<Add option="-Wall" />
 					<Add option="-DBUILD_DLL" />
 					<Add option="-O2" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -51,10 +53,12 @@
 			<Add directory="../../lib/SDL2-2.0.3/i686-w64-mingw32/lib" />
 		</Linker>
 		<Unit filename="include/Engine.hpp" />
+		<Unit filename="include/MainLoop.hpp" />
 		<Unit filename="include/Player.hpp" />
 		<Unit filename="include/ResourceManager.hpp" />
 		<Unit filename="include/SpriteAnimation.hpp" />
 		<Unit filename="include/Texture.hpp" />
+		<Unit filename="src/MainLoop.cpp" />
 		<Unit filename="src/Player.cpp" />
 		<Unit filename="src/ResourceManager.cpp" />
 		<Unit filename="src/SpriteAnimation.cpp" />

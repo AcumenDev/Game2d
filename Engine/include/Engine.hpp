@@ -5,5 +5,6 @@
 #include "Texture.hpp"
 #include "ResourceManager.hpp"
 #include "SpriteAnimation.hpp"
+#include "MainLoop.hpp"
 
 #endif // ENGINE_HPP_INCLUDED
