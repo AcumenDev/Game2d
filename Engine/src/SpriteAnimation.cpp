@@ -7,7 +7,7 @@ void SpriteAnimation::Draw(int x, int y) {
     _textures.at((unsigned int)_currentSprite)->render(x,y);
 }
 
-SpriteAnimation::SpriteAnimation(std::vector<Texture*> textures, float animationSpeed) {
+SpriteAnimation::SpriteAnimation(std::vector<std::shared_ptr<Texture>> textures, float animationSpeed) {
     _textures = textures;
     _animationSpeed = animationSpeed;
 }

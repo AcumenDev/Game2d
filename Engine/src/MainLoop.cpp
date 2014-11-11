@@ -18,7 +18,7 @@ void MainLoop::Start() {
 }
 
 void MainLoop::Stop() {
- _run = false;
+    _run = false;
 }
 
 void MainLoop::Draw() {

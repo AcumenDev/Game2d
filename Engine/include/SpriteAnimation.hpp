@@ -2,9 +2,10 @@
 #define SPRITEANIMATION_H
 #include <vector>
 #include "Texture.hpp"
+#include <memory>
 class SpriteAnimation {
 public:
-    SpriteAnimation(std::vector<Texture*> textures, float animationSpeed);
+    SpriteAnimation(std::vector<std::shared_ptr<Texture>> textures, float animationSpeed);
     virtual ~SpriteAnimation();
     void Draw(int x, int y);
     void Step(float delta);
@@ -13,6 +14,6 @@ private:
 
     float _currentSprite = 0;
     float _animationSpeed;
-    std::vector<Texture*> _textures;
+    std::vector<std::shared_ptr<Texture>> _textures;
 };
 #endif // SPRITEANIMATION_H

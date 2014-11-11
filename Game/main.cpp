@@ -82,13 +82,13 @@ int main(int argc, char* argv[])
 
         ResourceManager resourceManager;
         std::string resFolder = "../../res/";
-        Texture * gBackgroundTexture = resourceManager.GetTextureFromFile(gRenderer,resFolder+"background.png");
-        Texture * gFooTexture = resourceManager.GetTextureFromFile(gRenderer,resFolder+"foo.png");
-        Texture * gFooTexture1 = resourceManager.GetTextureFromFile(gRenderer,resFolder+"foo1.png");
+        std::shared_ptr<Texture> gBackgroundTexture = resourceManager.GetTextureFromFile(gRenderer,resFolder+"background.png");
+        std::shared_ptr<Texture> gFooTexture = resourceManager.GetTextureFromFile(gRenderer,resFolder+"foo.png");
+        std::shared_ptr<Texture> gFooTexture1 = resourceManager.GetTextureFromFile(gRenderer,resFolder+"foo1.png");
 
-        std::vector<Texture *> texstures = {gFooTexture, gFooTexture1};
+        std::vector<std::shared_ptr<Texture>> texstures = {gFooTexture, gFooTexture1};
 
-        SpriteAnimation * spriteAnimation = new SpriteAnimation(texstures, 0.1);
+        std::shared_ptr<SpriteAnimation>  spriteAnimation = std::make_shared<SpriteAnimation>(texstures, 0.1);
         player.Init(spriteAnimation);
 
         bool quit = false;
@@ -131,8 +131,8 @@ int main(int argc, char* argv[])
             gBackgroundTexture->render( 0, 0 );
             player.Update(_deltaTime);
             player.Draw();
-              SDL_RenderPresent( gRenderer );
-           // SDL_GL_SwapWindow(gWindow);
+            SDL_RenderPresent( gRenderer );
+            // SDL_GL_SwapWindow(gWindow);
         }
     }
     SDL_DestroyRenderer( gRenderer );

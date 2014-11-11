@@ -7,7 +7,7 @@ Player::~Player() {
 
 }
 
-void Player::Init(SpriteAnimation * spriteAnimation) {
+void Player::Init( std::shared_ptr<SpriteAnimation> spriteAnimation) {
     _spriteAnimation = spriteAnimation;
 }
 

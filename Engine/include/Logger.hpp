@@ -3,14 +3,13 @@
 #include <iostream>
 
 
-class Logger
-{
-    public:
-        Logger();
-        virtual ~Logger();
-        void Info(std::string msg);
-    protected:
-    private:
+class Logger {
+public:
+    Logger();
+    virtual ~Logger();
+    void Info(std::string msg);
+protected:
+private:
 };
 
 #endif // LOGGER_H

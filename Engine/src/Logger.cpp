@@ -1,15 +1,12 @@
 #include "Logger.hpp"
 
-Logger::Logger()
-{
+Logger::Logger() {
     //ctor
 }
 
-Logger::~Logger()
-{
+Logger::~Logger() {
     //dtor
 }
-void Logger::Info(std::string msg)
-{
+void Logger::Info(std::string msg) {
     std::cout<<msg<<std::endl;
 }
