@@ -8,7 +8,9 @@
 #include <string>
 
 #include "Engine.hpp"
-//Screen dimension constants
+
+#include "GameLoop.h"
+
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 
@@ -18,7 +20,7 @@ SDL_Window* gWindow = NULL;
 
 SDL_Renderer* gRenderer = NULL;
 
-Player player;
+
 
 bool init() {
 
@@ -52,22 +54,7 @@ bool init() {
         }
     }
 //    SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 1 );
-//    SDL_GL_SetAttribute( SDL_GL_CONTEXT_MAJOR_VERSION, 3 );
-//    SDL_GL_SetAttribute( SDL_GL_CONTEXT_MINOR_VERSION, 1 );
-//    SDL_GL_SetAttribute( SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE );
     return success;
-}
-
-float _deltaTime;
-
-Uint32 currentTime =  SDL_GetTicks();
-
-void UpdateTime() {
-    auto nowTime =  SDL_GetTicks();
-
-    _deltaTime = nowTime - currentTime;
-    currentTime = nowTime;
-
 }
 
 #ifdef _WIN32
@@ -89,51 +76,14 @@ int main(int argc, char* argv[])
         std::vector<std::shared_ptr<Texture>> texstures = {gFooTexture, gFooTexture1};
 
         std::shared_ptr<SpriteAnimation>  spriteAnimation = std::make_shared<SpriteAnimation>(texstures, 0.1);
-        player.Init(spriteAnimation);
+        std::shared_ptr<Player> player = std::make_shared<Player>();
 
-        bool quit = false;
-        SDL_Event event;
+        player->Init(spriteAnimation);
+        player->SetPosition(240, 190);
 
-        player.SetPosition(240, 190);
-        while( !quit ) {
+        GameLoop gameLoop(gRenderer, gBackgroundTexture, player);
 
-            UpdateTime();
-            while( SDL_PollEvent( &event ) != 0 ) {
-
-                switch(event.type) {
-                case SDL_QUIT : {
-                    quit = true;
-                    break;
-                }
-                case SDL_KEYDOWN : {
-                    std::cout<<"Key press"<<event.key.keysym.sym<<std::endl;
-                    switch(event.key.keysym.sym) {
-                    case SDLK_LEFT: {
-                        player.ToLeft(_deltaTime);
-                        break;
-                    }
-                    case SDLK_RIGHT: {
-                        player.ToRight(_deltaTime);
-                        break;
-                    }
-                    case SDLK_UP: {
-                        player.Jump(200);
-                        break;
-                    }
-                    }
-                }
-                }
-
-            }
-            SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
-            SDL_RenderClear( gRenderer );
-
-            gBackgroundTexture->render( 0, 0 );
-            player.Update(_deltaTime);
-            player.Draw();
-            SDL_RenderPresent( gRenderer );
-            // SDL_GL_SwapWindow(gWindow);
-        }
+        gameLoop.Start();
     }
     SDL_DestroyRenderer( gRenderer );
     SDL_DestroyWindow( gWindow );

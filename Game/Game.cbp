@@ -15,6 +15,7 @@
 					<Add option="-g" />
 					<Add directory="src" />
 					<Add directory="Engine" />
+					<Add directory="include" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -26,6 +27,7 @@
 					<Add option="-O2" />
 					<Add directory="src" />
 					<Add directory="Engine" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -49,7 +51,9 @@
 			<Add directory="../../lib/SDL2-2.0.3/i686-w64-mingw32/lib" />
 			<Add directory="../Engine/bin" />
 		</Linker>
+		<Unit filename="include/GameLoop.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/GameLoop.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
