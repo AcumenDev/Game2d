@@ -9,22 +9,16 @@ ResourceManager::~ResourceManager() {
 }
 
 Texture * ResourceManager::GetTextureFromFile(SDL_Renderer* render, std::string path) {
-    Logger * logger=new Logger();
-    SDL_Texture* newTexture = NULL;
-    SDL_Surface* loadedSurface = IMG_Load( path.c_str() );
-    Texture* texture;
-    if( loadedSurface == NULL ) {
+    SDL_Texture* newTexture = IMG_LoadTexture(render, path.c_str()) ;
+    Texture * texture = nullptr;
+    if( newTexture == nullptr ) {
+        Logger * logger=new Logger();
         logger->Info("Unable to load image "+path+" SDL_image Error: "+IMG_GetError());
+        delete logger;
     } else {
-        SDL_SetColorKey( loadedSurface, SDL_TRUE, SDL_MapRGB( loadedSurface->format, 0, 0xFF, 0xFF ) );
-        newTexture = SDL_CreateTextureFromSurface(render, loadedSurface );
-        if( newTexture == NULL ) {
-            logger->Info("Unable to create texture from "+path+" SDL Error: "+SDL_GetError());
-        }
-
-        texture =  new Texture(render, newTexture, loadedSurface->w, loadedSurface->h);
-        SDL_FreeSurface( loadedSurface );
+        int w, h;
+        SDL_QueryTexture(newTexture, NULL, NULL, &w, &h);
+        texture =  new Texture(render, newTexture, w, h);
     }
-    delete logger;
     return texture;
 }
