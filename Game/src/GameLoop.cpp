@@ -1,18 +1,13 @@
 #include "GameLoop.h"
 
-GameLoop::GameLoop(SDL_Renderer* renderer,std::shared_ptr<Texture> backgroundTexture,std::shared_ptr<Player> player) {
+GameLoop::GameLoop(std::shared_ptr<Logger> log, SDL_Renderer* renderer,std::shared_ptr<Texture> backgroundTexture,std::shared_ptr<Player> player) {
+    _log = log;
     _renderer = renderer;
     _player = player;
     _backgroundTexture = backgroundTexture;
-    //ctor
 }
 
-GameLoop::~GameLoop() {
-    //dtor
-}
 void GameLoop::Draw() {
-    SDL_SetRenderDrawColor( _renderer, 0xFF, 0xFF, 0xFF, 0xFF );
-    SDL_RenderClear( _renderer );
     _backgroundTexture->render( 0, 0 );
     _player->Draw();
     SDL_RenderPresent( _renderer );
@@ -30,7 +25,7 @@ void GameLoop::CheckInput() {
         break;
     }
     case SDL_KEYDOWN : {
-        std::cout<<"Key press"<<event.key.keysym.sym<<std::endl;
+        _log->Debug("Key press: " + std::to_string(event.key.keysym.sym));
         switch(event.key.keysym.sym) {
         case SDLK_LEFT: {
             _player->ToLeft(_GetDeltaTime());

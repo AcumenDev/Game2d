@@ -4,3 +4,4 @@
 *.a
 *.depend
 *.layout
+*.cscope_file_list
