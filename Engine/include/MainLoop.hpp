@@ -15,6 +15,7 @@ public:
     virtual void UpdateDeltaTime();
 protected:
     float _GetDeltaTime();
+
 private:
     float _deltaTime;
     float _currentTime;

@@ -55,20 +55,26 @@
 			<Add directory="../../lib/SDL2_image-2.0.0/i686-w64-mingw32/lib" />
 			<Add directory="../../lib/SDL2-2.0.3/i686-w64-mingw32/lib" />
 		</Linker>
+		<Unit filename="include/DrawingObject.hpp" />
 		<Unit filename="include/Engine.hpp" />
 		<Unit filename="include/Logger.hpp" />
 		<Unit filename="include/MainLoop.hpp" />
 		<Unit filename="include/Player.hpp" />
 		<Unit filename="include/ResourceManager.hpp" />
+		<Unit filename="include/SceneManager.hpp" />
+		<Unit filename="include/SceneNode.hpp" />
 		<Unit filename="include/SpriteAnimation.hpp" />
 		<Unit filename="include/Texture.hpp" />
 		<Unit filename="include/Window.hpp" />
 		<Unit filename="include/services/InitService.hpp" />
 		<Unit filename="include/services/WidowService.hpp" />
+		<Unit filename="src/DrawingObject.cpp" />
 		<Unit filename="src/Logger.cpp" />
 		<Unit filename="src/MainLoop.cpp" />
 		<Unit filename="src/Player.cpp" />
 		<Unit filename="src/ResourceManager.cpp" />
+		<Unit filename="src/SceneManager.cpp" />
+		<Unit filename="src/SceneNode.cpp" />
 		<Unit filename="src/SpriteAnimation.cpp" />
 		<Unit filename="src/Texture.cpp" />
 		<Unit filename="src/Window.cpp" />
