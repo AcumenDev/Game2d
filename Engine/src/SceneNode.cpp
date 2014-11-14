@@ -15,6 +15,14 @@ void SceneNode::Draw() {
         node->Draw();
     }
 }
+void SceneNode::Update(float delta,std::shared_ptr<EventInputSystem> eventInputSystem) {
+    for(const auto & drawingObject : _drawingObjects) {
+        drawingObject->Update( delta, eventInputSystem);
+    }
+    for(const auto & node : _childNodes) {
+        node->Update( delta, eventInputSystem);
+    }
+}
 
 void SceneNode::AttachObject(std::shared_ptr<DrawingObject> drawingObject) {
     _drawingObjects.push_back(drawingObject);

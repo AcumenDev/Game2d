@@ -8,7 +8,6 @@
 #include <iostream>
 
 #include "Engine.hpp"
-#include "GameLoop.h"
 
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
@@ -36,14 +35,19 @@ int main(int argc, char* argv[])
 
     std::vector<std::shared_ptr<Texture>> texstures = {gFooTexture, gFooTexture1};
 
-    std::shared_ptr<SpriteAnimation>  spriteAnimation = std::make_shared<SpriteAnimation>(texstures, 0.1);
+    auto background = std::make_shared<BackgroundObject>(gBackgroundTexture,IPoint(0,0));
     std::shared_ptr<Player> player = std::make_shared<Player>();
 
-    player->Init(spriteAnimation);
-    player->SetPosition(240, 190);
+    player->Init(std::make_shared<SpriteAnimation>(texstures, 0.05));
+    player->SetPosition(IPoint(240, 190));
 
-    GameLoop gameLoop(log, render, gBackgroundTexture, player);
 
-    gameLoop.Start();
+    auto _sceneManager = std::make_shared<SceneManager>(log, render);
+    auto mainNode =  _sceneManager->AddChildNode("MainNode");
+    mainNode->AttachObject(background);
+    mainNode->AttachObject(player);
+    MainLoop mainLoop(_sceneManager, log);
+
+    mainLoop.Start();
     return 0;
 }

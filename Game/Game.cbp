@@ -51,9 +51,7 @@
 			<Add directory="../../lib/SDL2-2.0.3/i686-w64-mingw32/lib" />
 			<Add directory="../Engine/bin" />
 		</Linker>
-		<Unit filename="include/GameLoop.h" />
 		<Unit filename="main.cpp" />
-		<Unit filename="src/GameLoop.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

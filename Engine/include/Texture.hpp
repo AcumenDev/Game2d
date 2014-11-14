@@ -4,12 +4,13 @@
 #include <SDL_image.h>
 #include <string>
 #include <iostream>
+#include "Utils/IPoint.hpp"
 class Texture {
 public:
     Texture(SDL_Renderer* render, SDL_Texture* texture, int w, int h);
     ~Texture();
     void free();
-    void render(int x, int y );
+    void Draw(IPoint iPoint);
     int getWidth();
     int getHeight();
 private:
