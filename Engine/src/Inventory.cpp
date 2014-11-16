@@ -1,9 +1,8 @@
 #include "Inventory.hpp"
 
-Inventory::Inventory(std::shared_ptr<Logger> log, std::shared_ptr<Texture> textureCell, IPoint iPoint, int size)
+Inventory::Inventory(std::shared_ptr<Logger> log, std::shared_ptr<Texture> textureCell, IPoint iPoint, int maxSize)
     :DrawingObject(log, textureCell, iPoint) {
-    _size = size;
-
+    _maxSize = maxSize;
     _textureCell = textureCell;
 }
 
@@ -12,14 +11,16 @@ Inventory::~Inventory() {
 }
 
 void Inventory::Draw() {
-    for(int i = 0; i<_size; i++) {
+    for(int i = 0; i<_maxSize; i++) {
         _textureCell->Draw(IPoint(_iPoint.x,_iPoint.y+_textureCell->getHeight()*i));
     }
 
-
-    for(auto const& item : _inventoryItems) {
-        item->Draw();
+    for( unsigned int i = 0; i<_inventoryItems.size(); i++) {
+        //_textureCell->Draw(IPoint(_iPoint.x,_iPoint.y+_textureCell->getHeight()*i));
+        _inventoryItems.at(i)->Draw(IPoint(_iPoint.x,_iPoint.y+5+_textureCell->getHeight()*i));
     }
+
+
 }
 
 void Inventory::Update(float delta, std::shared_ptr<EventInputSystem> eventInputSystem) {
