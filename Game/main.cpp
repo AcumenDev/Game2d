@@ -40,8 +40,10 @@ int main(int argc, char* argv[])
     auto player = std::make_shared<Player>(log,gFooTexture,IPoint(240, 190));
     auto item=std::make_shared<ItemDrawing>(log,gFooTexture,IPoint(100,20));
 
+    auto inventoryTexture = resourceManager.GetTextureFromFile(render,resFolder+"inventoryItem.png");
+    auto inventory = std::make_shared<Inventory>(log,inventoryTexture,IPoint(0,0),5);
     player->Init(std::make_shared<SpriteAnimation>(texstures, 0.05));
-   // player->SetPosition(IPoint(240, 190));
+    // player->SetPosition(IPoint(240, 190));
 
 
     auto _sceneManager = std::make_shared<SceneManager>(log, render);
@@ -49,6 +51,7 @@ int main(int argc, char* argv[])
     mainNode->AttachObject(background);
     mainNode->AttachObject(player);
     mainNode->AttachObject(item);
+    mainNode->AttachObject(inventory);
     MainLoop mainLoop(_sceneManager, log);
 
     mainLoop.Start();

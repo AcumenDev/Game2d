@@ -5,3 +5,8 @@ DrawingObject::DrawingObject(std::shared_ptr<Logger> log, std::shared_ptr<Textur
     _iPoint = iPoint;
     _log=log;
 }
+
+void DrawingObject::Draw()
+{
+   _texture->Draw(_iPoint);
+}

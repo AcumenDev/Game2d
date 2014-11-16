@@ -15,6 +15,7 @@
 #include "DrawingObject.hpp"
 #include "ObjectsDrawing/BackgroundObject.hpp"
 #include "ObjectsDrawing/Player.hpp"
+#include "ObjectsDrawing/Inventory/Inventory.hpp"
 #include "EventInputSystem.hpp"
 
 #include "SelectableDrawingObject.hpp"
