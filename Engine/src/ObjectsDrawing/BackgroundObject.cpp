@@ -1,8 +1,7 @@
 #include "BackgroundObject.hpp"
 
-BackgroundObject::BackgroundObject(std::shared_ptr<Texture> texture, IPoint iPoint) {
-    _texture = texture;
-    _iPoint = iPoint;
+BackgroundObject::BackgroundObject(std::shared_ptr<Logger> log, std::shared_ptr<Texture> texture, IPoint iPoint)
+  :DrawingObject(log,texture,iPoint) {
 }
 
 BackgroundObject::~BackgroundObject() {
@@ -13,5 +12,6 @@ void BackgroundObject::Draw() {
 }
 
 void BackgroundObject::Update(float delta, std::shared_ptr<EventInputSystem> eventInputSystem) {
-
 }
+
+

@@ -11,6 +11,12 @@
 #include "services/InitService.hpp"
 
 #include "Utils/IPoint.hpp"
+#include "Utils/IRectangle.hpp"
+#include "DrawingObject.hpp"
 #include "ObjectsDrawing/BackgroundObject.hpp"
 #include "ObjectsDrawing/Player.hpp"
+#include "EventInputSystem.hpp"
+
+#include "SelectableDrawingObject.hpp"
+
 #endif // ENGINE_HPP_INCLUDED

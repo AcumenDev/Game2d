@@ -1,6 +1,7 @@
 #include "Player.hpp"
 
-Player::Player() {
+Player::Player(std::shared_ptr<Logger> log, std::shared_ptr<Texture> texture, IPoint iPoint)
+    :DrawingObject(log,texture,iPoint) {
 }
 
 Player::~Player() {

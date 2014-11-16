@@ -20,6 +20,7 @@
 					<Add directory="include/services" />
 					<Add directory="include/ObjectsDrawing" />
 					<Add directory="include/Utils/" />
+					<Add directory="include/Utils" />
 				</Compiler>
 				<Linker>
 					<Add library="user32" />
@@ -39,6 +40,7 @@
 					<Add directory="include/services" />
 					<Add directory="include/ObjectsDrawing" />
 					<Add directory="include/Utils/" />
+					<Add directory="include/Utils" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -69,9 +71,11 @@
 		<Unit filename="include/ResourceManager.hpp" />
 		<Unit filename="include/SceneManager.hpp" />
 		<Unit filename="include/SceneNode.hpp" />
+		<Unit filename="include/SelectableDrawingObject.hpp" />
 		<Unit filename="include/SpriteAnimation.hpp" />
 		<Unit filename="include/Texture.hpp" />
 		<Unit filename="include/Utils/IPoint.hpp" />
+		<Unit filename="include/Utils/IRectangle.hpp" />
 		<Unit filename="include/Window.hpp" />
 		<Unit filename="include/services/InitService.hpp" />
 		<Unit filename="include/services/WidowService.hpp" />
@@ -84,9 +88,11 @@
 		<Unit filename="src/ResourceManager.cpp" />
 		<Unit filename="src/SceneManager.cpp" />
 		<Unit filename="src/SceneNode.cpp" />
+		<Unit filename="src/SelectableDrawingObject.cpp" />
 		<Unit filename="src/SpriteAnimation.cpp" />
 		<Unit filename="src/Texture.cpp" />
 		<Unit filename="src/Utils/IPoint.cpp" />
+		<Unit filename="src/Utils/IRectangle.cpp" />
 		<Unit filename="src/Window.cpp" />
 		<Unit filename="src/services/InitService.cpp" />
 		<Unit filename="src/services/WidowService.cpp" />

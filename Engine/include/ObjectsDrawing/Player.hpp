@@ -8,7 +8,7 @@
 
 class Player : public DrawingObject {
 public:
-    Player();
+    Player(std::shared_ptr<Logger> log, std::shared_ptr<Texture> texture, IPoint iPoint);
     void Init( std::shared_ptr<SpriteAnimation> spriteAnimation);
     void SetPosition(IPoint iPoint);
     void Draw() override;
@@ -21,9 +21,6 @@ private:
     void Jump(int delta);
 
     std::shared_ptr<SpriteAnimation> _spriteAnimation;
-    Texture * _texture;
-    //int _x =0,_y=0;
-    IPoint _iPoint;
 
     int _jump =0;
     bool _jumpStateUp = false;
