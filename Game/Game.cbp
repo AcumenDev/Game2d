@@ -16,6 +16,7 @@
 					<Add directory="src" />
 					<Add directory="Engine" />
 					<Add directory="include" />
+					<Add directory="include/DrawingItems" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -28,6 +29,7 @@
 					<Add directory="src" />
 					<Add directory="Engine" />
 					<Add directory="include" />
+					<Add directory="include/DrawingItems" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -51,7 +53,9 @@
 			<Add directory="../../lib/SDL2-2.0.3/i686-w64-mingw32/lib" />
 			<Add directory="../Engine/bin" />
 		</Linker>
+		<Unit filename="include/DrawingItems/ItemDrawing.hpp" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/DrawingItems/ItemDrawing.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

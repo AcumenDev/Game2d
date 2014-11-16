@@ -6,6 +6,7 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <iostream>
+#include "ItemDrawing.hpp"
 
 #include "Engine.hpp"
 
@@ -36,7 +37,8 @@ int main(int argc, char* argv[])
     std::vector<std::shared_ptr<Texture>> texstures = {gFooTexture, gFooTexture1};
 
     auto background = std::make_shared<BackgroundObject>(gBackgroundTexture,IPoint(0,0));
-    std::shared_ptr<Player> player = std::make_shared<Player>();
+    auto player = std::make_shared<Player>();
+    auto item=std::make_shared<ItemDrawing>(log,gFooTexture,IPoint(100,20));
 
     player->Init(std::make_shared<SpriteAnimation>(texstures, 0.05));
     player->SetPosition(IPoint(240, 190));
@@ -46,6 +48,7 @@ int main(int argc, char* argv[])
     auto mainNode =  _sceneManager->AddChildNode("MainNode");
     mainNode->AttachObject(background);
     mainNode->AttachObject(player);
+    mainNode->AttachObject(item);
     MainLoop mainLoop(_sceneManager, log);
 
     mainLoop.Start();
