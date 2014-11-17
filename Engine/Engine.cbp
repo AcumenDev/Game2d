@@ -22,6 +22,7 @@
 					<Add directory="include/Utils/" />
 					<Add directory="include/Utils" />
 					<Add directory="include/ObjectsDrawing/Inventory" />
+					<Add directory="include/ObjectsDrawing/Utils" />
 				</Compiler>
 				<Linker>
 					<Add library="user32" />
@@ -43,6 +44,7 @@
 					<Add directory="include/Utils/" />
 					<Add directory="include/Utils" />
 					<Add directory="include/ObjectsDrawing/Inventory" />
+					<Add directory="include/ObjectsDrawing/Utils" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -54,14 +56,17 @@
 			<Add option="-std=c++11" />
 			<Add directory="../../lib/SDL2_image-2.0.0/i686-w64-mingw32/include/SDL2" />
 			<Add directory="../../lib/SDL2-2.0.3/i686-w64-mingw32/include/SDL2" />
+			<Add directory="../../lib/SDL2_ttf-2.0.12/i686-w64-mingw32/include/SDL2" />
 			<Add directory="include" />
 		</Compiler>
 		<Linker>
 			<Add option="-lSDL2" />
 			<Add option="-lSDL2main" />
 			<Add option="-lSDL2_image" />
+			<Add option="-lSDL2_ttf" />
 			<Add directory="../../lib/SDL2_image-2.0.0/i686-w64-mingw32/lib" />
 			<Add directory="../../lib/SDL2-2.0.3/i686-w64-mingw32/lib" />
+			<Add directory="../../lib/SDL2_ttf-2.0.12/i686-w64-mingw32/lib" />
 		</Linker>
 		<Unit filename="include/DrawingObject.hpp" />
 		<Unit filename="include/Engine.hpp" />
@@ -69,9 +74,11 @@
 		<Unit filename="include/Logger.hpp" />
 		<Unit filename="include/MainLoop.hpp" />
 		<Unit filename="include/ObjectsDrawing/BackgroundObject.hpp" />
+		<Unit filename="include/ObjectsDrawing/Font.hpp" />
 		<Unit filename="include/ObjectsDrawing/Inventory/Inventory.hpp" />
 		<Unit filename="include/ObjectsDrawing/Inventory/InventoryItem.hpp" />
 		<Unit filename="include/ObjectsDrawing/Player.hpp" />
+		<Unit filename="include/ObjectsDrawing/Utils/ShowFps.hpp" />
 		<Unit filename="include/ResourceManager.hpp" />
 		<Unit filename="include/SceneManager.hpp" />
 		<Unit filename="include/SceneNode.hpp" />
@@ -80,6 +87,7 @@
 		<Unit filename="include/Texture.hpp" />
 		<Unit filename="include/Utils/IPoint.hpp" />
 		<Unit filename="include/Utils/IRectangle.hpp" />
+		<Unit filename="include/Utils/SceneManagerFpsCounterBase.hpp" />
 		<Unit filename="include/Window.hpp" />
 		<Unit filename="include/services/InitService.hpp" />
 		<Unit filename="include/services/WidowService.hpp" />
@@ -89,8 +97,10 @@
 		<Unit filename="src/Logger.cpp" />
 		<Unit filename="src/MainLoop.cpp" />
 		<Unit filename="src/ObjectsDrawing/BackgroundObject.cpp" />
+		<Unit filename="src/ObjectsDrawing/Font.cpp" />
 		<Unit filename="src/ObjectsDrawing/Inventory/InventoryItem.cpp" />
 		<Unit filename="src/ObjectsDrawing/Player.cpp" />
+		<Unit filename="src/ObjectsDrawing/Utils/ShowFps.cpp" />
 		<Unit filename="src/ResourceManager.cpp" />
 		<Unit filename="src/SceneManager.cpp" />
 		<Unit filename="src/SceneNode.cpp" />

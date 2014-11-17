@@ -16,6 +16,8 @@
 #include "ObjectsDrawing/BackgroundObject.hpp"
 #include "ObjectsDrawing/Player.hpp"
 #include "ObjectsDrawing/Inventory/Inventory.hpp"
+#include "ObjectsDrawing/Font.hpp"
+#include "ObjectsDrawing/Utils/ShowFps.hpp"
 #include "EventInputSystem.hpp"
 
 #include "SelectableDrawingObject.hpp"

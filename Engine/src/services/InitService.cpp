@@ -15,6 +15,11 @@ bool InitService::Init() {
         return false;
     }
 
+    if(!TTF_WasInit() && TTF_Init()==-1) {
+        _log-> Error("Error: SDL_ttf not initialize! "+ std::string(TTF_GetError()));
+        return false;
+    }
+
     if( !SDL_SetHint( SDL_HINT_RENDER_SCALE_QUALITY, "1" ) ) {
         _log-> Warn("Warning: Linear texture filtering not enabled! "+ std::string(SDL_GetError()));
     }
@@ -22,6 +27,7 @@ bool InitService::Init() {
 }
 
 InitService::~InitService() {
-    IMG_Quit();
     SDL_Quit();
+    IMG_Quit();
+    TTF_Quit();
 }

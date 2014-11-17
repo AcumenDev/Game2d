@@ -44,7 +44,7 @@ int main(int argc, char* argv[])
     auto inventoryItemTexture = resourceManager.GetTextureFromFile(render,resFolder+"inventoryItem.png");
 
 
-    auto inventory = std::make_shared<Inventory>(log,inventoryTexture,IPoint(0,0),6);
+    auto inventory = std::make_shared<Inventory>(log,inventoryTexture,IPoint(0,0),6,5);
 
     auto inventoryItem =  std::make_shared<InventoryItem>(inventoryItemTexture);
 
@@ -54,9 +54,11 @@ int main(int argc, char* argv[])
     inventory->Add(inventoryItem);
     inventory->Add(inventoryItem);
     inventory->Add(inventoryItem);
+
+    auto test_font = std::make_shared<Font>(log,render,resFolder+"fonts/DejaVuSans.ttf",40,IPoint(70,50));
+    test_font->SetText("Тест");
+
     player->Init(std::make_shared<SpriteAnimation>(texstures, 0.05));
-
-
 
     auto _sceneManager = std::make_shared<SceneManager>(log, render);
     auto mainNode =  _sceneManager->AddChildNode("MainNode");
@@ -64,8 +66,12 @@ int main(int argc, char* argv[])
     mainNode->AttachObject(player);
     mainNode->AttachObject(item);
     mainNode->AttachObject(inventory);
+    mainNode->AttachObject(test_font);
+    auto debugNode = _sceneManager->AddChildNode("DebugNode");
+    auto fps = std::make_shared<ShowFps>(log,render,resFolder+"fonts/DejaVuSans.ttf",40,IPoint(SCREEN_WIDTH-100,10));
+    _sceneManager->SetFpsListener(fps);
+    debugNode->AttachObject(fps);
     MainLoop mainLoop(_sceneManager, log);
-
     mainLoop.Start();
     return 0;
 }

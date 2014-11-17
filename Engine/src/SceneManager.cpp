@@ -17,12 +17,30 @@ void SceneManager::Draw() {
     for(const auto & node : _childNodes) {
         node->Draw();
     }
+
+    if(_sceneManagerFpsCounterBase!=nullptr) {
+        _sceneManagerFpsCounterBase->Update(_fps_current);
+    }
+    _calcFps();
     SDL_RenderPresent( _renderer );
 }
+
+void SceneManager::_calcFps() {
+    _fps_frames++;
+    if (_fps_lasttime < SDL_GetTicks() - 1000) {
+        _fps_lasttime = SDL_GetTicks();
+        _fps_current = _fps_frames;
+        _fps_frames = 0;
+    }
+}
+
 
 void SceneManager::Update(float delta, std::shared_ptr<EventInputSystem> eventInputSystem) {
     for(const auto & node : _childNodes) {
         node->Update(delta, eventInputSystem);
     }
-
 }
+void SceneManager::SetFpsListener(std::shared_ptr<SceneManagerFpsCounterBase> sceneManagerFpsCounterBase) {
+    _sceneManagerFpsCounterBase = sceneManagerFpsCounterBase;
+}
+

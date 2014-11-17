@@ -7,7 +7,7 @@
 class Inventory : public DrawingObject {
 public:
     /** Default constructor */
-    Inventory(std::shared_ptr<Logger> log, std::shared_ptr<Texture> textureCell, IPoint iPoint, int maxSize);
+    Inventory(std::shared_ptr<Logger> log, std::shared_ptr<Texture> textureCell, IPoint iPoint, int maxSize, int borderSize);
     /** Default destructor */
     virtual ~Inventory();
     void Draw() override;
@@ -17,6 +17,7 @@ protected:
 private:
     std::vector<std::shared_ptr<InventoryItem>> _inventoryItems;
     int _maxSize;
+    int _borderSize;
     std::shared_ptr<Texture> _textureCell;
 };
 #endif // INVENTORY_H
