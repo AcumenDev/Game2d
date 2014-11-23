@@ -6,7 +6,6 @@ DrawingObject::DrawingObject(std::shared_ptr<Logger> log, std::shared_ptr<Textur
     _log=log;
 }
 
-void DrawingObject::Draw()
-{
-   _texture->Draw(_iPoint);
+void DrawingObject::Draw() {
+    _texture->Draw(_iPoint);
 }

@@ -23,5 +23,4 @@ private:
     std::shared_ptr<SceneManager> _sceneManager;
     std::shared_ptr<EventInputSystem> _currentEventInputSystem;
 };
-
 #endif // MAINLOOP_H

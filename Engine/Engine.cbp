@@ -90,6 +90,7 @@
 		<Unit filename="include/Utils/SceneManagerFpsCounterBase.hpp" />
 		<Unit filename="include/Window.hpp" />
 		<Unit filename="include/services/InitService.hpp" />
+		<Unit filename="include/services/NotificationServices.hpp" />
 		<Unit filename="include/services/WidowService.hpp" />
 		<Unit filename="src/DrawingObject.cpp" />
 		<Unit filename="src/EventInputSystem.cpp" />
@@ -111,6 +112,7 @@
 		<Unit filename="src/Utils/IRectangle.cpp" />
 		<Unit filename="src/Window.cpp" />
 		<Unit filename="src/services/InitService.cpp" />
+		<Unit filename="src/services/NotificationServices.cpp" />
 		<Unit filename="src/services/WidowService.cpp" />
 		<Extensions>
 			<code_completion />

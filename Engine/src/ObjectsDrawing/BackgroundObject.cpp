@@ -1,7 +1,7 @@
 #include "BackgroundObject.hpp"
 
 BackgroundObject::BackgroundObject(std::shared_ptr<Logger> log, std::shared_ptr<Texture> texture, IPoint iPoint)
-  :DrawingObject(log,texture,iPoint) {
+    :DrawingObject(log,texture,iPoint) {
 }
 
 BackgroundObject::~BackgroundObject() {

@@ -5,12 +5,10 @@ WidowService::WidowService(std::shared_ptr<Logger> log) {
 }
 
 WidowService::~WidowService() {
-    //dtor
 }
 
 std::shared_ptr<Window> WidowService::Create(std::string title, int x, int y, int w, int h) {
-
-    SDL_Window * gWindow = SDL_CreateWindow( title.c_str(), x, y, w, h, SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL );
+    SDL_Window * gWindow = SDL_CreateWindow(title.c_str(), x, y, w, h, SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL);
     if( gWindow == nullptr ) {
         _log-> Error("Window could not be created! SDL Error: "+ std::string(SDL_GetError()));
         return nullptr;
@@ -29,4 +27,3 @@ std::shared_ptr<Window> WidowService::Create(std::string title, int x, int y, in
     }
     return std::make_shared<Window>(gWindow, gRenderer, glContext);
 }
-
