@@ -1,7 +1,8 @@
 #include "SceneManager.hpp"
-SceneManager::SceneManager(std::shared_ptr<Logger> log, SDL_Renderer* renderer) {
+SceneManager::SceneManager(std::shared_ptr<Logger> log, SDL_Renderer* renderer, std::shared_ptr<NotificationServices<std::string>> notificationServices) {
     _log = log;
     _renderer = renderer;
+    _notificationServices = notificationServices;
 }
 
 SceneManager::~SceneManager() {

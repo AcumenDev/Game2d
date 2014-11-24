@@ -8,9 +8,9 @@ template <typename EventType>
 class NotificationServices {
 public:
     /** Default constructor */
-    NotificationServices();
+    NotificationServices() {};
     /** Default destructor */
-    virtual ~NotificationServices();
+    virtual ~NotificationServices() {};
     // disallow copying and assigning
     NotificationServices(const NotificationServices&)=delete;
     NotificationServices& operator=(const NotificationServices&)=delete;

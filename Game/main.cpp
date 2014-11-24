@@ -59,8 +59,9 @@ int main(int argc, char* argv[])
     test_font->SetText("Тест");
 
     player->Init(std::make_shared<SpriteAnimation>(texstures, 0.05));
+    auto notificationServices =  std::make_shared<NotificationServices<std::string>>();
 
-    auto _sceneManager = std::make_shared<SceneManager>(log, render);
+    auto _sceneManager = std::make_shared<SceneManager>(log, render, notificationServices);
     auto mainNode =  _sceneManager->AddChildNode("MainNode");
     mainNode->AttachObject(background);
     mainNode->AttachObject(player);
