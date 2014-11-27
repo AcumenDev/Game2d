@@ -42,7 +42,7 @@ add_library(SDL2_ttf STATIC IMPORTED)
 set_property(TARGET SDL2_ttf PROPERTY IMPORTED_LOCATION ${SDL2_ttf_LIB})
 
 
-set(SOURCE_FILES
+set(HEADER_FILES
     Engine/include/ObjectsDrawing/Inventory/Inventory.hpp
     Engine/include/ObjectsDrawing/Inventory/InventoryItem.hpp
     Engine/include/ObjectsDrawing/Utils/ShowFps.hpp
@@ -66,7 +66,9 @@ set(SOURCE_FILES
     Engine/include/SelectableDrawingObject.hpp
     Engine/include/SpriteAnimation.hpp
     Engine/include/Texture.hpp
-    Engine/include/Window.hpp
+    Engine/include/Window.hpp)
+    
+set(SOURCE_FILES
     Engine/src/ObjectsDrawing/Inventory/InventoryItem.cpp
     Engine/src/ObjectsDrawing/Utils/ShowFps.cpp
     Engine/src/ObjectsDrawing/BackgroundObject.cpp
@@ -93,6 +95,6 @@ set(SOURCE_FILES
     src/DrawingItems/ItemDrawing.cpp
     main.cpp)
 
-add_executable(${PROJECT_NAME}  ${SOURCE_FILES})
+add_executable(${PROJECT_NAME}  ${SOURCE_FILES} ${HEADER_FILES})
 
 target_link_libraries(${PROJECT_NAME} SDL2 SDL2Main SDL2_image SDL2_ttf)
