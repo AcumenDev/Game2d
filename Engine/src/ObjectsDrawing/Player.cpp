@@ -1,4 +1,4 @@
-#include "Player.hpp"
+#include "ObjectsDrawing/Player.hpp"
 
 Player::Player(std::shared_ptr<Logger> log, std::shared_ptr<Texture> texture, IPoint iPoint)
     :DrawingObject(log,texture,iPoint) {

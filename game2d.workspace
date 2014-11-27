@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
-<CodeBlocks_workspace_file>
-	<Workspace title="Game2D">
-		<Project filename="Game/Game.cbp">
-			<Depends filename="Engine/Engine.cbp" />
-		</Project>
-		<Project filename="Engine/Engine.cbp" />
-	</Workspace>
-</CodeBlocks_workspace_file>

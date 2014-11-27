@@ -1,4 +1,5 @@
-#include "Inventory.hpp"
+
+#include <ObjectsDrawing/Inventory/Inventory.hpp>
 
 Inventory::Inventory(std::shared_ptr<Logger> log, std::shared_ptr<Texture> textureCell, IPoint iPoint, int maxSize, int borderSize)
     :DrawingObject(log, textureCell, iPoint) {

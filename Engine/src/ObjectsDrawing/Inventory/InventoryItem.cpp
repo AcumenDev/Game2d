@@ -1,4 +1,4 @@
-#include "InventoryItem.hpp"
+#include "ObjectsDrawing/Inventory/InventoryItem.hpp"
 
 InventoryItem::InventoryItem(std::shared_ptr<Texture> texture) {
     _texture=  texture;

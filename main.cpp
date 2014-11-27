@@ -2,11 +2,8 @@
 #ifdef _WIN32
 #include <windows.h>
 #endif
-#include <SDL_opengl.h>
 #include <SDL.h>
-#include <SDL_image.h>
-#include <iostream>
-#include "ItemDrawing.hpp"
+#include "DrawingItems/ItemDrawing.hpp"
 
 #include "Engine.hpp"
 
@@ -29,7 +26,7 @@ int main(int argc, char* argv[])
     auto window = windowService->Create("Game", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT);
     auto render = window->GetRenderer();
     ResourceManager resourceManager(log);
-    std::string resFolder = "../../res/";
+    std::string resFolder = "../res/";
     std::shared_ptr<Texture> gBackgroundTexture = resourceManager.GetTextureFromFile(render,resFolder+"background.png");
     std::shared_ptr<Texture> gFooTexture = resourceManager.GetTextureFromFile(render,resFolder+"foo.png");
     std::shared_ptr<Texture> gFooTexture1 = resourceManager.GetTextureFromFile(render,resFolder+"foo1.png");

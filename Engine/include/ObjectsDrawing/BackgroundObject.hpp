@@ -2,7 +2,7 @@
 #define BACKGROUNDOBJECT_HPP
 #include "DrawingObject.hpp"
 #include "Texture.hpp"
-#include "Utils\IPoint.hpp"
+#include "Utils/IPoint.hpp"
 #include "Logger.hpp"
 class BackgroundObject : public DrawingObject {
 public:

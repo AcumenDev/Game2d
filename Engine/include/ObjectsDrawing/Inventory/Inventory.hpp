@@ -4,6 +4,8 @@
 #include <vector>
 #include "DrawingObject.hpp"
 #include "InventoryItem.hpp"
+#include <Utils/IPoint.hpp>
+#include <DrawingObject.hpp>
 class Inventory : public DrawingObject {
 public:
     /** Default constructor */
