@@ -5,12 +5,15 @@
 
 class InventoryItem  {
 public:
-    InventoryItem(std::shared_ptr<Texture> texture);
+    InventoryItem(const int &id, std::shared_ptr<Texture> texture);
     virtual ~InventoryItem();
     void Update(float delta, std::shared_ptr<EventInputSystem> eventInputSystem);
     void Draw(IPoint iPoint);
 private:
     std::shared_ptr<Texture> _texture;
+    int _id;
+public:
+    int GetId();
 };
 
 #endif // INVENTORYITEM_H

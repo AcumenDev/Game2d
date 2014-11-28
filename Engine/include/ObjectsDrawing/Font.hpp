@@ -13,7 +13,7 @@ public:
     /** Default destructor */
     virtual ~Font();
 
-    void Update(float delta, std::shared_ptr<EventInputSystem> eventInputSystem) override;
+    void Update(float delta, std::shared_ptr<EventInputSystem> eventInputSystem, std::shared_ptr<NotificationServices> notificationServices) override;
     void Draw() override;
     void SetText(std::string text);
 protected:

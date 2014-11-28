@@ -9,7 +9,7 @@ public:
     BackgroundObject(std::shared_ptr<Logger> log, std::shared_ptr<Texture> texture, IPoint iPoint);
     virtual ~BackgroundObject();
     void Draw() override;
-    void Update(float delta,std::shared_ptr<EventInputSystem> eventInputSystem) override;
+    void Update(float delta,std::shared_ptr<EventInputSystem> eventInputSystem, std::shared_ptr<NotificationServices> notificationServices) override;
 };
 
 #endif // BACKGROUNDOBJECT_HPP

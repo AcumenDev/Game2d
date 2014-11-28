@@ -32,7 +32,7 @@ void Font::SetText(std::string text) {
     }
 }
 
-void Font::Update(float delta, std::shared_ptr<EventInputSystem> eventInputSystem) {
+void Font::Update(float delta, std::shared_ptr<EventInputSystem> eventInputSystem, std::shared_ptr<NotificationServices> notificationServices) {
 
 }
 

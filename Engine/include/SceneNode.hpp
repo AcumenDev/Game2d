@@ -10,7 +10,7 @@ public:
     SceneNode(std::string name);
     virtual ~SceneNode();
     void Draw();
-    void Update(float delta, std::shared_ptr<EventInputSystem> eventInputSystem);
+    void Update(float delta, std::shared_ptr<EventInputSystem> eventInputSystem, std::shared_ptr<NotificationServices> notificationServices);
     void AttachObject(std::shared_ptr<DrawingObject> drawingObject);
 protected:
 private:

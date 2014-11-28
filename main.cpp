@@ -25,11 +25,11 @@ int main(int argc, char* argv[])
     auto windowService = std::make_shared<WidowService>(log);
     auto window = windowService->Create("Game", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT);
     auto render = window->GetRenderer();
-    ResourceManager resourceManager(log);
+    auto  resourceManager = std::make_shared<ResourceManager>(log,render);
     std::string resFolder = "../res/";
-    std::shared_ptr<Texture> gBackgroundTexture = resourceManager.GetTextureFromFile(render,resFolder+"background.png");
-    std::shared_ptr<Texture> gFooTexture = resourceManager.GetTextureFromFile(render,resFolder+"foo.png");
-    std::shared_ptr<Texture> gFooTexture1 = resourceManager.GetTextureFromFile(render,resFolder+"foo1.png");
+    std::shared_ptr<Texture> gBackgroundTexture = resourceManager->GetTextureFromFile(resFolder+"background.png");
+    std::shared_ptr<Texture> gFooTexture = resourceManager->GetTextureFromFile(resFolder+"foo.png");
+    std::shared_ptr<Texture> gFooTexture1 = resourceManager->GetTextureFromFile(resFolder+"foo1.png");
 
     std::vector<std::shared_ptr<Texture>> texstures = {gFooTexture, gFooTexture1};
 
@@ -37,27 +37,26 @@ int main(int argc, char* argv[])
     auto player = std::make_shared<Player>(log,gFooTexture,IPoint(240, 190));
     auto item=std::make_shared<ItemDrawing>(log,gFooTexture,IPoint(100,20));
 
-    auto inventoryTexture = resourceManager.GetTextureFromFile(render,resFolder+"inventoryCell.png");
-    auto inventoryItemTexture = resourceManager.GetTextureFromFile(render,resFolder+"inventoryItem.png");
+    auto inventoryTexture = resourceManager->GetTextureFromFile(resFolder+"inventoryCell.png");
+ //   auto inventoryItemTexture = resourceManager->GetTextureFromFile(resFolder+"inventoryItem.png");
 
+    std::map<int, std::string> items;
+    items.insert(std::make_pair<int, std::string>(0,std::string(resFolder+"inventoryItem.png")));
 
-    auto inventory = std::make_shared<Inventory>(log,inventoryTexture,IPoint(0,0),6,5);
+    auto itemsFactory = std::make_shared<ItemsFactory>(items, resourceManager);
+    auto inventory = std::make_shared<Inventory>(log,inventoryTexture,itemsFactory,IPoint(0,0),6,5);
 
-    auto inventoryItem =  std::make_shared<InventoryItem>(inventoryItemTexture);
+  //  auto inventoryItem =  std::make_shared<InventoryItem>(1, inventoryItemTexture);
 
-    inventory->Add(inventoryItem);
-    inventory->Add(inventoryItem);
-    inventory->Add(inventoryItem);
-    inventory->Add(inventoryItem);
-    inventory->Add(inventoryItem);
-    inventory->Add(inventoryItem);
+    inventory->Add(itemsFactory->GetItemForId(0));
+
 
     auto test_font = std::make_shared<Font>(log,render,resFolder+"fonts/DejaVuSans.ttf",40,IPoint(70,50));
     test_font->SetText("Тест");
 
     player->Init(std::make_shared<SpriteAnimation>(texstures, 0.05));
-    auto notificationServices =  std::make_shared<NotificationServices<std::string>>();
-
+    auto notificationServices =  std::make_shared<NotificationServices>();
+    notificationServices->RegisterListener("inventoryAdd",std::bind(&Inventory::AddItem,inventory,std::placeholders::_1));
     auto _sceneManager = std::make_shared<SceneManager>(log, render, notificationServices);
     auto mainNode =  _sceneManager->AddChildNode("MainNode");
     mainNode->AttachObject(background);

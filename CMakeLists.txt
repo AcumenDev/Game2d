@@ -66,10 +66,13 @@ set(HEADER_FILES
     Engine/include/SelectableDrawingObject.hpp
     Engine/include/SpriteAnimation.hpp
     Engine/include/Texture.hpp
-    Engine/include/Window.hpp)
-    
+    Engine/include/Window.hpp
+    Engine/include/ItemsFactory.hpp
+    Engine/include/UpdateEventDto.hpp)
+
 set(SOURCE_FILES
     Engine/src/ObjectsDrawing/Inventory/InventoryItem.cpp
+    Engine/src/ObjectsDrawing/Inventory/Inventory.cpp
     Engine/src/ObjectsDrawing/Utils/ShowFps.cpp
     Engine/src/ObjectsDrawing/BackgroundObject.cpp
     Engine/src/ObjectsDrawing/Font.cpp
@@ -81,7 +84,6 @@ set(SOURCE_FILES
     Engine/src/Utils/IRectangle.cpp
     Engine/src/DrawingObject.cpp
     Engine/src/EventInputSystem.cpp
-    Engine/src/Inventory.cpp
     Engine/src/Logger.cpp
     Engine/src/MainLoop.cpp
     Engine/src/ResourceManager.cpp
@@ -91,6 +93,8 @@ set(SOURCE_FILES
     Engine/src/SpriteAnimation.cpp
     Engine/src/Texture.cpp
     Engine/src/Window.cpp
+    Engine/src/ItemsFactory.cpp
+    Engine/src/UpdateEventDto.cpp
     include/DrawingItems/ItemDrawing.hpp
     src/DrawingItems/ItemDrawing.cpp
     main.cpp)

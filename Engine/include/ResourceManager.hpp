@@ -5,11 +5,12 @@
 #include <memory>
 class ResourceManager {
 public:
-    ResourceManager(std::shared_ptr<Logger> log);
+    ResourceManager(std::shared_ptr<Logger> log, SDL_Renderer* render);
     virtual ~ResourceManager();
-    std::shared_ptr<Texture> GetTextureFromFile(SDL_Renderer* render, std::string path);
+    std::shared_ptr<Texture> GetTextureFromFile(std::string path);
 protected:
 private:
+    SDL_Renderer* _render;
     std::shared_ptr<Logger> _log;
 };
 

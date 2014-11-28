@@ -15,12 +15,12 @@ void SceneNode::Draw() {
         node->Draw();
     }
 }
-void SceneNode::Update(float delta,std::shared_ptr<EventInputSystem> eventInputSystem) {
+void SceneNode::Update(float delta,std::shared_ptr<EventInputSystem> eventInputSystem, std::shared_ptr<NotificationServices> notificationServices) {
     for(const auto & drawingObject : _drawingObjects) {
-        drawingObject->Update( delta, eventInputSystem);
+        drawingObject->Update( delta, eventInputSystem, notificationServices);
     }
     for(const auto & node : _childNodes) {
-        node->Update( delta, eventInputSystem);
+        node->Update( delta, eventInputSystem, notificationServices);
     }
 }
 

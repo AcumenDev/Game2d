@@ -1,7 +1,8 @@
 #include "ObjectsDrawing/Inventory/InventoryItem.hpp"
 
-InventoryItem::InventoryItem(std::shared_ptr<Texture> texture) {
+InventoryItem::InventoryItem(const int &id, std::shared_ptr<Texture> texture) {
     _texture=  texture;
+    _id = id;
 }
 
 InventoryItem::~InventoryItem() {
@@ -14,3 +15,7 @@ void InventoryItem::Draw(IPoint iPoint) {
     _texture->Draw(iPoint);
 }
 
+int InventoryItem::GetId()
+{
+    return _id;
+}

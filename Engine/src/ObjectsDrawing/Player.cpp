@@ -20,7 +20,7 @@ void Player::Draw() {
     _spriteAnimation->Draw(_iPoint);
 }
 
-void Player::Update(float delta, std::shared_ptr<EventInputSystem> eventInputSystem) {
+void Player::Update(float delta, std::shared_ptr<EventInputSystem> eventInputSystem, std::shared_ptr<NotificationServices> notificationServices) {
     auto event = eventInputSystem->event;
     switch(event.type) {
     case SDL_KEYDOWN : {

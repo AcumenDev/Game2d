@@ -10,7 +10,10 @@
 #include "services/NotificationServices.hpp"
 class SceneManager {
 public:
-    SceneManager(std::shared_ptr<Logger> log, SDL_Renderer* renderer, std::shared_ptr<NotificationServices<std::string>> notificationServices);
+    SceneManager(
+            std::shared_ptr<Logger> log,
+            SDL_Renderer* renderer,
+            std::shared_ptr<NotificationServices> notificationServices);
     virtual ~SceneManager();
     std::shared_ptr<SceneNode> AddChildNode(std::string name);
     void Draw();
@@ -26,6 +29,6 @@ private:
     unsigned int _fps_lasttime;
     unsigned int _fps_current;
     unsigned int _fps_frames;
-    std::shared_ptr<NotificationServices<std::string>> _notificationServices;
+    std::shared_ptr<NotificationServices> _notificationServices;
 };
 #endif // SCENEMANAGER_H
