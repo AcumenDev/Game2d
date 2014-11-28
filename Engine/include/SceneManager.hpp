@@ -17,7 +17,7 @@ public:
     virtual ~SceneManager();
     std::shared_ptr<SceneNode> AddChildNode(std::string name);
     void Draw();
-    void Update(float delta,std::shared_ptr<EventInputSystem> eventInputSystem);
+    void Update(float delta, std::shared_ptr<EventInputSystem> eventInputSystem);
     void SetFpsListener(std::shared_ptr<SceneManagerFpsCounterBase> sceneManagerFpsCounterBase);
 protected:
 private:

@@ -1,3 +1,4 @@
+#include <UpdateEventDto.hpp>
 #include "SceneManager.hpp"
 SceneManager::SceneManager(std::shared_ptr<Logger> log, SDL_Renderer* renderer, std::shared_ptr<NotificationServices> notificationServices) {
     _log = log;
@@ -38,7 +39,7 @@ void SceneManager::_calcFps() {
 
 void SceneManager::Update(float delta, std::shared_ptr<EventInputSystem> eventInputSystem) {
     for(const auto & node : _childNodes) {
-        node->Update(delta, eventInputSystem, _notificationServices);
+        node->Update(UpdateEventDto(delta, _notificationServices, eventInputSystem));
     }
 }
 void SceneManager::SetFpsListener(std::shared_ptr<SceneManagerFpsCounterBase> sceneManagerFpsCounterBase) {

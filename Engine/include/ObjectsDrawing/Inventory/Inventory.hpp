@@ -19,7 +19,7 @@ public:
             int borderSize);
     virtual ~Inventory();
     void Draw() override;
-    void Update(float delta, std::shared_ptr<EventInputSystem> eventInputSystem, std::shared_ptr<NotificationServices> notificationServices) override;
+    void Update(UpdateEventDto updateEventDto) override;
     void Add(std::shared_ptr<InventoryItem> item);
     void AddItem(const int &itemId);
 protected:

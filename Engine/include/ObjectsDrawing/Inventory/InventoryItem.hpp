@@ -7,7 +7,7 @@ class InventoryItem  {
 public:
     InventoryItem(const int &id, std::shared_ptr<Texture> texture);
     virtual ~InventoryItem();
-    void Update(float delta, std::shared_ptr<EventInputSystem> eventInputSystem);
+    void Update(UpdateEventDto updateEventDto);
     void Draw(IPoint iPoint);
 private:
     std::shared_ptr<Texture> _texture;

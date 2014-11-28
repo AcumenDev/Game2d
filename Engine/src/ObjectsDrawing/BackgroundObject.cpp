@@ -11,7 +11,7 @@ void BackgroundObject::Draw() {
     _texture->Draw(_iPoint);
 }
 
-void BackgroundObject::Update(float delta, std::shared_ptr<EventInputSystem> eventInputSystem, std::shared_ptr<NotificationServices> notificationServices) {
+void BackgroundObject::Update(UpdateEventDto updateEventDto) {
 }
 
 

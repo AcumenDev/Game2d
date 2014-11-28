@@ -25,9 +25,9 @@ void Inventory::Draw() {
 
 }
 
-void Inventory::Update(float delta, std::shared_ptr<EventInputSystem> eventInputSystem, std::shared_ptr<NotificationServices> notificationServices) {
+void Inventory::Update(UpdateEventDto updateEventDto) {
     for(auto const& item : _inventoryItems) {
-        item->Update(delta,eventInputSystem );
+        item->Update(updateEventDto );
     }
 }
 void Inventory::Add(std::shared_ptr<InventoryItem> item) {

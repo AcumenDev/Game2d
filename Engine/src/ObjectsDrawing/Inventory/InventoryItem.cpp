@@ -8,7 +8,7 @@ InventoryItem::InventoryItem(const int &id, std::shared_ptr<Texture> texture) {
 InventoryItem::~InventoryItem() {
 }
 
-void InventoryItem::Update(float delta, std::shared_ptr<EventInputSystem> eventInputSystem) {
+void InventoryItem::Update(UpdateEventDto updateEventDto) {
 }
 
 void InventoryItem::Draw(IPoint iPoint) {

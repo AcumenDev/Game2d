@@ -12,7 +12,7 @@ public:
     void Init( std::shared_ptr<SpriteAnimation> spriteAnimation);
     void SetPosition(IPoint iPoint);
     void Draw() override;
-    void Update(float delta, std::shared_ptr<EventInputSystem> eventInputSystem, std::shared_ptr<NotificationServices> notificationServices) override;
+    void Update(UpdateEventDto updateEventDto) override;
 
     virtual ~Player();
 private:

@@ -20,8 +20,9 @@ void Player::Draw() {
     _spriteAnimation->Draw(_iPoint);
 }
 
-void Player::Update(float delta, std::shared_ptr<EventInputSystem> eventInputSystem, std::shared_ptr<NotificationServices> notificationServices) {
-    auto event = eventInputSystem->event;
+void Player::Update(UpdateEventDto updateEventDto) {
+    auto delta = updateEventDto.delta;
+    auto event = updateEventDto.eventInputSystem->event;
     switch(event.type) {
     case SDL_KEYDOWN : {
         // _log->Debug("Key press: " + std::to_string(event.key.keysym.sym));
@@ -41,7 +42,6 @@ void Player::Update(float delta, std::shared_ptr<EventInputSystem> eventInputSys
         }
     }
     }
-
 
     if(_jump) {
         if(_jumpStateUp) {
