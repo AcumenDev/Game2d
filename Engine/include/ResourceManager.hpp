@@ -12,6 +12,7 @@ protected:
 private:
     SDL_Renderer* _render;
     std::shared_ptr<Logger> _log;
+    std::string _name;
 };
 
 #endif // RESOURCEMANAGER_H

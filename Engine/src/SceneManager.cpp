@@ -10,7 +10,7 @@ SceneManager::~SceneManager() {
 }
 
 std::shared_ptr<SceneNode> SceneManager::AddChildNode(std::string name) {
-    auto childNode = std::make_shared<SceneNode>(name);
+    auto childNode = std::make_shared<SceneNode>(_log, name);
     _childNodes.push_back(childNode);
     return childNode;
 }

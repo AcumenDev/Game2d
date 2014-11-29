@@ -6,6 +6,7 @@
 #include "Texture.hpp"
 #include "Logger.hpp"
 #include "UpdateEventDto.hpp"
+#include "ObjectBase.hpp"
 
 class DrawingObject {
 public:
@@ -13,9 +14,11 @@ public:
     virtual ~DrawingObject() {};
     virtual void Draw();
     virtual void Update(UpdateEventDto updateEventDto) = 0;
+    virtual bool IsLive();
 protected:
     std::shared_ptr<Texture> _texture;
     IPoint _iPoint;
     std::shared_ptr<Logger> _log;
+    bool _isLive;
 };
 #endif // DRAWINGOBJECT_H

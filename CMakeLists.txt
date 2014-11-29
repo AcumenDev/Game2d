@@ -68,7 +68,8 @@ set(HEADER_FILES
     Engine/include/Texture.hpp
     Engine/include/Window.hpp
     Engine/include/ItemsFactory.hpp
-    Engine/include/UpdateEventDto.hpp)
+    Engine/include/UpdateEventDto.hpp
+    Engine/include/ObjectBase.hpp)
 
 set(SOURCE_FILES
     Engine/src/ObjectsDrawing/Inventory/InventoryItem.cpp

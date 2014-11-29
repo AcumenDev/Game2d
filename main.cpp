@@ -35,7 +35,7 @@ int main(int argc, char* argv[])
 
     auto background = std::make_shared<BackgroundObject>(log,gBackgroundTexture,IPoint(0,0));
     auto player = std::make_shared<Player>(log,gFooTexture,IPoint(240, 190));
-    auto item=std::make_shared<ItemDrawing>(log,gFooTexture,IPoint(100,20));
+    auto item=std::make_shared<ItemDrawing>(log,gFooTexture,IPoint(100,20),"Boy");
 
     auto inventoryTexture = resourceManager->GetTextureFromFile(resFolder+"inventoryCell.png");
  //   auto inventoryItemTexture = resourceManager->GetTextureFromFile(resFolder+"inventoryItem.png");

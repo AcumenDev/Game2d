@@ -31,7 +31,7 @@ void Inventory::Update(UpdateEventDto updateEventDto) {
     }
 }
 void Inventory::Add(std::shared_ptr<InventoryItem> item) {
-    _log->Info("Added to Inventory :"+ std::to_string(item->GetId()));
+    _log->Info("Inventory","Added to Inventory :"+ std::to_string(item->GetId()));
     _inventoryItems.push_back(item);
 }
 
