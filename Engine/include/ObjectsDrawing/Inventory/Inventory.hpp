@@ -20,9 +20,10 @@ public:
     virtual ~Inventory();
     void Draw() override;
     void Update(UpdateEventDto updateEventDto) override;
-    void Add(std::shared_ptr<InventoryItem> item);
-    void AddItem(const int &itemId);
+
+    void AddItemForId(const int &itemId);
 protected:
+    void Add(std::shared_ptr<InventoryItem> item);
 private:
     std::vector<std::shared_ptr<InventoryItem>> _inventoryItems;
     int _maxSize;

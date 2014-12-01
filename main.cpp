@@ -43,20 +43,17 @@ int main(int argc, char* argv[])
     std::map<int, std::string> items;
     items.insert(std::make_pair<int, std::string>(0,std::string(resFolder+"inventoryItem.png")));
 
-    auto itemsFactory = std::make_shared<ItemsFactory>(items, resourceManager);
+    auto itemsFactory = std::make_shared<ItemsFactory>(log, items, resourceManager);
     auto inventory = std::make_shared<Inventory>(log,inventoryTexture,itemsFactory,IPoint(0,0),6,5);
 
   //  auto inventoryItem =  std::make_shared<InventoryItem>(1, inventoryItemTexture);
-
-    inventory->Add(itemsFactory->GetItemForId(0));
-
-
+    inventory->AddItemForId(0);
     auto test_font = std::make_shared<Font>(log,render,resFolder+"fonts/DejaVuSans.ttf",40,IPoint(70,50));
     test_font->SetText("Тест");
 
     player->Init(std::make_shared<SpriteAnimation>(texstures, 0.05));
     auto notificationServices =  std::make_shared<NotificationServices>();
-    notificationServices->RegisterListener("inventoryAdd",std::bind(&Inventory::AddItem,inventory,std::placeholders::_1));
+    notificationServices->RegisterListener("inventoryAdd", std::bind(&Inventory::AddItemForId, inventory, std::placeholders::_1));
     auto _sceneManager = std::make_shared<SceneManager>(log, render, notificationServices);
     auto mainNode =  _sceneManager->AddChildNode("MainNode");
     mainNode->AttachObject(background);

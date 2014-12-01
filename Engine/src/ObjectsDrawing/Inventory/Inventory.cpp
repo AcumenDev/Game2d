@@ -18,11 +18,8 @@ void Inventory::Draw() {
     }
 
     for( unsigned int i = 0; i<_inventoryItems.size(); i++) {
-        //_textureCell->Draw(IPoint(_iPoint.x,_iPoint.y+_textureCell->getHeight()*i));
         _inventoryItems.at(i)->Draw(IPoint(_iPoint.x,_iPoint.y+_borderSize+_textureCell->getHeight()*i));
     }
-
-
 }
 
 void Inventory::Update(UpdateEventDto updateEventDto) {
@@ -31,11 +28,13 @@ void Inventory::Update(UpdateEventDto updateEventDto) {
     }
 }
 void Inventory::Add(std::shared_ptr<InventoryItem> item) {
-    _log->Info("Inventory","Added to Inventory :"+ std::to_string(item->GetId()));
+    _log->Info("Inventory","Added to Inventory : "+ std::to_string(item->GetId()));
     _inventoryItems.push_back(item);
 }
 
-
-void Inventory::AddItem(const int &itemId) {
-    Add( _itemsFactory->GetItemForId(itemId));
+void Inventory::AddItemForId(const int &itemId) {
+    auto item = _itemsFactory->GetItemForId(itemId);
+    if(item!= nullptr) {
+        Add(item);
+    }
 }
