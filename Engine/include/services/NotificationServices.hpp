@@ -5,6 +5,7 @@
 #include <vector>
 #include <functional>
 #include <iostream>
+#include <exception>
 
 class NotificationServices {
 public:

@@ -8,10 +8,7 @@ IRectangle::~IRectangle() {
     //dtor
 }
 
-
-IRectangle::IRectangle(int x, int y, int w, int h) {
-    this->x = x;
-    this->y = y;
-    this->w = w;
-    this->h = h;
+IRectangle::IRectangle(IPoint leftTop, IPoint rightBottom) {
+    LeftTop = leftTop;
+    RightBottom = rightBottom;
 }

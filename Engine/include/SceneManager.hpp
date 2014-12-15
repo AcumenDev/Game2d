@@ -8,27 +8,34 @@
 #include "Logger.hpp"
 #include "Utils/SceneManagerFpsCounterBase.hpp"
 #include "services/NotificationServices.hpp"
+#include "Box2D/Box2D.h"
+
+using std::shared_ptr;
+using std::vector;
+using std::string;
+
 class SceneManager {
 public:
     SceneManager(
-            std::shared_ptr<Logger> log,
-            SDL_Renderer* renderer,
-            std::shared_ptr<NotificationServices> notificationServices);
+            shared_ptr<Logger> log,
+            SDL_Renderer *renderer,
+            shared_ptr<b2World> physicWorld,
+            shared_ptr<NotificationServices> notificationServices);
     virtual ~SceneManager();
-    std::shared_ptr<SceneNode> AddChildNode(std::string name);
+    shared_ptr<SceneNode> AddChildNode(string name);
     void Draw();
-    void Update(float delta, std::shared_ptr<EventInputSystem> eventInputSystem);
-    void SetFpsListener(std::shared_ptr<SceneManagerFpsCounterBase> sceneManagerFpsCounterBase);
-protected:
+    void Update(float delta, shared_ptr<EventInputSystem> eventInputSystem);
+    void SetFpsListener(shared_ptr<SceneManagerFpsCounterBase> sceneManagerFpsCounterBase);
 private:
     void _calcFps();
-    std::vector<std::shared_ptr<SceneNode>> _childNodes;
-    std::shared_ptr<Logger> _log;
-    SDL_Renderer* _renderer;
-    std::shared_ptr<SceneManagerFpsCounterBase> _sceneManagerFpsCounterBase;
+    shared_ptr<b2World> _physicWorld;
+    vector<shared_ptr<SceneNode>> _childNodes;
+    shared_ptr<Logger> _log;
+    SDL_Renderer *_renderer;
+    shared_ptr<SceneManagerFpsCounterBase> _sceneManagerFpsCounterBase;
     unsigned int _fps_lasttime;
     unsigned int _fps_current;
     unsigned int _fps_frames;
-    std::shared_ptr<NotificationServices> _notificationServices;
+    shared_ptr<NotificationServices> _notificationServices;
 };
 #endif // SCENEMANAGER_H

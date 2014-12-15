@@ -1,15 +1,20 @@
 #include <UpdateEventDto.hpp>
 #include "SceneManager.hpp"
-SceneManager::SceneManager(std::shared_ptr<Logger> log, SDL_Renderer* renderer, std::shared_ptr<NotificationServices> notificationServices) {
+SceneManager::SceneManager(
+        shared_ptr<Logger> log,
+        SDL_Renderer* renderer,
+        shared_ptr<b2World> physicWorld,
+        shared_ptr<NotificationServices> notificationServices) {
     _log = log;
     _renderer = renderer;
     _notificationServices = notificationServices;
+    _physicWorld = physicWorld;
 }
 
 SceneManager::~SceneManager() {
 }
 
-std::shared_ptr<SceneNode> SceneManager::AddChildNode(std::string name) {
+shared_ptr<SceneNode> SceneManager::AddChildNode(string name) {
     auto childNode = std::make_shared<SceneNode>(_log, name);
     _childNodes.push_back(childNode);
     return childNode;
@@ -20,7 +25,7 @@ void SceneManager::Draw() {
         node->Draw();
     }
 
-    if(_sceneManagerFpsCounterBase!=nullptr) {
+    if(_sceneManagerFpsCounterBase) {
         _sceneManagerFpsCounterBase->Update(_fps_current);
     }
     _calcFps();
@@ -37,12 +42,14 @@ void SceneManager::_calcFps() {
 }
 
 
-void SceneManager::Update(float delta, std::shared_ptr<EventInputSystem> eventInputSystem) {
+void SceneManager::Update(float delta, shared_ptr<EventInputSystem> eventInputSystem) {
     for(const auto & node : _childNodes) {
         node->Update(UpdateEventDto(delta, _notificationServices, eventInputSystem));
     }
+
+    _physicWorld->Step(delta, 6, 2);
 }
-void SceneManager::SetFpsListener(std::shared_ptr<SceneManagerFpsCounterBase> sceneManagerFpsCounterBase) {
+void SceneManager::SetFpsListener(shared_ptr<SceneManagerFpsCounterBase> sceneManagerFpsCounterBase) {
     _sceneManagerFpsCounterBase = sceneManagerFpsCounterBase;
 }
 

@@ -3,7 +3,7 @@
 #include <memory>
 #include <vector>
 #include "Texture.hpp"
-#include "Utils\IPoint.hpp"
+#include "Utils/IPoint.hpp"
 
 class SpriteAnimation {
 public:

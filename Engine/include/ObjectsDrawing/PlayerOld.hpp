@@ -1,19 +1,20 @@
-#ifndef PLAYER_H
-#define PLAYER_H
+#ifndef PLAYEROLD_H
+#define PLAYEROLD_H
 #include <memory>
-#include "Texture.hpp"
+
 #include "SpriteAnimation.hpp"
+#include "Texture.hpp"
 #include "DrawingObject.hpp"
 #include "Utils/IPoint.hpp"
 
-class Player : public DrawingObject {
+class PlayerOld : public DrawingObject {
 public:
-    Player(std::shared_ptr<Logger> log, std::shared_ptr<Texture> texture, IPoint iPoint);
+    PlayerOld(std::shared_ptr<Logger> log, std::shared_ptr<Texture> texture, IPoint iPoint);
     void Init(std::shared_ptr<SpriteAnimation> spriteAnimation);
     void SetPosition(IPoint iPoint);
     void Draw() override;
     void Update(UpdateEventDto updateEventDto) override;
-    virtual ~Player();
+    virtual ~PlayerOld();
 private:
     void ToRight(float delta);
     void ToLeft(float delta);
@@ -25,4 +26,4 @@ private:
     float _jumpPosStart;
 };
 
-#endif // PLAYER_H
+#endif // PLAYEROLD_H

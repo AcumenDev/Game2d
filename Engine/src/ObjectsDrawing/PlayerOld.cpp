@@ -1,26 +1,26 @@
-#include "ObjectsDrawing/Player.hpp"
+#include "ObjectsDrawing/PlayerOld.hpp"
 
-Player::Player(std::shared_ptr<Logger> log, std::shared_ptr<Texture> texture, IPoint iPoint)
+PlayerOld::PlayerOld(std::shared_ptr<Logger> log, std::shared_ptr<Texture> texture, IPoint iPoint)
     :DrawingObject(log,texture,iPoint) {
 }
 
-Player::~Player() {
+PlayerOld::~PlayerOld() {
 
 }
 
-void Player::Init(std::shared_ptr<SpriteAnimation> spriteAnimation) {
+void PlayerOld::Init(std::shared_ptr<SpriteAnimation> spriteAnimation) {
     _spriteAnimation = spriteAnimation;
 }
 
-void Player::SetPosition(IPoint iPoint) {
+void PlayerOld::SetPosition(IPoint iPoint) {
     _iPoint = iPoint;
 }
 
-void Player::Draw() {
+void PlayerOld::Draw() {
     _spriteAnimation->Draw(_iPoint);
 }
 
-void Player::Update(UpdateEventDto updateEventDto) {
+void PlayerOld::Update(UpdateEventDto updateEventDto) {
     auto delta = updateEventDto.delta;
     auto event = updateEventDto.eventInputSystem->event;
     switch(event.type) {
@@ -58,17 +58,17 @@ void Player::Update(UpdateEventDto updateEventDto) {
     }
 }
 
-void Player::ToRight(float delta) {
+void PlayerOld::ToRight(float delta) {
     _iPoint.x+=delta;
     _spriteAnimation->Step(delta);
 }
 
-void Player::ToLeft(float delta) {
+void PlayerOld::ToLeft(float delta) {
     _iPoint.x-=delta;
     _spriteAnimation->Step(delta);
 }
 
-void Player::Jump(int delta) {
+void PlayerOld::Jump(int delta) {
     if(_jump) {
         return;
     }

@@ -1,43 +1,70 @@
 #include "SceneNode.hpp"
 #include <algorithm>
-SceneNode::SceneNode(std::shared_ptr<Logger> log, std::string nameNode){
+
+SceneNode::SceneNode(shared_ptr<Logger> log, string nameNode) {
     _log = log;
-    _nameNode  = nameNode;
+    _nameNode = nameNode;
 }
 
 SceneNode::~SceneNode() {
 }
 
 void SceneNode::Draw() {
-    for(const auto & drawingObject : _drawingObjects) {
+    for (const auto &drawingObject : _drawingObjectsOld) {
         drawingObject->Draw();
     }
-    for(const auto & node : _childNodes) {
+
+    for (const auto &gameObject : _gameObjects) {
+        auto draw = gameObject->GetDrawing();
+        if (draw) {
+            draw->Draw();
+        }
+    }
+    for (const auto &drawingObject : _drawingObjects) {
+        drawingObject->Draw();
+    }
+
+    for (const auto &node : _childNodes) {
         node->Draw();
     }
 }
+
 void SceneNode::Update(UpdateEventDto updateEventDto) {
-    for(const auto & drawingObject : _drawingObjects) {
+
+    for (const auto &drawingObject : _drawingObjectsOld) {
         drawingObject->Update(updateEventDto);
     }
 
-    for(const auto & node : _childNodes) {
-        node->Update( updateEventDto);
+    for (const auto &gameObject : _gameObjects) {
+        gameObject->Update(updateEventDto);
     }
 
-    if(_drawingObjects.size()>0) {
-        _drawingObjects.erase(
-                std::remove_if(_drawingObjects.begin(), _drawingObjects.end(), [this](std::shared_ptr<DrawingObject> item)-> bool {
-            if (!item->IsLive()) {
-                _log->Debug("SceneNode", "Deleted drawing object: from node" + _nameNode);
-              return true;
-            }
-            return false;
-        }),_drawingObjects.end()
+
+    for (const auto &node : _childNodes) {
+        node->Update(updateEventDto);
+    }
+
+    if (_drawingObjectsOld.size() > 0) {
+        _drawingObjectsOld.erase(
+                std::remove_if(_drawingObjectsOld.begin(), _drawingObjectsOld.end(), [this](std::shared_ptr<DrawingObject> item) -> bool {
+                    if (!item->IsLive()) {
+                        _log->Debug("SceneNode", "Deleted drawing object: from node" + _nameNode);
+                        return true;
+                    }
+                    return false;
+                }), _drawingObjectsOld.end()
         );
     }
 }
 
-void SceneNode::AttachObject(std::shared_ptr<DrawingObject> drawingObject) {
+void SceneNode::AttachObject(shared_ptr<DrawingObject> drawingObject) {
+    _drawingObjectsOld.push_back(drawingObject);
+}
+
+void SceneNode::AttachObject(shared_ptr<ObjectDrawingBase> drawingObject) {
     _drawingObjects.push_back(drawingObject);
+}
+
+void SceneNode::AttachObject(shared_ptr<GameObjectBase> gameObjectBase) {
+    _gameObjects.push_back(gameObjectBase);
 }

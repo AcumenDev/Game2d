@@ -5,33 +5,37 @@ MainLoop::MainLoop(std::shared_ptr<SceneManager> sceneManager, std::shared_ptr<L
     _log = log;
 }
 
+MainLoop::~MainLoop() {
+
+}
+
 void MainLoop::Draw() {
     _sceneManager->Draw();
 }
 
 void MainLoop::CheckInput() {
-    SDL_Event  event;
-    if( SDL_PollEvent( &event ) == 0 ) {
+    SDL_Event event;
+    if (SDL_PollEvent(&event) == 0) {
         return;
     }
 
-    switch(event.type) {
-    case SDL_QUIT : {
-        Stop();
-        break;
-    }
+    switch (event.type) {
+        case SDL_QUIT : {
+            Stop();
+            break;
+        }
     }
     _currentEventInputSystem = std::make_shared<EventInputSystem>(event);
 }
 
 void MainLoop::Update(float delta) {
-    _sceneManager->Update(delta, _currentEventInputSystem );
+    _sceneManager->Update(delta, _currentEventInputSystem);
 }
 
 void MainLoop::Start() {
-    _currentTime = (float)SDL_GetTicks();
+    _currentTime = (float) SDL_GetTicks();
     _run = true;
-    while(_run) {
+    while (_run) {
         UpdateDeltaTime();
         CheckInput();
         Update(_GetDeltaTime());
@@ -44,7 +48,7 @@ void MainLoop::Stop() {
 }
 
 void MainLoop::UpdateDeltaTime() {
-    auto nowTime =  (float)SDL_GetTicks();
+    auto nowTime = (float) SDL_GetTicks();
     _deltaTime = nowTime - _currentTime;
     _currentTime = nowTime;
 }

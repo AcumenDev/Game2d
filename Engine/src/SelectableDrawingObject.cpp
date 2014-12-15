@@ -9,10 +9,9 @@ SelectableDrawingObject::~SelectableDrawingObject() {
 }
 
 bool SelectableDrawingObject::_checkItemSelected(IRectangle rect, IPoint point) {
-    auto checkX=point.x>=rect.x;
-    auto checkY=point.y >=rect.y;
-    auto checkWidth=point.x<=(rect.x+rect.w);
-    auto checkHeight=point.y<=(rect.y+rect.h);
-
-    return checkX&&checkY&&checkWidth&&checkHeight;
+    auto checkX = point.x >= rect.LeftTop.x;
+    auto checkY = point.y >= rect.LeftTop.y;
+    auto checkWidth = point.x <= (rect.LeftTop.x + rect.RightBottom.x);
+    auto checkHeight = point.y <= (rect.LeftTop.y + rect.RightBottom.y);
+    return checkX && checkY && checkWidth && checkHeight;
 }
