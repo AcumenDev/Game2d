@@ -1,3 +1,4 @@
+#include <Utils/FPoint.hpp>
 #include "physics/BasePhysicBody.hpp"
 
 namespace Physic {
@@ -7,9 +8,9 @@ namespace Physic {
     BasePhysicBody::~BasePhysicBody() {
     }
 
-    IPoint BasePhysicBody::GetPosition() {
+    FPoint BasePhysicBody::GetPosition() {
         b2Vec2 localPoint = _body->GetPosition();
-        return IPoint(localPoint.x, localPoint.y);
+        return FPoint(localPoint.x, localPoint.y);
     }
 
     void BasePhysicBody::SetUserData(void *data) {

@@ -7,6 +7,10 @@ void SpriteAnimation::Draw(IPoint iPoint) {
     _textures.at((unsigned int)_currentSprite)->Draw(iPoint);
 }
 
+void SpriteAnimation::Draw(FPoint fPoint){
+    _textures.at((unsigned int)_currentSprite)->Draw(fPoint);
+}
+
 SpriteAnimation::SpriteAnimation(std::vector<std::shared_ptr<Texture>> textures, float animationSpeed) {
     _textures = textures;
     _animationSpeed = animationSpeed;

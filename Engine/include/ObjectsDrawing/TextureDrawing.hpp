@@ -11,11 +11,11 @@ namespace Graphic {
     class TextureDrawing : public ObjectDrawingBase {
     public:
         TextureDrawing(shared_ptr<Texture> texture);
-        void SetPosition(const IPoint &iPoint) override;
+        void SetPosition(FPoint const &fPoint) override;
         void Draw() override;
     private:
         shared_ptr<Texture> _texture;
-        IPoint _iPoint;
+        FPoint _iPoint;
     };
 }
 

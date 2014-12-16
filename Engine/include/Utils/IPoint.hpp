@@ -7,8 +7,5 @@ public:
     virtual ~IPoint();
     int x;
     int y;
-protected:
-private:
-
 };
 #endif // IPOINT_H

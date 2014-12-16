@@ -60,7 +60,7 @@ int main(int argc, char* argv[])
 
     ///New player
    // b2World world(b2Vec2(0, -2));
-   auto world = std::make_shared<b2World>(b2Vec2(0, 0.001));
+   auto world = std::make_shared<b2World>(b2Vec2(0, 10));
 
 
     auto playerPhysic = std::make_shared<PlayerPhysic>(world, 10, 50, IPoint(240, 190));

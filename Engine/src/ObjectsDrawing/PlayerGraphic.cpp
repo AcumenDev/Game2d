@@ -7,14 +7,14 @@ namespace Graphic {
     }
 
     void PlayerGraphic::Draw() {
-        _spriteAnimation->Draw(_iPoint);
+        _spriteAnimation->Draw(_fPoint);
     }
 
     PlayerGraphic::~PlayerGraphic() {
 
     }
 
-    void PlayerGraphic::SetPosition(const IPoint &iPoint) {
-        _iPoint = iPoint;
+    void PlayerGraphic::SetPosition(FPoint const &fPoint) {
+        _fPoint = fPoint;
     }
 }

@@ -66,6 +66,7 @@ set(HEADER_FILES_ENGINE
     Engine/include/services/NotificationServices.hpp
     Engine/include/services/WidowService.hpp
     Engine/include/Utils/IPoint.hpp
+    Engine/include/Utils/FPoint.hpp
     Engine/include/Utils/IRectangle.hpp
     Engine/include/Utils/SceneManagerFpsCounterBase.hpp
     Engine/include/DrawingObject.hpp

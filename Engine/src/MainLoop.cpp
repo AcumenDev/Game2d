@@ -49,7 +49,7 @@ void MainLoop::Stop() {
 
 void MainLoop::UpdateDeltaTime() {
     auto nowTime = (float) SDL_GetTicks();
-    _deltaTime = nowTime - _currentTime;
+    _deltaTime = (nowTime - _currentTime)/1000;
     _currentTime = nowTime;
 }
 

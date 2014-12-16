@@ -2,7 +2,7 @@
 #define BASEBODY_HPP_INCLUDED
 #include <memory>
 #include "Utils/IRectangle.hpp"
-#include "Utils/IPoint.hpp"
+#include "Utils/FPoint.hpp"
 #include <Box2D/Box2D.h>
 
 namespace Physic {
@@ -10,7 +10,7 @@ namespace Physic {
     public:
         BasePhysicBody();
         virtual ~BasePhysicBody();
-        virtual IPoint GetPosition();
+        virtual FPoint GetPosition();
         virtual void SetUserData(void* data);
     protected:
        // std::shared_ptr<b2World> _world;
