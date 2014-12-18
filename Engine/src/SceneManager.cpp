@@ -46,8 +46,10 @@ void SceneManager::Update(float delta, shared_ptr<EventInputSystem> eventInputSy
     for(const auto & node : _childNodes) {
         node->Update(UpdateEventDto(delta, _notificationServices, eventInputSystem));
     }
+//1.0f/60.0f
+    _physicWorld->Step(delta, 6, 4);
 
-    _physicWorld->Step(delta, 4, 4);
+
 }
 void SceneManager::SetFpsListener(shared_ptr<SceneManagerFpsCounterBase> sceneManagerFpsCounterBase) {
     _sceneManagerFpsCounterBase = sceneManagerFpsCounterBase;

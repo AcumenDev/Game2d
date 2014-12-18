@@ -1,4 +1,4 @@
-#include <Utils/FPoint.hpp>
+
 #include "physics/BasePhysicBody.hpp"
 
 namespace Physic {
@@ -10,7 +10,7 @@ namespace Physic {
 
     FPoint BasePhysicBody::GetPosition() {
         b2Vec2 localPoint = _body->GetPosition();
-        return FPoint(localPoint.x, localPoint.y);
+        return FPoint(localPoint.x, localPoint.y).ToScreen();
     }
 
     void BasePhysicBody::SetUserData(void *data) {

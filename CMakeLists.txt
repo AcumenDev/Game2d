@@ -37,9 +37,9 @@ set_property(TARGET SDL2_ttf PROPERTY IMPORTED_LOCATION ${SDL2_ttf_LIB})
 
 #Box2D
 
-set(BOX2D_HEADERS "${BASE_DIR}/lib/Box2D_v2.3.0/i686-w64-mingw32/include")
+set(BOX2D_HEADERS "${BASE_DIR}/lib/Box2D_v2.3.2/include")
 
-set(BOX2D_LIB "${BASE_DIR}/lib/Box2D_v2.3.0/i686-w64-mingw32/lib/libBox2D.dll.a")
+set(BOX2D_LIB "${BASE_DIR}/lib/Box2D_v2.3.2/lib/libBox2D.dll.a")
 
 add_library(Box2D STATIC IMPORTED)
 set_property(TARGET Box2D PROPERTY IMPORTED_LOCATION ${BOX2D_LIB})
@@ -143,5 +143,8 @@ set(SOURCE_FILES_GAME
 
 
 add_executable(${PROJECT_NAME}  ${SOURCE_FILES_ENGINE} ${SOURCE_FILES_GAME}  ${HEADER_FILES_ENGINE}  ${HEADER_FILES_GAME})
-
 target_link_libraries(${PROJECT_NAME} SDL2 SDL2Main SDL2_image SDL2_ttf Box2D)
+
+
+#add_executable(${PROJECT_NAME} test_box2d.cpp)
+#target_link_libraries(${PROJECT_NAME} Box2D)

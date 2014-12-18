@@ -7,7 +7,7 @@
 namespace Physic {
     class PlayerPhysic : public BasePhysicBody {
     public:
-        PlayerPhysic(std::shared_ptr<b2World> world, float width, float height, IPoint position);
+        PlayerPhysic(std::shared_ptr<b2World> world, float width, float height, FPoint position);
         ~PlayerPhysic();
     };
 }

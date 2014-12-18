@@ -60,10 +60,12 @@ int main(int argc, char* argv[])
 
     ///New player
    // b2World world(b2Vec2(0, -2));
-   auto world = std::make_shared<b2World>(b2Vec2(0, 10));
+   auto world = std::make_shared<b2World>(b2Vec2(0, -2));
+  //  b2Draw * physicDraw = new b2Draw();
+  //  world->SetDebugDraw(<#(b2Draw*)debugDraw#>)
 
 
-    auto playerPhysic = std::make_shared<PlayerPhysic>(world, 10, 50, IPoint(240, 190));
+    auto playerPhysic = std::make_shared<PlayerPhysic>(world, gFooTexture->getWidth(), gFooTexture->getHeight(), FPoint(10, 10));
     auto sAnimationNew = std::make_shared<SpriteAnimation>(texstures, 0.05);
     auto playerGraphic = std::make_shared<PlayerGraphic>(sAnimationNew, log);
     auto playerNew = std::make_shared<Player>(log, playerPhysic, playerGraphic);
@@ -73,7 +75,7 @@ int main(int argc, char* argv[])
 //
    auto boundGrapphic = std::make_shared<TextureDrawing>(boundTexture);
 //
-   auto boundPhysic = std::make_shared<BoundPhysic>(world,boundTexture->getWidth(), boundTexture->getHeight(),IPoint(0,400));
+   auto boundPhysic = std::make_shared<BoundPhysic>(world,boundTexture->getWidth(), boundTexture->getHeight(),FPoint(0,200));
 //
    auto bound = std::make_shared<Bound>(boundGrapphic, boundPhysic);
 

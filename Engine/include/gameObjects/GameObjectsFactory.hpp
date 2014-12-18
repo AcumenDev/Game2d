@@ -5,8 +5,6 @@
 
 class GameObjectsFactory
 {
-public:
-  //  static shares_ptr<GameObjectBase> Create()
 };
 
 #endif

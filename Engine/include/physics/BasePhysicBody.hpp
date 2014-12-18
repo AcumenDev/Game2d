@@ -11,10 +11,9 @@ namespace Physic {
         BasePhysicBody();
         virtual ~BasePhysicBody();
         virtual FPoint GetPosition();
-        virtual void SetUserData(void* data);
+        virtual void SetUserData(void *data);
     protected:
-       // std::shared_ptr<b2World> _world;
-        b2Body * _body;
+        b2Body *_body;
     };
 }
 
