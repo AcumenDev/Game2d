@@ -67,7 +67,7 @@ set(HEADER_FILES_ENGINE
     Engine/include/services/WidowService.hpp
     Engine/include/Utils/IPoint.hpp
     Engine/include/Utils/FPoint.hpp
-    Engine/include/Utils/IRectangle.hpp
+    Engine/include/Utils/FRectangle.hpp
     Engine/include/Utils/SceneManagerFpsCounterBase.hpp
     Engine/include/DrawingObject.hpp
     Engine/include/Engine.hpp
@@ -107,7 +107,7 @@ set(SOURCE_FILES_ENGINE
     Engine/src/services/NotificationServices.cpp
     Engine/src/services/WidowService.cpp
     Engine/src/Utils/IPoint.cpp
-    Engine/src/Utils/IRectangle.cpp
+    Engine/src/Utils/FRectangle.cpp
     Engine/src/DrawingObject.cpp
     Engine/src/EventInputSystem.cpp
     Engine/src/Logger.cpp

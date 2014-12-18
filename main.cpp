@@ -75,7 +75,7 @@ int main(int argc, char* argv[])
 //
    auto boundGrapphic = std::make_shared<TextureDrawing>(boundTexture);
 //
-   auto boundPhysic = std::make_shared<BoundPhysic>(world,boundTexture->getWidth(), boundTexture->getHeight(),FPoint(0,200));
+   auto boundPhysic = std::make_shared<BoundPhysic>(world,boundTexture->getWidth(), boundTexture->getHeight(),FPoint(0,400));
 //
    auto bound = std::make_shared<Bound>(boundGrapphic, boundPhysic);
 

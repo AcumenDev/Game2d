@@ -3,7 +3,7 @@
 
 #include "Utils/IPoint.hpp"
 #include "Utils/FPoint.hpp"
-#include "Utils/IRectangle.hpp"
+#include "Utils/FRectangle.hpp"
 
 #include "Texture.hpp"
 #include "ResourceManager.hpp"

@@ -22,7 +22,7 @@ void ItemDrawing::Update(UpdateEventDto updateEventDto) {
     switch (event.type) {
         case SDL_MOUSEBUTTONDOWN : {
             auto point = FPoint(event.motion.x, event.motion.y);
-            auto rect = IRectangle(_point, FPoint(_texture->getWidth(), _texture->getHeight()));
+            auto rect = FRectangle(_point, FPoint(_texture->getWidth(), _texture->getHeight()));
             if (_checkItemSelected(rect, point)) {
                 _log->Info("ItemDrawing", "Take an item :" + _name);
                 updateEventDto.notificationServices->Notify("inventoryAdd", 0);

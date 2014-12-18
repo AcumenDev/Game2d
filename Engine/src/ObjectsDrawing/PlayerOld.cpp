@@ -21,7 +21,7 @@ void PlayerOld::Draw() {
 }
 
 void PlayerOld::Update(UpdateEventDto updateEventDto) {
-    auto delta = updateEventDto.delta;
+    auto delta = updateEventDto.delta*500;
     auto event = updateEventDto.eventInputSystem->event;
     switch(event.type) {
     case SDL_KEYDOWN : {
@@ -36,7 +36,7 @@ void PlayerOld::Update(UpdateEventDto updateEventDto) {
             break;
         }
         case SDLK_UP: {
-            this->Jump(200);
+            this->Jump(100);
             break;
         }
         }

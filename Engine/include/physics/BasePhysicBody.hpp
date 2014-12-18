@@ -1,9 +1,8 @@
 #ifndef BASEBODY_HPP_INCLUDED
 #define BASEBODY_HPP_INCLUDED
 #include <memory>
-#include "Utils/IRectangle.hpp"
-#include "Utils/FPoint.hpp"
 #include <Box2D/Box2D.h>
+#include "Utils/FPoint.hpp"
 
 namespace Physic {
     class BasePhysicBody {

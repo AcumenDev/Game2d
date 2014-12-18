@@ -1,13 +1,13 @@
 #ifndef SELECTABLEDRAWINGOBJECT_H
 #define SELECTABLEDRAWINGOBJECT_H
-#include "Engine.hpp"
+#include "Utils/FRectangle.hpp"
 
 class SelectableDrawingObject {
 public:
     SelectableDrawingObject();
     virtual ~SelectableDrawingObject();
 protected:
-    bool _checkItemSelected(IRectangle rect, FPoint point);
+    bool _checkItemSelected(FRectangle rect, FPoint point);
 private:
 };
 

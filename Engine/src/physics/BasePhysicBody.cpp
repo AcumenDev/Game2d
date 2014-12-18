@@ -1,4 +1,3 @@
-
 #include "physics/BasePhysicBody.hpp"
 
 namespace Physic {
