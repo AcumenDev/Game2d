@@ -1,14 +1,14 @@
 #ifndef INVENTORYITEM_H
 #define INVENTORYITEM_H
 #include "DrawingObject.hpp"
-#include "Utils/IPoint.hpp"
+#include "Utils/FPoint.hpp"
 
 class InventoryItem  {
 public:
     InventoryItem(const int &id, std::shared_ptr<Texture> texture);
     virtual ~InventoryItem();
     void Update(UpdateEventDto updateEventDto);
-    void Draw(IPoint iPoint);
+    void Draw(FPoint point);
 private:
     std::shared_ptr<Texture> _texture;
     int _id;

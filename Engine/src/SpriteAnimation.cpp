@@ -3,12 +3,8 @@
 SpriteAnimation::~SpriteAnimation() {
 }
 
-void SpriteAnimation::Draw(IPoint iPoint) {
-    _textures.at((unsigned int)_currentSprite)->Draw(iPoint);
-}
-
-void SpriteAnimation::Draw(FPoint fPoint){
-    _textures.at((unsigned int)_currentSprite)->Draw(fPoint);
+void SpriteAnimation::Draw(FPoint point){
+    _textures.at((unsigned int)_currentSprite)->Draw(point);
 }
 
 SpriteAnimation::SpriteAnimation(std::vector<std::shared_ptr<Texture>> textures, float animationSpeed) {

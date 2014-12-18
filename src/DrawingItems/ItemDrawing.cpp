@@ -1,7 +1,7 @@
 #include "DrawingItems/ItemDrawing.hpp"
 
-ItemDrawing::ItemDrawing(std::shared_ptr<Logger> log, std::shared_ptr<Texture> texture, IPoint iPoint, std::string name)
-        : DrawingObject(log, texture, iPoint) {
+ItemDrawing::ItemDrawing(std::shared_ptr<Logger> log, std::shared_ptr<Texture> texture, FPoint point, std::string name)
+        : DrawingObject(log, texture, point) {
     _notyfy = false;
     _name = name;
 }
@@ -10,7 +10,7 @@ ItemDrawing::~ItemDrawing() {
 }
 
 void ItemDrawing::Draw() {
-    _texture->Draw(_iPoint);
+    _texture->Draw(_point);
 }
 
 void ItemDrawing::Update(UpdateEventDto updateEventDto) {
@@ -21,8 +21,8 @@ void ItemDrawing::Update(UpdateEventDto updateEventDto) {
     auto event = updateEventDto.eventInputSystem->event;
     switch (event.type) {
         case SDL_MOUSEBUTTONDOWN : {
-            auto point = IPoint(event.motion.x, event.motion.y);
-            auto rect = IRectangle(_iPoint, IPoint(_texture->getWidth(), _texture->getHeight()));
+            auto point = FPoint(event.motion.x, event.motion.y);
+            auto rect = IRectangle(_point, FPoint(_texture->getWidth(), _texture->getHeight()));
             if (_checkItemSelected(rect, point)) {
                 _log->Info("ItemDrawing", "Take an item :" + _name);
                 updateEventDto.notificationServices->Notify("inventoryAdd", 0);

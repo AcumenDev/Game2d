@@ -5,7 +5,7 @@
 class ShowFps: public Font, public SceneManagerFpsCounterBase  {
 public:
     /** Default constructor */
-    ShowFps(std::shared_ptr<Logger> log, SDL_Renderer* render, std::string path, int size, IPoint iPoint,int style =  TTF_STYLE_BOLD);
+    ShowFps(std::shared_ptr<Logger> log, SDL_Renderer* render, std::string path, int size, FPoint point,int style =  TTF_STYLE_BOLD);
     /** Default destructor */
     virtual ~ShowFps();
     void Update(int fps) override;

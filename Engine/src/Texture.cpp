@@ -18,13 +18,10 @@ void Texture::free() {
     }
 }
 
-void Texture::Draw(IPoint iPoint) {
-    SDL_Rect renderQuad = {iPoint.x, iPoint.y, getWidth(), getHeight()};
-    SDL_RenderCopy(_render, _texture, NULL, &renderQuad);
-}
+void Texture::Draw(FPoint point) {
 
-void Texture::Draw(FPoint fPoint) {
-    Draw(IPoint(fPoint.x, fPoint.y));
+    SDL_Rect renderQuad = {point.x, point.y, getWidth(), getHeight()};
+    SDL_RenderCopy(_render, _texture, NULL, &renderQuad);
 }
 int Texture::getWidth() {
     return _w;

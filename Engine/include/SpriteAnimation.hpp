@@ -10,8 +10,7 @@ class SpriteAnimation {
 public:
     SpriteAnimation(std::vector<std::shared_ptr<Texture>> textures, float animationSpeed);
     virtual ~SpriteAnimation();
-    void Draw(IPoint iPoint);
-    void Draw(FPoint iPoint);
+    void Draw(FPoint point);
     void Step(float delta);
 protected:
 private:

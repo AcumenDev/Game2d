@@ -11,8 +11,8 @@ InventoryItem::~InventoryItem() {
 void InventoryItem::Update(UpdateEventDto updateEventDto) {
 }
 
-void InventoryItem::Draw(IPoint iPoint) {
-    _texture->Draw(iPoint);
+void InventoryItem::Draw(FPoint point) {
+    _texture->Draw(point);
 }
 
 int InventoryItem::GetId()

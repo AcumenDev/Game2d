@@ -7,7 +7,7 @@ public:
     SelectableDrawingObject();
     virtual ~SelectableDrawingObject();
 protected:
-    bool _checkItemSelected(IRectangle rect, IPoint point);
+    bool _checkItemSelected(IRectangle rect, FPoint point);
 private:
 };
 

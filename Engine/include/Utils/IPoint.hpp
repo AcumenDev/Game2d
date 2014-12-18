@@ -1,5 +1,6 @@
 #ifndef IPOINT_H
 #define IPOINT_H
+
 class IPoint {
 public:
     IPoint();
@@ -8,4 +9,5 @@ public:
     int x;
     int y;
 };
+
 #endif // IPOINT_H

@@ -8,7 +8,7 @@ IRectangle::~IRectangle() {
     //dtor
 }
 
-IRectangle::IRectangle(IPoint leftTop, IPoint rightBottom) {
+IRectangle::IRectangle(FPoint leftTop, FPoint rightBottom) {
     LeftTop = leftTop;
     RightBottom = rightBottom;
 }

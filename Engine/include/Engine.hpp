@@ -2,6 +2,7 @@
 #define ENGINE_HPP_INCLUDED
 
 #include "Utils/IPoint.hpp"
+#include "Utils/FPoint.hpp"
 #include "Utils/IRectangle.hpp"
 
 #include "Texture.hpp"

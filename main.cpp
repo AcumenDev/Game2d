@@ -36,9 +36,9 @@ int main(int argc, char* argv[])
 
     std::vector<std::shared_ptr<Texture>> texstures = {gFooTexture, gFooTexture1};
 
-    auto background = std::make_shared<BackgroundObject>(log, gBackgroundTexture, IPoint(0, 0));
-    auto player = std::make_shared<PlayerOld>(log, gFooTexture, IPoint(240, 190));
-    auto item = std::make_shared<ItemDrawing>(log, gFooTexture, IPoint(100, 20), "Boy");
+    auto background = std::make_shared<BackgroundObject>(log, gBackgroundTexture, FPoint(0, 0));
+    auto player = std::make_shared<PlayerOld>(log, gFooTexture, FPoint(240, 190));
+    auto item = std::make_shared<ItemDrawing>(log, gFooTexture, FPoint(100, 20), "Boy");
 
     auto inventoryTexture = resourceManager->GetTextureFromFile(resFolder + "inventoryCell.png");
     //   auto inventoryItemTexture = resourceManager->GetTextureFromFile(resFolder+"inventoryItem.png");
@@ -47,11 +47,11 @@ int main(int argc, char* argv[])
     items.insert(std::make_pair<int, std::string>(0, std::string(resFolder + "inventoryItem.png")));
 
     auto itemsFactory = std::make_shared<ItemsFactory>(log, items, resourceManager);
-    auto inventory = std::make_shared<Inventory>(log, inventoryTexture, itemsFactory, IPoint(0, 0), 6, 5);
+    auto inventory = std::make_shared<Inventory>(log, inventoryTexture, itemsFactory, FPoint(0, 0), 6, 5);
 
     //  auto inventoryItem =  std::make_shared<InventoryItem>(1, inventoryItemTexture);
     inventory->AddItemForId(0);
-    auto test_font = std::make_shared<Font>(log, render, resFolder + "fonts/DejaVuSans.ttf", 40, IPoint(70, 50));
+    auto test_font = std::make_shared<Font>(log, render, resFolder + "fonts/DejaVuSans.ttf", 40, FPoint(70, 50));
     test_font->SetText("Тест");
     auto sAnimation = std::make_shared<SpriteAnimation>(texstures, 0.05);
     //Old Player
@@ -95,7 +95,7 @@ int main(int argc, char* argv[])
     mainNode->AttachObject(inventory);
     mainNode->AttachObject(test_font);
     auto debugNode = _sceneManager->AddChildNode("DebugNode");
-    auto fps = std::make_shared<ShowFps>(log, render, resFolder + "fonts/DejaVuSans.ttf", 40, IPoint(SCREEN_WIDTH - 100, 10));
+    auto fps = std::make_shared<ShowFps>(log, render, resFolder + "fonts/DejaVuSans.ttf", 40, FPoint(SCREEN_WIDTH - 100, 10));
     _sceneManager->SetFpsListener(fps);
     debugNode->AttachObject(fps);
     MainLoop mainLoop(_sceneManager, log);

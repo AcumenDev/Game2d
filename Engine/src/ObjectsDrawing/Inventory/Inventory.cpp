@@ -1,7 +1,7 @@
 #include <ObjectsDrawing/Inventory/Inventory.hpp>
 
-Inventory::Inventory(std::shared_ptr<Logger> log, std::shared_ptr<Texture> textureCell,std::shared_ptr<ItemsFactory> itemsFactory, IPoint iPoint, int maxSize, int borderSize)
-    :DrawingObject(log, textureCell, iPoint) {
+Inventory::Inventory(std::shared_ptr<Logger> log, std::shared_ptr<Texture> textureCell,std::shared_ptr<ItemsFactory> itemsFactory, FPoint point, int maxSize, int borderSize)
+    :DrawingObject(log, textureCell, point) {
     _maxSize = maxSize;
     _textureCell = textureCell;
     _borderSize  = borderSize;
@@ -14,11 +14,11 @@ Inventory::~Inventory() {
 
 void Inventory::Draw() {
     for(int i = 0; i<_maxSize; i++) {
-        _textureCell->Draw(IPoint(_iPoint.x,_iPoint.y+_textureCell->getHeight()*i));
+        _textureCell->Draw(FPoint(_point.x,_point.y+_textureCell->getHeight()*i));
     }
 
     for( unsigned int i = 0; i<_inventoryItems.size(); i++) {
-        _inventoryItems.at(i)->Draw(IPoint(_iPoint.x,_iPoint.y+_borderSize+_textureCell->getHeight()*i));
+        _inventoryItems.at(i)->Draw(FPoint(_point.x,_point.y+_borderSize+_textureCell->getHeight()*i));
     }
 }
 

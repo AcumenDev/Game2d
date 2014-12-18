@@ -1,7 +1,7 @@
 #include "ObjectsDrawing/PlayerOld.hpp"
 
-PlayerOld::PlayerOld(std::shared_ptr<Logger> log, std::shared_ptr<Texture> texture, IPoint iPoint)
-    :DrawingObject(log,texture,iPoint) {
+PlayerOld::PlayerOld(std::shared_ptr<Logger> log, std::shared_ptr<Texture> texture, FPoint point)
+    :DrawingObject(log,texture,point) {
 }
 
 PlayerOld::~PlayerOld() {
@@ -12,12 +12,12 @@ void PlayerOld::Init(std::shared_ptr<SpriteAnimation> spriteAnimation) {
     _spriteAnimation = spriteAnimation;
 }
 
-void PlayerOld::SetPosition(IPoint iPoint) {
-    _iPoint = iPoint;
+void PlayerOld::SetPosition(FPoint point) {
+    _point = point;
 }
 
 void PlayerOld::Draw() {
-    _spriteAnimation->Draw(_iPoint);
+    _spriteAnimation->Draw(_point);
 }
 
 void PlayerOld::Update(UpdateEventDto updateEventDto) {
@@ -45,13 +45,13 @@ void PlayerOld::Update(UpdateEventDto updateEventDto) {
 
     if(_jump) {
         if(_jumpStateUp) {
-            _iPoint.y-=delta;
-            if(_iPoint.y<=_jumpPosStart-_jumpSize) {
+            _point.y-=delta;
+            if(_point.y<=_jumpPosStart-_jumpSize) {
                 _jumpStateUp = false;
             }
         } else {
-            _iPoint.y+=delta;
-            if(_iPoint.y>=_jumpPosStart) {
+            _point.y+=delta;
+            if(_point.y>=_jumpPosStart) {
                 _jump = false;
             }
         }
@@ -59,12 +59,12 @@ void PlayerOld::Update(UpdateEventDto updateEventDto) {
 }
 
 void PlayerOld::ToRight(float delta) {
-    _iPoint.x+=delta;
+    _point.x+=delta;
     _spriteAnimation->Step(delta);
 }
 
 void PlayerOld::ToLeft(float delta) {
-    _iPoint.x-=delta;
+    _point.x-=delta;
     _spriteAnimation->Step(delta);
 }
 
@@ -75,5 +75,5 @@ void PlayerOld::Jump(int delta) {
     _jumpStateUp = true;
     _jump = true;
     _jumpSize = delta;
-    _jumpPosStart = _iPoint.y;
+    _jumpPosStart = _point.y;
 }

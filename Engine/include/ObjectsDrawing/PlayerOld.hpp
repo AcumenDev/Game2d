@@ -9,9 +9,9 @@
 
 class PlayerOld : public DrawingObject {
 public:
-    PlayerOld(std::shared_ptr<Logger> log, std::shared_ptr<Texture> texture, IPoint iPoint);
+    PlayerOld(std::shared_ptr<Logger> log, std::shared_ptr<Texture> texture, FPoint point);
     void Init(std::shared_ptr<SpriteAnimation> spriteAnimation);
-    void SetPosition(IPoint iPoint);
+    void SetPosition(FPoint point);
     void Draw() override;
     void Update(UpdateEventDto updateEventDto) override;
     virtual ~PlayerOld();

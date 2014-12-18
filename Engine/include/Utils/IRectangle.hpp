@@ -2,15 +2,15 @@
 #define IRECTANGLE_H
 
 
-#include "IPoint.hpp"
+#include "FPoint.hpp"
 
 class IRectangle {
 public:
     IRectangle();
-    IRectangle(IPoint leftTop, IPoint rightBottom);
+    IRectangle(FPoint leftTop, FPoint rightBottom);
     virtual ~IRectangle();
-    IPoint LeftTop;
-    IPoint RightBottom;
+    FPoint LeftTop;
+    FPoint RightBottom;
 protected:
 private:
 };

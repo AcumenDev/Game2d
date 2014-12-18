@@ -1,5 +1,6 @@
 #ifndef FPOINT_H
 #define FPOINT_H
+
 class FPoint {
 public:
     FPoint() {

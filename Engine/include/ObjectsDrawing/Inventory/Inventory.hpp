@@ -14,7 +14,7 @@ public:
             std::shared_ptr<Logger> log,
             std::shared_ptr<Texture> textureCell,
             std::shared_ptr<ItemsFactory> itemsFactory,
-            IPoint iPoint,
+            FPoint point,
             int maxSize,
             int borderSize);
     virtual ~Inventory();

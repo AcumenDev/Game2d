@@ -8,7 +8,7 @@
 #include "DrawingObject.hpp"
 class Font : public DrawingObject {
 public:
-    Font(std::shared_ptr<Logger> log, SDL_Renderer* render, std::string path, int size, IPoint iPoint, int style = TTF_STYLE_NORMAL);
+    Font(std::shared_ptr<Logger> log, SDL_Renderer* render, std::string path, int size, FPoint point, int style = TTF_STYLE_NORMAL);
     virtual ~Font();
 
     void Update(UpdateEventDto updateEventDto) override;

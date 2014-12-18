@@ -1,10 +1,10 @@
 #include "ObjectsDrawing/Font.hpp"
 
-Font::Font(std::shared_ptr<Logger> log, SDL_Renderer* render, std::string path, int size, IPoint iPoint, int styleFont)
-    :DrawingObject(log,nullptr,iPoint) {
+Font::Font(std::shared_ptr<Logger> log, SDL_Renderer* render, std::string path, int size, FPoint point, int styleFont)
+    :DrawingObject(log,nullptr, point) {
     _log = log;
     _render = render;
-    _iPoint = iPoint;
+    _point = point;
     _font=TTF_OpenFont(path.c_str(), 16);
     if(!_font) {
         _log->Error("TTF_OpenFont: "+path+" error: "+ SDL_GetError());
@@ -14,7 +14,7 @@ Font::Font(std::shared_ptr<Logger> log, SDL_Renderer* render, std::string path, 
 
 void Font::Draw() {
     if(_texture!=nullptr) {
-        _texture->Draw(_iPoint);
+        _texture->Draw(_point);
     }
 }
 
