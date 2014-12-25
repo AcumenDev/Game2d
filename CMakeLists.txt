@@ -6,7 +6,7 @@ SET(BASE_DIR D:/my/git_repository/game2d)
 SET(OUTPUT_BUILD_DIRECTORY "${BASE_DIR}/build")
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -static-libgcc -static-libstdc++")
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS}") #-static-libgcc -static-libstdc++
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${OUTPUT_BUILD_DIRECTORY})
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${OUTPUT_BUILD_DIRECTORY})
@@ -45,6 +45,14 @@ add_library(Box2D STATIC IMPORTED)
 set_property(TARGET Box2D PROPERTY IMPORTED_LOCATION ${BOX2D_LIB})
 #Box2D
 
+#glew
+set(GLEW_HEADERS "${BASE_DIR}/lib/glew-1.11.0/include")
+
+set(GLEW_LIB "${BASE_DIR}/lib/glew-1.11.0/lib/libglew32.dll.a")
+
+add_library(GLEW STATIC IMPORTED)
+set_property(TARGET GLEW PROPERTY IMPORTED_LOCATION ${GLEW_LIB})
+#glew
 
 include_directories(
 Engine/include
@@ -53,6 +61,7 @@ ${SDL2_HEADERS}
 ${SDL2_ttf_HEADERS}
 ${SDL2_image_HEADERS}
 ${BOX2D_HEADERS}
+${GLEW_HEADERS}
 )
 
 set(HEADER_FILES_ENGINE
@@ -142,9 +151,12 @@ set(SOURCE_FILES_GAME
     )
 
 
-add_executable(${PROJECT_NAME}  ${SOURCE_FILES_ENGINE} ${SOURCE_FILES_GAME}  ${HEADER_FILES_ENGINE}  ${HEADER_FILES_GAME})
-target_link_libraries(${PROJECT_NAME} SDL2 SDL2Main SDL2_image SDL2_ttf Box2D)
+#add_executable(${PROJECT_NAME}  ${SOURCE_FILES_ENGINE} ${SOURCE_FILES_GAME}  ${HEADER_FILES_ENGINE}  ${HEADER_FILES_GAME})
+#target_link_libraries(${PROJECT_NAME} SDL2 SDL2Main SDL2_image SDL2_ttf Box2D)
 
 
 #add_executable(${PROJECT_NAME} test_box2d.cpp)
 #target_link_libraries(${PROJECT_NAME} Box2D)
+
+add_executable(${PROJECT_NAME} test/OpenGl/rectangle_shaders/test_openGl_3.cpp)
+target_link_libraries(${PROJECT_NAME} SDL2 SDL2Main  opengl32 GLEW )
