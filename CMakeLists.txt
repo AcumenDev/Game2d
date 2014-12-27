@@ -14,45 +14,51 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${OUTPUT_BUILD_DIRECTORY})
 
 #SDL2
 set(SDL2_HEADERS "${BASE_DIR}/lib/SDL2-2.0.3/i686-w64-mingw32/include/SDL2")
-set(SDL2_ttf_HEADERS "${BASE_DIR}/lib/SDL2_ttf-2.0.12/i686-w64-mingw32/include/SDL2")
-set(SDL2_image_HEADERS "${BASE_DIR}/lib/SDL2_image-2.0.0/i686-w64-mingw32/include/SDL2")
-
 set(SDL2_LIB "${BASE_DIR}/lib/SDL2-2.0.3/i686-w64-mingw32/lib/libSDL2.dll.a")
-set(SDL2Main_LIB "${BASE_DIR}/lib/SDL2-2.0.3/i686-w64-mingw32/lib/libSDL2main.a")
-set(SDL2_image_LIB "${BASE_DIR}/lib/SDL2_image-2.0.0/i686-w64-mingw32/lib/libSDL2_image.dll.a")
-set(SDL2_ttf_LIB "${BASE_DIR}/lib/SDL2_ttf-2.0.12/i686-w64-mingw32/lib/libSDL2_ttf.dll.a")
-
 add_library(SDL2 STATIC IMPORTED)
 set_property(TARGET SDL2 PROPERTY IMPORTED_LOCATION ${SDL2_LIB})
+#SDL2
 
+#SDL2Main_LIB
+set(SDL2Main_LIB "${BASE_DIR}/lib/SDL2-2.0.3/i686-w64-mingw32/lib/libSDL2main.a")
 add_library(SDL2Main STATIC IMPORTED)
 set_property(TARGET SDL2Main PROPERTY IMPORTED_LOCATION ${SDL2Main_LIB})
+#SDL2Main_LIB
+
+#SDL2_image
+set(SDL2_image_HEADERS "${BASE_DIR}/lib/SDL2_image-2.0.0/i686-w64-mingw32/include/SDL2")
+set(SDL2_image_LIB "${BASE_DIR}/lib/SDL2_image-2.0.0/i686-w64-mingw32/lib/libSDL2_image.dll.a")
 
 add_library(SDL2_image STATIC IMPORTED)
 set_property(TARGET SDL2_image PROPERTY IMPORTED_LOCATION ${SDL2_image_LIB})
-
+#SDL2_image
+#SDL2_ttf
+set(SDL2_ttf_HEADERS "${BASE_DIR}/lib/SDL2_ttf-2.0.12/i686-w64-mingw32/include/SDL2")
+set(SDL2_ttf_LIB "${BASE_DIR}/lib/SDL2_ttf-2.0.12/i686-w64-mingw32/lib/libSDL2_ttf.dll.a")
 add_library(SDL2_ttf STATIC IMPORTED)
 set_property(TARGET SDL2_ttf PROPERTY IMPORTED_LOCATION ${SDL2_ttf_LIB})
-#SDL2
+#SDL2_ttf
 
 #Box2D
-
 set(BOX2D_HEADERS "${BASE_DIR}/lib/Box2D_v2.3.2/include")
-
 set(BOX2D_LIB "${BASE_DIR}/lib/Box2D_v2.3.2/lib/libBox2D.dll.a")
-
 add_library(Box2D STATIC IMPORTED)
 set_property(TARGET Box2D PROPERTY IMPORTED_LOCATION ${BOX2D_LIB})
 #Box2D
 
 #glew
 set(GLEW_HEADERS "${BASE_DIR}/lib/glew-1.11.0/include")
-
 set(GLEW_LIB "${BASE_DIR}/lib/glew-1.11.0/lib/libglew32.dll.a")
-
 add_library(GLEW STATIC IMPORTED)
 set_property(TARGET GLEW PROPERTY IMPORTED_LOCATION ${GLEW_LIB})
 #glew
+
+#glm
+set(GLM_HEADERS "${BASE_DIR}/lib/glm-0.9.6.1/include")
+set(GLM_LIB "${BASE_DIR}/lib/glm-0.9.6.1/lib/libglm_shared.dll.a")
+add_library(GLM STATIC IMPORTED)
+set_property(TARGET GLM PROPERTY IMPORTED_LOCATION ${GLM_LIB})
+#glm
 
 include_directories(
 Engine/include
@@ -62,6 +68,7 @@ ${SDL2_ttf_HEADERS}
 ${SDL2_image_HEADERS}
 ${BOX2D_HEADERS}
 ${GLEW_HEADERS}
+${GLM_HEADERS}
 )
 
 set(HEADER_FILES_ENGINE
@@ -140,7 +147,6 @@ set(SOURCE_FILES_ENGINE
     Engine/src/ObjectsDrawing/TextureDrawing.cpp
     )
 
-
 set(HEADER_FILES_GAME
     include/DrawingItems/ItemDrawing.hpp
     )
@@ -150,13 +156,12 @@ set(SOURCE_FILES_GAME
     main.cpp
     )
 
+add_executable(${PROJECT_NAME}  ${SOURCE_FILES_ENGINE} ${SOURCE_FILES_GAME}  ${HEADER_FILES_ENGINE}  ${HEADER_FILES_GAME})
+target_link_libraries(${PROJECT_NAME} SDL2 SDL2Main SDL2_image SDL2_ttf Box2D)
 
-#add_executable(${PROJECT_NAME}  ${SOURCE_FILES_ENGINE} ${SOURCE_FILES_GAME}  ${HEADER_FILES_ENGINE}  ${HEADER_FILES_GAME})
-#target_link_libraries(${PROJECT_NAME} SDL2 SDL2Main SDL2_image SDL2_ttf Box2D)
 
+add_executable(test_box2d test_box2d.cpp)
+target_link_libraries(test_box2d Box2D)
 
-#add_executable(${PROJECT_NAME} test_box2d.cpp)
-#target_link_libraries(${PROJECT_NAME} Box2D)
-
-add_executable(${PROJECT_NAME} test/OpenGl/rectangle_shaders/test_openGl_3.cpp)
-target_link_libraries(${PROJECT_NAME} SDL2 SDL2Main  opengl32 GLEW )
+add_executable(test_openGl_3 test/OpenGl/rectangle_shaders/test_openGl_3.cpp)
+target_link_libraries(test_openGl_3 SDL2 SDL2Main  opengl32 GLEW GLM )

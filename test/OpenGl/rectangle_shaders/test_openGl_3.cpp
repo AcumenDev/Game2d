@@ -55,7 +55,7 @@ GLuint LoadShaders(const char * vertex_file_path,const char * fragment_file_path
     }
 
     GLint Result = GL_FALSE;
-    int InfoLogLength;
+     int InfoLogLength;
 
     // Компилируем Вершинный шейдер
     printf("Компиляция шейдера: %s\n", vertex_file_path);
@@ -170,7 +170,7 @@ int main(int argc, char* argv[])
     SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
     SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
 
-
+    SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS,1);
 
     const GLubyte *version=glGetString(GL_VERSION);
     const GLubyte *vendor= glGetString(GL_VENDOR);
