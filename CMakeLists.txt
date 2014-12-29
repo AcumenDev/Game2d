@@ -75,6 +75,7 @@ set(HEADER_FILES_ENGINE
     Engine/include/ObjectsDrawing/Inventory/Inventory.hpp
     Engine/include/ObjectsDrawing/Inventory/InventoryItem.hpp
     Engine/include/ObjectsDrawing/Utils/ShowFps.hpp
+    Engine/include/ObjectsDrawing/Utils/PhysicDraw.hpp
     Engine/include/ObjectsDrawing/BackgroundObject.hpp
     Engine/include/ObjectsDrawing/Font.hpp
     Engine/include/ObjectsDrawing/PlayerOld.hpp
@@ -145,6 +146,7 @@ set(SOURCE_FILES_ENGINE
     Engine/src/gameObjects/Bound.cpp
     Engine/src/ObjectsDrawing/PlayerGraphic.cpp
     Engine/src/ObjectsDrawing/TextureDrawing.cpp
+    Engine/src/ObjectsDrawing/Utils/PhysicDraw.cpp
     )
 
 set(HEADER_FILES_GAME

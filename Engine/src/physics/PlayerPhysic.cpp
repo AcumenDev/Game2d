@@ -3,7 +3,7 @@
 namespace Physic {
     PlayerPhysic::PlayerPhysic(std::shared_ptr<b2World> world, float width, float height, FPoint position) {
         b2BodyDef bodyDef;
-        bodyDef.type = b2_dynamicBody;
+        bodyDef.type =  b2_dynamicBody;
         auto physicPosition = position.ToPhysicWorld();
         bodyDef.position.Set(physicPosition.x, physicPosition.y);
       //  bodyDef.active= true;

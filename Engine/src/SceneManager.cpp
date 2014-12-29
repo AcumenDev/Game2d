@@ -29,6 +29,7 @@ void SceneManager::Draw() {
         _sceneManagerFpsCounterBase->Update(_fps_current);
     }
     _calcFps();
+    _physicWorld->DrawDebugData();
     SDL_RenderPresent( _renderer );
 }
 

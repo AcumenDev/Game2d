@@ -60,12 +60,13 @@ int main(int argc, char* argv[])
 
     ///New player
    // b2World world(b2Vec2(0, -2));
-   auto world = std::make_shared<b2World>(b2Vec2(0, -2));
-  //  b2Draw * physicDraw = new b2Draw();
-  //  world->SetDebugDraw(<#(b2Draw*)debugDraw#>)
+   auto world = std::make_shared<b2World>(b2Vec2(0, 0));
+
+    Graphic::PhysicDraw * physicDraw = new Graphic::PhysicDraw(render);
+    world->SetDebugDraw(physicDraw);
 
 
-    auto playerPhysic = std::make_shared<PlayerPhysic>(world, gFooTexture->getWidth(), gFooTexture->getHeight(), FPoint(10, 10));
+    auto playerPhysic = std::make_shared<PlayerPhysic>(world, gFooTexture->getWidth(), gFooTexture->getHeight(), FPoint(100, 100));
     auto sAnimationNew = std::make_shared<SpriteAnimation>(texstures, 0.05);
     auto playerGraphic = std::make_shared<PlayerGraphic>(sAnimationNew, log);
     auto playerNew = std::make_shared<Player>(log, playerPhysic, playerGraphic);
