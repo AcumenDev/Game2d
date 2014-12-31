@@ -48,7 +48,7 @@ void SceneManager::Update(float delta, shared_ptr<EventInputSystem> eventInputSy
         node->Update(UpdateEventDto(delta, _notificationServices, eventInputSystem));
     }
 //1.0f/60.0f
-    _physicWorld->Step(delta, 6, 4);
+    _physicWorld->Step(1.0f/60.0f, 6, 4);
 
 
 }

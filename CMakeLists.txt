@@ -162,8 +162,11 @@ add_executable(${PROJECT_NAME}  ${SOURCE_FILES_ENGINE} ${SOURCE_FILES_GAME}  ${H
 target_link_libraries(${PROJECT_NAME} SDL2 SDL2Main SDL2_image SDL2_ttf Box2D)
 
 
-add_executable(test_box2d test_box2d.cpp)
+add_executable(test_box2d test/test_box2d.cpp)
 target_link_libraries(test_box2d Box2D)
 
 add_executable(test_openGl_3 test/OpenGl/rectangle_shaders/test_openGl_3.cpp)
 target_link_libraries(test_openGl_3 SDL2 SDL2Main  opengl32 GLEW GLM )
+
+add_executable(test_sdl2_box2d test/sdl2_box2d/sdl2_box2d.cpp  Engine/include/ObjectsDrawing/Utils/PhysicDraw.hpp Engine/src/ObjectsDrawing/Utils/PhysicDraw.cpp)
+target_link_libraries(test_sdl2_box2d SDL2 SDL2Main SDL2_image SDL2_ttf  Box2D)
