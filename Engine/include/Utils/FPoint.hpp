@@ -17,13 +17,5 @@ public:
         y *= f;
         return *this;
     }
-
-    FPoint ToPhysicWorld() {
-        return *this *= 0.001f;
-    }
-
-    FPoint ToScreen() {
-        return *this *= 1000.0f;
-    }
 };
 #endif // FPOINT_H

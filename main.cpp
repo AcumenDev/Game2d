@@ -60,9 +60,9 @@ int main(int argc, char* argv[])
 
     ///New player
    // b2World world(b2Vec2(0, -2));
-   auto world = std::make_shared<b2World>(b2Vec2(0, 0));
+   auto world = std::make_shared<b2World>(b2Vec2(0, 10.0f));
 
-    Graphic::PhysicDraw * physicDraw = new Graphic::PhysicDraw(render);
+    Graphic::PhysicDraw * physicDraw = new Graphic::PhysicDraw(render,100.0f);
     world->SetDebugDraw(physicDraw);
 
 
@@ -76,7 +76,7 @@ int main(int argc, char* argv[])
 //
    auto boundGrapphic = std::make_shared<TextureDrawing>(boundTexture);
 //
-   auto boundPhysic = std::make_shared<BoundPhysic>(world,boundTexture->getWidth(), boundTexture->getHeight(),FPoint(0,400));
+   auto boundPhysic = std::make_shared<BoundPhysic>(world, boundTexture->getHeight(),boundTexture->getWidth(),FPoint(0,400));
 //
    auto bound = std::make_shared<Bound>(boundGrapphic, boundPhysic);
 

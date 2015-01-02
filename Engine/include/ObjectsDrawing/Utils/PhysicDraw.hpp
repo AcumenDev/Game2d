@@ -5,7 +5,7 @@ namespace Graphic {
     class PhysicDraw : public b2Draw {
 
     public:
-        PhysicDraw(SDL_Renderer * renderer);
+        PhysicDraw(SDL_Renderer * renderer, float coff);
         void DrawPolygon(const b2Vec2 *vertices, int32 vertexCount, const b2Color &color) override;
         void DrawSolidPolygon(const b2Vec2 *vertices, int32 vertexCount, const b2Color &color) override;
         void DrawCircle(const b2Vec2 &center, float32 radius, const b2Color &color) override;
@@ -15,7 +15,9 @@ namespace Graphic {
 
     private:
         SDL_Renderer *  _renderer;
+        float _coff;
         void SetColor(b2Color const &color);
+        float ToScrean(float i);
         void DrawPolygons(b2Vec2 const *vertices, int32 vertexCount, b2Color const &color);
     };
 

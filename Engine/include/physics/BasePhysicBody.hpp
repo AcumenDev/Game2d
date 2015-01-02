@@ -7,12 +7,16 @@
 namespace Physic {
     class BasePhysicBody {
     public:
-        BasePhysicBody();
+        BasePhysicBody(float physicCoffSize = 100.0f);
         virtual ~BasePhysicBody();
         virtual FPoint GetPosition();
         virtual void SetUserData(void *data);
     protected:
+        float toScreanSize(float i);
+        float toPhysicSize(float i);
         b2Body *_body;
+    private:
+        float _physicCoffSize;
     };
 }
 
