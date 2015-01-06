@@ -1,7 +1,7 @@
 #include "physics/BoundPhysic.hpp"
 
 namespace Physic {
-    BoundPhysic::BoundPhysic(std::shared_ptr<b2World> world, int height, int width, FPoint position) {
+    BoundPhysic::BoundPhysic(std::shared_ptr<b2World> world, int width, int height, FPoint position) {
         b2BodyDef bodyDef;
         float halfWidth = width / 2.0f;
         float halfHeight = height / 2.0f;

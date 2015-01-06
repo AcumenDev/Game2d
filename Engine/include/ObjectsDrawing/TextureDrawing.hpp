@@ -15,7 +15,7 @@ namespace Graphic {
         void Draw() override;
     private:
         shared_ptr<Texture> _texture;
-        FPoint _iPoint;
+        FPoint _point;
     };
 }
 

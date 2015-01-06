@@ -9,7 +9,7 @@ namespace Physic {
     class BoundPhysic : public BasePhysicBody {
 
     public:
-        BoundPhysic(std::shared_ptr<b2World> world, int height, int width, FPoint position);
+        BoundPhysic(std::shared_ptr<b2World> world, int width, int height, FPoint position);
     };
 }
 

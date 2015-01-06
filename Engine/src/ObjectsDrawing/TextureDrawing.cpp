@@ -7,9 +7,9 @@ namespace Graphic {
     }
 
     void TextureDrawing::SetPosition(FPoint const &fPoint) {
-        _iPoint = fPoint;
+        _point = fPoint;
     }
     void TextureDrawing::Draw() {
-        _texture->Draw(_iPoint);
+        _texture->Draw(_point);
     }
 }

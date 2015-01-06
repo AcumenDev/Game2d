@@ -4,6 +4,7 @@ Player::Player(std::shared_ptr<Logger> log, shared_ptr<PlayerPhysic> physic, sha
     _log = log;
     _physic = physic;
     _graphic = graphic;
+    
 }
 
 Player::~Player() {

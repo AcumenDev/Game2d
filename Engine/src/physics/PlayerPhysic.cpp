@@ -9,8 +9,8 @@ namespace Physic {
         float halfHeight = height / 2.0f;
 
         bodyDef.position.Set(
-                toPhysicSize(position.x + halfWidth),
-                toPhysicSize(position.y + halfHeight));
+                toPhysicSize(position.x +halfWidth),
+                toPhysicSize(position.y +halfHeight));
         b2PolygonShape shape;
 
         shape.SetAsBox(

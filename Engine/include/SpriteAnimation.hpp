@@ -3,7 +3,7 @@
 #include <memory>
 #include <vector>
 #include "Texture.hpp"
-#include "Utils/IPoint.hpp"
+#include "Utils/FRectangle.hpp"
 #include "Utils/FPoint.hpp"
 
 class SpriteAnimation {
@@ -12,6 +12,7 @@ public:
     virtual ~SpriteAnimation();
     void Draw(FPoint point);
     void Step(float delta);
+
 protected:
 private:
 

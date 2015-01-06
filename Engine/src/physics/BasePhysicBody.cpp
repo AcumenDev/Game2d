@@ -9,8 +9,15 @@ namespace Physic {
     }
 
     FPoint BasePhysicBody::GetPosition() {
-        b2Vec2 position = _body-> GetPosition();
-        return FPoint(toScreanSize(position.x), toScreanSize(position.y));
+        b2AABB aabb;
+        b2Fixture *fl = _body->GetFixtureList();
+        do {
+            if (fl == nullptr) {
+                break;
+            }
+            aabb = fl->GetAABB(0);
+        } while (fl = fl->GetNext());
+        return FPoint(toScreanSize(aabb.lowerBound.x), toScreanSize(aabb.lowerBound.y));
     }
 
     void BasePhysicBody::SetUserData(void *data) {

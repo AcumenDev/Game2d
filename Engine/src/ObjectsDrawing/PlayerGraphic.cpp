@@ -15,6 +15,7 @@ namespace Graphic {
     }
 
     void PlayerGraphic::SetPosition(FPoint const &fPoint) {
+
         _fPoint = fPoint;
     }
 }

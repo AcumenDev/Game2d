@@ -41,7 +41,6 @@ int main(int argc, char* argv[])
     auto item = std::make_shared<ItemDrawing>(log, gFooTexture, FPoint(100, 20), "Boy");
 
     auto inventoryTexture = resourceManager->GetTextureFromFile(resFolder + "inventoryCell.png");
-    //   auto inventoryItemTexture = resourceManager->GetTextureFromFile(resFolder+"inventoryItem.png");
 
     std::map<int, std::string> items;
     items.insert(std::make_pair<int, std::string>(0, std::string(resFolder + "inventoryItem.png")));
@@ -59,10 +58,10 @@ int main(int argc, char* argv[])
     //Old Player
 
     ///New player
-   // b2World world(b2Vec2(0, -2));
-   auto world = std::make_shared<b2World>(b2Vec2(0, 10.0f));
+    // b2World world(b2Vec2(0, -2));
+    auto world = std::make_shared<b2World>(b2Vec2(0, 10.0f));
 
-    Graphic::PhysicDraw * physicDraw = new Graphic::PhysicDraw(render,100.0f);
+    Graphic::PhysicDraw *physicDraw = new Graphic::PhysicDraw(render, 100.0f);
     world->SetDebugDraw(physicDraw);
 
 
@@ -73,19 +72,14 @@ int main(int argc, char* argv[])
     ///New player
     //Bound
     auto boundTexture = resourceManager->GetTextureFromFile(resFolder + "Bound.png");
-//
-   auto boundGrapphic = std::make_shared<TextureDrawing>(boundTexture);
-//
-   auto boundPhysic = std::make_shared<BoundPhysic>(world, boundTexture->getHeight(),boundTexture->getWidth(),FPoint(0,400));
-//
-   auto bound = std::make_shared<Bound>(boundGrapphic, boundPhysic);
-
+    auto boundGrapphic = std::make_shared<TextureDrawing>(boundTexture);
+    auto boundPhysic = std::make_shared<BoundPhysic>(world, boundTexture->getWidth(), boundTexture->getHeight(), FPoint(0, 400));
+    auto bound = std::make_shared<Bound>(boundGrapphic, boundPhysic);
     //Bound
-
 
     auto notificationServices = std::make_shared<NotificationServices>();
     notificationServices->RegisterListener("inventoryAdd", std::bind(&Inventory::AddItemForId, inventory, std::placeholders::_1));
-    auto _sceneManager = std::make_shared<SceneManager>(log, render,world, notificationServices);
+    auto _sceneManager = std::make_shared<SceneManager>(log, render, world, notificationServices);
     auto mainNode = _sceneManager->AddChildNode("MainNode");
 
     mainNode->AttachObject(bound);
