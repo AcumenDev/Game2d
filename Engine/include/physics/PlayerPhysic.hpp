@@ -9,6 +9,10 @@ namespace Physic {
     public:
         PlayerPhysic(std::shared_ptr<b2World> world, float width, float height, FPoint position);
         ~PlayerPhysic();
+        void  Jump(int jampSize);
+        void  ToLeft(int stepSize);
+        void  ToRight(int stepSize);
+
     };
 }
 

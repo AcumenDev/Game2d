@@ -21,6 +21,8 @@ private:
     shared_ptr<PlayerPhysic> _physic;
     shared_ptr<PlayerGraphic> _graphic;
     shared_ptr<Logger> _log;
+    int _stepSize;
+   int _jumpSize;
 };
 
 #endif // PLAYER_H

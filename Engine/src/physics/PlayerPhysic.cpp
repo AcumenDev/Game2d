@@ -9,8 +9,9 @@ namespace Physic {
         float halfHeight = height / 2.0f;
 
         bodyDef.position.Set(
-                toPhysicSize(position.x +halfWidth),
-                toPhysicSize(position.y +halfHeight));
+                toPhysicSize(position.x + halfWidth),
+                toPhysicSize(position.y + halfHeight));
+        bodyDef.fixedRotation = true;
         b2PolygonShape shape;
 
         shape.SetAsBox(
@@ -19,12 +20,27 @@ namespace Physic {
         _body = world->CreateBody(&bodyDef);
         b2FixtureDef fixtureDef;
         fixtureDef.shape = &shape;
-        fixtureDef.density = 1.0f;
-        fixtureDef.friction = 0.3f;
+        fixtureDef.density = 100.0f;
+        fixtureDef.friction = 100.0f;
+        fixtureDef.restitution = 0.0f;
+
         _body->CreateFixture(&fixtureDef);
     }
 
     PlayerPhysic::~PlayerPhysic() {
 
+    }
+
+
+    void PlayerPhysic::Jump(int jampSize) {
+       _body->SetLinearVelocity(b2Vec2(0, toPhysicSize(-jampSize)));
+    }
+
+
+    void PlayerPhysic::ToLeft(int stepSize) {
+        _body->SetLinearVelocity(b2Vec2(toPhysicSize(-stepSize),0));
+    }
+    void PlayerPhysic::ToRight(int stepSize) {
+        _body->SetLinearVelocity(b2Vec2(toPhysicSize(stepSize),0));
     }
 }
