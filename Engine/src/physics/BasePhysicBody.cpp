@@ -6,6 +6,8 @@ namespace Physic {
     }
 
     BasePhysicBody::~BasePhysicBody() {
+        auto world = _body->GetWorld();
+        world->DestroyBody(_body);
     }
 
     FPoint BasePhysicBody::GetPosition() {
