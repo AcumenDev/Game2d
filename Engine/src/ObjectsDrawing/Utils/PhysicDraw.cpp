@@ -35,7 +35,7 @@ namespace Graphic {
     PhysicDraw::PhysicDraw(SDL_Renderer *renderer, float coff) {
         _renderer = renderer;
         _coff = coff;
-        SetFlags( b2Draw::e_centerOfMassBit | b2Draw::e_shapeBit);// | b2Draw::e_aabbBit); // );//
+        SetFlags( b2Draw::e_centerOfMassBit | b2Draw::e_shapeBit | b2Draw::e_jointBit);// | b2Draw::e_aabbBit); // );//
     }
 
     void PhysicDraw::DrawPolygon(const b2Vec2 *vertices, int32 vertexCount, const b2Color &color) {
@@ -53,6 +53,7 @@ namespace Graphic {
     }
     void PhysicDraw::DrawSegment(const b2Vec2 &p1, const b2Vec2 &p2, const b2Color &color) {
         SetColor(color);
+        SDL_RenderDrawLine(_renderer,p1.x,p1.y,p2.x, p2.y);
     }
     void PhysicDraw::DrawTransform(const b2Transform &xf) {
       //  std::cout<<"Position : "<<" x :"<<ToScrean(xf.p.x)<<" y :"<<ToScrean(xf.p.y)<<std::endl;

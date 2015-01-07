@@ -23,6 +23,39 @@ float toScrean(float i) {
 float toPhysic(float i) {
     return i / StP;
 }
+struct UserData {
+    bool IsGround;
+};
+
+
+class ContactListener : public b2ContactListener {
+
+public:
+    virtual void BeginContact(b2Contact *contact) override;
+    virtual void EndContact(b2Contact *contact) override;
+};
+
+void ContactListener::BeginContact(b2Contact *contact) {
+    b2Fixture *a = contact->GetFixtureA();
+    b2Fixture *b = contact->GetFixtureB();
+    if (a->GetFilterData().maskBits == 1) {
+        auto usserData = static_cast<UserData *>(a->GetBody()->GetUserData());
+        if (usserData != nullptr) {
+            usserData->IsGround = true;
+            return;
+        }
+    }
+    if (b->GetFilterData().maskBits == 1) {
+        auto usserData = static_cast<UserData *>(b->GetBody()->GetUserData());
+        if (usserData != nullptr) {
+            usserData->IsGround = true;
+        }
+    }
+}
+void ContactListener::EndContact(b2Contact *contact) {
+    b2ContactListener::EndContact(contact);
+}
+
 
 #ifdef _WIN32
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)
@@ -60,8 +93,8 @@ int main(int argc, char* argv[])
     Graphic::PhysicDraw physicDraw(renderer, StP);
     b2World world(gravity);
     world.SetDebugDraw(&physicDraw);
-
-
+    ContactListener contactListener;
+    world.SetContactListener(&contactListener);
     float hx = 800.0f; //ширина
     float hy = 10.0f;
 
@@ -94,7 +127,31 @@ int main(int argc, char* argv[])
     fixtureDef.friction = 0.3f;
     body->CreateFixture(&fixtureDef);
 
+    auto posBody = body->GetPosition();
+    b2BodyDef bodyDefSensor;
+    bodyDefSensor.type = b2_dynamicBody;
 
+    bodyDefSensor.position.Set(posBody.x, posBody.y + toPhysic(phy / 2));
+    b2Body *bodySensor = world.CreateBody(&bodyDefSensor);
+    b2PolygonShape dynamicBoxSensor;
+    dynamicBoxSensor.SetAsBox(toPhysic(phx / 2), toPhysic(phy / 2 / 100));
+//
+    UserData userData;
+    userData.IsGround = false;
+    bodySensor->SetUserData(&userData);
+    b2FixtureDef fixtureSensorGroudDef;
+    fixtureSensorGroudDef.filter.maskBits = 1;
+    fixtureSensorGroudDef.density = 1.0f;
+    fixtureSensorGroudDef.friction = 0.3f;
+    fixtureSensorGroudDef.isSensor = true;
+    fixtureSensorGroudDef.shape = &dynamicBoxSensor;
+    bodySensor->CreateFixture(&fixtureSensorGroudDef);
+
+    b2WeldJointDef b2JointDef1;
+
+    b2JointDef1.Initialize(body, bodySensor, body->GetPosition());
+
+    auto join = world.CreateJoint(&b2JointDef1);
 
     // Prepare for simulation. Typically we use a time step of 1/60 of a
     // second (60Hz) and 10 iterations. This provides a high quality simulation
@@ -132,8 +189,28 @@ int main(int argc, char* argv[])
                     _run = false;
                     break;
                 }
-            }
+                case SDL_KEYDOWN : {
 
+                    switch (event.key.keysym.sym) {
+                        case SDLK_LEFT: {
+                            //  ->ToLeft(delta);
+                            break;
+                        }
+                        case SDLK_RIGHT: {
+                            //  this->ToRight(delta);
+                            break;
+                        }
+                        case SDLK_UP: {
+                            if(userData.IsGround== true) {
+                                body->SetLinearVelocity(b2Vec2(0, -2));
+                                userData.IsGround = false;
+                            }
+                            break;
+                        }
+                    }
+                }
+
+            }
         }
         // Select the color for drawing. It is set to red here.
         SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
@@ -163,6 +240,8 @@ int main(int argc, char* argv[])
         b2Vec2 position = body->GetPosition();
         float32 angle = body->GetAngle();
         printf("%4.2f %4.2f %4.2f\n", position.x * StP, position.y * StP, angle);
+        std::cout<<"IsGroud : "<<userData.IsGround<<std::endl;
+
         fflush(stdout);
         SDL_Delay(50);
     }

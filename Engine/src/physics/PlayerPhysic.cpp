@@ -24,6 +24,11 @@ namespace Physic {
         fixtureDef.friction = 100.0f;
         fixtureDef.restitution = 0.0f;
 
+
+        b2JointDef b2JointDef1;
+
+
+
         _body->CreateFixture(&fixtureDef);
     }
 
@@ -31,15 +36,14 @@ namespace Physic {
 
     }
 
-
     void PlayerPhysic::Jump(int jampSize) {
        _body->SetLinearVelocity(b2Vec2(0, toPhysicSize(-jampSize)));
     }
 
-
     void PlayerPhysic::ToLeft(int stepSize) {
         _body->SetLinearVelocity(b2Vec2(toPhysicSize(-stepSize),0));
     }
+
     void PlayerPhysic::ToRight(int stepSize) {
         _body->SetLinearVelocity(b2Vec2(toPhysicSize(stepSize),0));
     }
