@@ -20,14 +20,11 @@ namespace Physic {
         _body = world->CreateBody(&bodyDef);
         b2FixtureDef fixtureDef;
         fixtureDef.shape = &shape;
-        fixtureDef.density = 100.0f;
         fixtureDef.friction = 100.0f;
         fixtureDef.restitution = 0.0f;
-
+        fixtureDef.filter.maskBits = 1;
 
         b2JointDef b2JointDef1;
-
-
 
         _body->CreateFixture(&fixtureDef);
     }
@@ -37,14 +34,14 @@ namespace Physic {
     }
 
     void PlayerPhysic::Jump(int jampSize) {
-       _body->SetLinearVelocity(b2Vec2(0, toPhysicSize(-jampSize)));
+        _body->SetLinearVelocity(b2Vec2(0, toPhysicSize(-jampSize)));
     }
 
     void PlayerPhysic::ToLeft(int stepSize) {
-        _body->SetLinearVelocity(b2Vec2(toPhysicSize(-stepSize),0));
+        _body->SetLinearVelocity(b2Vec2(toPhysicSize(-stepSize), 0));
     }
 
     void PlayerPhysic::ToRight(int stepSize) {
-        _body->SetLinearVelocity(b2Vec2(toPhysicSize(stepSize),0));
+        _body->SetLinearVelocity(b2Vec2(toPhysicSize(stepSize), 0));
     }
 }

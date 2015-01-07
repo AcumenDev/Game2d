@@ -64,6 +64,10 @@ int main(int argc, char* argv[])
     Graphic::PhysicDraw *physicDraw = new Graphic::PhysicDraw(render, 100.0f);
     world->SetDebugDraw(physicDraw);
 
+    CollisionDetector collisionDetector;
+
+    world->SetContactListener(&collisionDetector);
+
 
     auto playerPhysic = std::make_shared<PlayerPhysic>(world, gFooTexture->getWidth(), gFooTexture->getHeight(), FPoint(100, 100));
     auto sAnimationNew = std::make_shared<SpriteAnimation>(texstures, 0.05);
