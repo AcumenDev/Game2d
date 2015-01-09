@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8.4)
 project(Game)
 
-SET(BASE_DIR D:/my/git_repository/game2d)
+include(../CMakeLists.txt) # SET(BASE_DIR D:/my/git_repository/game2d)
 
 SET(OUTPUT_BUILD_DIRECTORY "${BASE_DIR}/build")
 
