@@ -24,11 +24,15 @@ void Player::Update(UpdateEventDto updateEventDto) {
         }
     }
     if (updateEventDto.eventInputSystem->IsLeft()) {
-        _physic->ToLeft(_stepSize);
+        if (GetIsOnGround()) {
+            _physic->ToLeft(_stepSize);
+        }
     }
 
     if (updateEventDto.eventInputSystem->IsRight()) {
-        _physic->ToRight(_stepSize);
+        if (GetIsOnGround()) {
+            _physic->ToRight(_stepSize);
+        }
     }
 
     // _log->Debug("Player", "Position  x,y "+ std::to_string(position.x)+" "+std::to_string(position.y));
