@@ -19,6 +19,14 @@ public:
         _animationSpeed = animationSpeed;
     }
 
+    float get_animationSpeed() const {
+        return _animationSpeed;
+    }
+
+    vector<shared_ptr<Texture>> const &get_textures() const {
+        return _textures;
+    }
+private:
     float _animationSpeed;
     vector<shared_ptr<Texture>> _textures;
 };

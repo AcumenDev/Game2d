@@ -10,6 +10,9 @@
 #include "Engine.hpp"
 #include "Box2D/Box2D.h"
 
+using std::string;
+using std::shared_ptr;
+
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 
@@ -68,10 +71,11 @@ int main(int argc, char* argv[])
 
     world->SetContactListener(&collisionDetector);
 
-
+    ///New player
+    map<string, SpriteSeries> spriteSeriesMap;
+    spriteSeriesMap.insert(std::make_pair<std::string, SpriteSeries>(std::string("run"), SpriteSeries(texstures, 10.0)));
     auto playerPhysic = std::make_shared<PlayerPhysic>(world, gFooTexture->getWidth(), gFooTexture->getHeight(), FPoint(100, 100));
-    auto sAnimationNew = std::make_shared<SpriteAnimation>(texstures, 0.05);
-    auto playerGraphic = std::make_shared<PlayerGraphic>(sAnimationNew, log);
+    auto playerGraphic = std::make_shared<PlayerGraphic>(spriteSeriesMap, log);
     auto playerNew = std::make_shared<Player>(log, playerPhysic, playerGraphic);
     ///New player
     //Bound

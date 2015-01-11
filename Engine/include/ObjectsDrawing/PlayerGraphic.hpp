@@ -5,19 +5,20 @@
 #include "ObjectDrawingBase.hpp"
 #include "Logger.hpp"
 #include "Utils/FPoint.hpp"
+#include <map>
 
 using std::shared_ptr;
 
 namespace Graphic {
-    class PlayerGraphic : public ObjectDrawingBase {
+    class PlayerGraphic : public ObjectDrawingBase, public SpriteAnimation {
     public:
-        PlayerGraphic(std::shared_ptr<SpriteAnimation> spriteAnimation, shared_ptr<Logger> log);
+
+        PlayerGraphic(map<string, SpriteSeries> spriteSeries, shared_ptr<Logger> log);
         void Draw() override;
 
         virtual void SetPosition(FPoint const &fPoint) override;
         virtual ~PlayerGraphic();
     private:
-        shared_ptr<SpriteAnimation> _spriteAnimation;
         shared_ptr<Logger> _log;
         FPoint _fPoint;
     };

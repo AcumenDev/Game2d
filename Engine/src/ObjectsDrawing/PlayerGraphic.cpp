@@ -1,13 +1,13 @@
 #include "ObjectsDrawing/PlayerGraphic.hpp"
 
 namespace Graphic {
-    PlayerGraphic::PlayerGraphic(shared_ptr<SpriteAnimation> spriteAnimation, shared_ptr<Logger> log) {
-        _spriteAnimation = spriteAnimation;
+    PlayerGraphic::PlayerGraphic(map<string, SpriteSeries> spriteSeries, shared_ptr<Logger> log) :
+            SpriteAnimation(spriteSeries) {
         _log = log;
     }
 
     void PlayerGraphic::Draw() {
-        _spriteAnimation->Draw(_fPoint);
+        SpriteAnimation::Draw(_fPoint);
     }
 
     PlayerGraphic::~PlayerGraphic() {

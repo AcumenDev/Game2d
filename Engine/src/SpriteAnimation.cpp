@@ -24,7 +24,7 @@ void SpriteAnimation::Draw(FPoint point) {
         _textures.at((unsigned int) _currentSprite)->Draw(point);
     } else {
         SpriteSeries current = _spriteSeries.at(_currentSirees);
-        current._textures.at((unsigned int) _currentSprite)->Draw(point);
+        current.get_textures().at((unsigned int) _currentSprite)->Draw(point);
     }
 }
 
@@ -35,6 +35,11 @@ void SpriteAnimation::Step(float delta) {
             _currentSprite = 0;
         }
     } else {
+        SpriteSeries current = _spriteSeries.at(_currentSirees);
+        _currentSprite += current.get_animationSpeed() * delta;
 
+        if ((unsigned int) _currentSprite > current.get_textures().size() - 1) {
+            _currentSprite = 0;
+        }
     }
 }

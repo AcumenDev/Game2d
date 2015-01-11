@@ -25,12 +25,14 @@ void Player::Update(UpdateEventDto updateEventDto) {
     }
     if (updateEventDto.eventInputSystem->IsLeft()) {
         if (GetIsOnGround()) {
+            _graphic->Step(updateEventDto.delta);
             _physic->ToLeft(_stepSize);
         }
     }
 
     if (updateEventDto.eventInputSystem->IsRight()) {
         if (GetIsOnGround()) {
+            _graphic->Step(updateEventDto.delta);
             _physic->ToRight(_stepSize);
         }
     }
