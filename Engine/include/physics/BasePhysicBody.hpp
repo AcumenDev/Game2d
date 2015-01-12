@@ -2,8 +2,9 @@
 #define BASEBODY_HPP_INCLUDED
 #include <memory>
 #include <Box2D/Box2D.h>
-#include "Utils/FPoint.hpp"
+#include "Utils/Point.hpp"
 
+using namespace Utils;
 namespace Physic {
     class BasePhysicBody {
     public:

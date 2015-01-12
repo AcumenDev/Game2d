@@ -4,7 +4,8 @@
 #include <SDL_image.h>
 #include <string>
 #include <iostream>
-#include "Utils/FPoint.hpp"
+#include "Utils/Point.hpp"
+using namespace Utils;
 
 class Texture {
 public:

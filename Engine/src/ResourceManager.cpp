@@ -19,3 +19,10 @@ std::shared_ptr<Texture> ResourceManager::GetTextureFromFile(std::string path) {
     }
     return texture;
 }
+
+
+vector<shared_ptr<Texture>> ResourceManager::GetTexturesFromFile(string path, vector<FRectangle> rectangls) {
+
+
+   // return std::vector<shared_ptr<Texture>, allocator < shared_ptr<Texture>> > ();
+}

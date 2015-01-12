@@ -4,10 +4,10 @@
 #include <vector>
 #include "DrawingObject.hpp"
 #include "InventoryItem.hpp"
-#include <Utils/IPoint.hpp>
+#include <Utils/Point.hpp>
 #include <DrawingObject.hpp>
 #include <ItemsFactory.hpp>
-
+using namespace Utils;
 class Inventory : public DrawingObject {
 public:
     Inventory(

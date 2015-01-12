@@ -5,7 +5,7 @@
 #include "SpriteAnimation.hpp"
 #include "Texture.hpp"
 #include "DrawingObject.hpp"
-#include "Utils/IPoint.hpp"
+#include "Utils/Point.hpp"
 
 class PlayerOld : public DrawingObject {
 public:

@@ -1,9 +1,8 @@
 #ifndef ENGINE_HPP_INCLUDED
 #define ENGINE_HPP_INCLUDED
 
-#include "Utils/IPoint.hpp"
-#include "Utils/FPoint.hpp"
-#include "Utils/FRectangle.hpp"
+#include "Utils/Point.hpp"
+#include "Utils/Rectangle.hpp"
 
 #include "Texture.hpp"
 #include "ResourceManager.hpp"

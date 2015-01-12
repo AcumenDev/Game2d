@@ -1,4 +1,4 @@
-#include <Utils/FPoint.hpp>
+#include <Utils/Point.hpp>
 #include "ObjectsDrawing/TextureDrawing.hpp"
 
 namespace Graphic {

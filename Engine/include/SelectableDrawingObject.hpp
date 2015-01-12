@@ -1,7 +1,8 @@
 #ifndef SELECTABLEDRAWINGOBJECT_H
 #define SELECTABLEDRAWINGOBJECT_H
-#include "Utils/FRectangle.hpp"
+#include "Utils/Rectangle.hpp"
 
+using namespace Utils;
 class SelectableDrawingObject {
 public:
     SelectableDrawingObject();

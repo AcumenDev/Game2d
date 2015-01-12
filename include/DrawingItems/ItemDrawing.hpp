@@ -1,6 +1,9 @@
 #ifndef ITEMDRAWING_H
 #define ITEMDRAWING_H
-#include "Engine.hpp"
+
+
+#include <DrawingObject.hpp>
+#include <SelectableDrawingObject.hpp>
 
 class ItemDrawing: public DrawingObject,public SelectableDrawingObject {
 public:

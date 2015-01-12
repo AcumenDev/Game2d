@@ -4,7 +4,7 @@
 #include "SpriteAnimation.hpp"
 #include "ObjectDrawingBase.hpp"
 #include "Logger.hpp"
-#include "Utils/FPoint.hpp"
+#include "Utils/Point.hpp"
 #include <map>
 
 using std::shared_ptr;

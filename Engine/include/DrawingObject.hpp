@@ -7,12 +7,14 @@
 #include "Logger.hpp"
 #include "UpdateEventDto.hpp"
 #include "ObjectBase.hpp"
-#include "Utils/FPoint.hpp"
+#include "Utils/Point.hpp"
 
+using namespace Utils;
 class DrawingObject {
 public:
     DrawingObject(std::shared_ptr<Logger> log, std::shared_ptr<Texture> texture, FPoint Point);
-    virtual ~DrawingObject() {};
+    virtual ~DrawingObject() {
+    };
     virtual void Draw();
     virtual void Update(UpdateEventDto updateEventDto) = 0;
     virtual bool IsLive();

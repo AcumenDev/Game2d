@@ -3,8 +3,9 @@
 
 
 #include "BasePhysicBody.hpp"
-#include "Utils/IPoint.hpp"
+#include "Utils/Point.hpp"
 
+using namespace Utils;
 namespace Physic {
     class BoundPhysic : public BasePhysicBody {
 

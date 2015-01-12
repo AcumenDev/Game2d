@@ -4,8 +4,8 @@
 #include <vector>
 #include <map>
 #include "Texture.hpp"
-#include "Utils/FRectangle.hpp"
-#include "Utils/FPoint.hpp"
+#include "Utils/Rectangle.hpp"
+#include "Utils/Point.hpp"
 
 using std::map;
 using std::vector;

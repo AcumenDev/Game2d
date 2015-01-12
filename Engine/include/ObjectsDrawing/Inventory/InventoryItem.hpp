@@ -1,8 +1,8 @@
 #ifndef INVENTORYITEM_H
 #define INVENTORYITEM_H
 #include "DrawingObject.hpp"
-#include "Utils/FPoint.hpp"
-
+#include "Utils/Point.hpp"
+using namespace Utils;
 class InventoryItem  {
 public:
     InventoryItem(const int &id, std::shared_ptr<Texture> texture);

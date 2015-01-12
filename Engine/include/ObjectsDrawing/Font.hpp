@@ -3,7 +3,7 @@
 #include <memory>
 #include "SDL_ttf.h"
 #include "Logger.hpp"
-#include "Utils/IPoint.hpp"
+#include "Utils/Point.hpp"
 #include "Texture.hpp"
 #include "DrawingObject.hpp"
 class Font : public DrawingObject {

@@ -1,7 +1,8 @@
 #ifndef OBJECTDRAWINGBASE_H
 #define OBJECTDRAWINGBASE_H
-#include <Utils/FPoint.hpp>
+#include <Utils/Point.hpp>
 
+using namespace Utils;
 namespace Graphic {
     class ObjectDrawingBase {
     public:
