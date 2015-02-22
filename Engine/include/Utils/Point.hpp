@@ -24,5 +24,6 @@ namespace Utils {
     };
     typedef Point<float> FPoint;
     typedef Point<int> IPoint;
+
 }
 #endif // POINT_H

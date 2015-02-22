@@ -6,12 +6,15 @@
 #endif
 #include <SDL.h>
 #include <DrawingItems/ItemDrawing.hpp>
+#include <settings/SystemSettings.hpp>
+#include <resourceManagers/SpriteAnimationResourceManager.hpp>
 
 #include "Engine.hpp"
 #include "Box2D/Box2D.h"
 
 using std::string;
 using std::shared_ptr;
+using std::make_shared;
 
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
@@ -33,10 +36,27 @@ int main(int argc, char* argv[])
     auto render = window->GetRenderer();
     auto resourceManager = std::make_shared<ResourceManager>(log, render);
     std::string resFolder = "../res/";
+
+    auto systemSettings = std::make_shared<SystemSettings>();
+    systemSettings->set_resFolder(resFolder);
+    log->Debug(systemSettings->get_resFolder());
     std::shared_ptr<Texture> gBackgroundTexture = resourceManager->GetTextureFromFile(resFolder + "background.png");
     std::shared_ptr<Texture> gFooTexture = resourceManager->GetTextureFromFile(resFolder + "foo.png");
     std::shared_ptr<Texture> gFooTexture1 = resourceManager->GetTextureFromFile(resFolder + "foo1.png");
 
+
+    auto spriteAnimationResourceManager = make_shared<SpriteAnimationResourceManager>(log,systemSettings );
+
+
+    auto sA = spriteAnimationResourceManager->getResourse(string("player.json"));
+
+    vector<IRectangle> rectangsAnimationKey;
+
+    for (int i = 0; i < 5; i++) {
+        rectangsAnimationKey.push_back(IRectangle(IPoint(0 + (60 * i) , 0), IPoint(60, 100)));
+    }
+
+    auto texturesTemp = resourceManager->GetTexturesFromFile(resFolder + "player.png", rectangsAnimationKey);
     std::vector<std::shared_ptr<Texture>> texstures = {gFooTexture, gFooTexture1};
 
     auto background = std::make_shared<BackgroundObject>(log, gBackgroundTexture, FPoint(0, 0));
@@ -55,7 +75,7 @@ int main(int argc, char* argv[])
     inventory->AddItemForId(0);
     auto test_font = std::make_shared<Font>(log, render, resFolder + "fonts/DejaVuSans.ttf", 40, FPoint(70, 50));
     test_font->SetText("Тест");
-    auto sAnimation = std::make_shared<SpriteAnimation>(texstures, 0.05);
+    auto sAnimation = std::make_shared<SpriteAnimation>(texturesTemp, 0.05);
     //Old Player
     player->Init(sAnimation);
     //Old Player

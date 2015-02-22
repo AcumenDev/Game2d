@@ -60,6 +60,10 @@ add_library(GLM STATIC IMPORTED)
 set_property(TARGET GLM PROPERTY IMPORTED_LOCATION ${GLM_LIB})
 #glm
 
+#rapidjson
+set(RAPIDJSON_HEADERS "${BASE_DIR}/lib/rapidjson/include")
+#rapidjson
+
 include_directories(
 Engine/include
 include
@@ -69,6 +73,7 @@ ${SDL2_image_HEADERS}
 ${BOX2D_HEADERS}
 ${GLEW_HEADERS}
 ${GLM_HEADERS}
+${RAPIDJSON_HEADERS}
 )
 
 set(HEADER_FILES_ENGINE
@@ -110,6 +115,9 @@ set(HEADER_FILES_ENGINE
     Engine/include/ObjectsDrawing/PlayerGraphic.hpp
     Engine/include/ObjectsDrawing/ObjectDrawingBase.hpp
     Engine/include/ObjectsDrawing/TextureDrawing.hpp
+    Engine/include/resourceManagers/BaseResourceManager.hpp
+    Engine/include/resourceManagers/SpriteAnimationResourceManager.hpp
+    Engine/include/settings/SystemSettings.hpp
 )
 
 set(SOURCE_FILES_ENGINE
@@ -144,6 +152,7 @@ set(SOURCE_FILES_ENGINE
     Engine/src/ObjectsDrawing/PlayerGraphic.cpp
     Engine/src/ObjectsDrawing/TextureDrawing.cpp
     Engine/src/ObjectsDrawing/Utils/PhysicDraw.cpp
+    Engine/src/resourceManagers/SpriteAnimationResourceManager.cpp
     )
 
 set(HEADER_FILES_GAME
@@ -167,3 +176,4 @@ target_link_libraries(test_openGl_3 SDL2 SDL2Main  opengl32 GLEW GLM )
 
 add_executable(test_sdl2_box2d test/sdl2_box2d/sdl2_box2d.cpp  Engine/include/ObjectsDrawing/Utils/PhysicDraw.hpp Engine/src/ObjectsDrawing/Utils/PhysicDraw.cpp)
 target_link_libraries(test_sdl2_box2d SDL2 SDL2Main SDL2_image SDL2_ttf  Box2D)
+

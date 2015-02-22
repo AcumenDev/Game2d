@@ -19,5 +19,6 @@ namespace Utils {
     };
 
     typedef Rectangle<FPoint> FRectangle;
+    typedef Rectangle<IPoint> IRectangle;
 }
 #endif // RECTANGLE_H
