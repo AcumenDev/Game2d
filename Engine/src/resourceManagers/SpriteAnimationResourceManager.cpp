@@ -1,6 +1,4 @@
-#include <settings/SystemSettings.hpp>
 #include <resourceManagers/SpriteAnimationResourceManager.hpp>
-#include <Utils/fileSystem/FileSystemUtils.hpp>
 
 SpriteAnimationResourceManager::SpriteAnimationResourceManager(shared_ptr<Logger> logger, shared_ptr<SystemSettings> systemSettings, SDL_Renderer *render) {
     _name = "SpriteAnimationResourceManager";
@@ -41,7 +39,7 @@ shared_ptr<SpriteAnimation> SpriteAnimationResourceManager::getResourse(string n
         string nameSeries = a[i]["name"].GetString();
         double animationSpeed = a[i]["animationSpeed"].GetDouble();
 
-        _logger->Debug(_name, "Series: "+nameSeries+" animation speed: "+std::to_string(animationSpeed));
+        _logger->Debug(_name, "Series: " + nameSeries + " animation speed: " + std::to_string(animationSpeed));
 
         const Value &textures = a[i]["textures"];
         for (SizeType u = 0; u < textures.Size(); u++) {
@@ -75,7 +73,7 @@ shared_ptr<SpriteAnimation> SpriteAnimationResourceManager::getResourse(string n
 
             SDL_FreeSurface(surfaceTemp);
         }
-       _logger->Debug(_name,"Textures loaded: "+std::to_string(textures.Size()));
+        _logger->Debug(_name, "Textures loaded: " + std::to_string(textures.Size()));
         spriteSeries.insert(std::make_pair<string, SpriteSeries>(string(nameSeries), SpriteSeries(result_sprites, animationSpeed)));
     }
 

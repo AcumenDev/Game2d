@@ -1,6 +1,8 @@
 #ifndef ENGINE_HPP_INCLUDED
 #define ENGINE_HPP_INCLUDED
 
+#include <settings/SystemSettings.hpp>
+
 #include "Utils/Point.hpp"
 #include "Utils/Rectangle.hpp"
 
@@ -9,6 +11,8 @@
 #include "SpriteAnimation.hpp"
 #include "MainLoop.hpp"
 #include "Window.hpp"
+
+#include <resourceManagers/SpriteAnimationResourceManager.hpp>
 
 #include "DrawingObject.hpp"
 
@@ -29,7 +33,6 @@
 #include "ObjectsDrawing/PlayerGraphic.hpp"
 #include "ObjectsDrawing/TextureDrawing.hpp"
 #include "ObjectsDrawing/BackgroundObject.hpp"
-#include "ObjectsDrawing/PlayerOld.hpp"
 #include "ObjectsDrawing/Inventory/Inventory.hpp"
 #include "ObjectsDrawing/Font.hpp"
 #include "ObjectsDrawing/Utils/ShowFps.hpp"

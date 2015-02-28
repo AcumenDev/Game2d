@@ -83,7 +83,6 @@ set(HEADER_FILES_ENGINE
     Engine/include/ObjectsDrawing/Utils/PhysicDraw.hpp
     Engine/include/ObjectsDrawing/BackgroundObject.hpp
     Engine/include/ObjectsDrawing/Font.hpp
-    Engine/include/ObjectsDrawing/PlayerOld.hpp
     Engine/include/services/InitService.hpp
     Engine/include/services/NotificationServices.hpp
     Engine/include/services/WidowService.hpp
@@ -127,7 +126,6 @@ set(SOURCE_FILES_ENGINE
     Engine/src/ObjectsDrawing/Utils/ShowFps.cpp
     Engine/src/ObjectsDrawing/BackgroundObject.cpp
     Engine/src/ObjectsDrawing/Font.cpp
-    Engine/src/ObjectsDrawing/PlayerOld.cpp
     Engine/src/services/InitService.cpp
     Engine/src/services/NotificationServices.cpp
     Engine/src/services/WidowService.cpp

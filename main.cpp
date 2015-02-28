@@ -6,8 +6,8 @@
 #endif
 #include <SDL.h>
 #include <DrawingItems/ItemDrawing.hpp>
-#include <settings/SystemSettings.hpp>
-#include <resourceManagers/SpriteAnimationResourceManager.hpp>
+
+
 
 #include "Engine.hpp"
 #include "Box2D/Box2D.h"
@@ -47,20 +47,12 @@ int main(int argc, char* argv[])
 
     auto spriteAnimationResourceManager = make_shared<SpriteAnimationResourceManager>(log,systemSettings,render );
 
-
     auto sA = spriteAnimationResourceManager->getResourse(string("player.json"));
 
-    vector<IRectangle> rectangsAnimationKey;
-
-    for (int i = 0; i < 5; i++) {
-        rectangsAnimationKey.push_back(IRectangle(IPoint(0 + (60 * i) , 0), IPoint(60, 100)));
-    }
-
-    auto texturesTemp = resourceManager->GetTexturesFromFile(resFolder + "player.png", rectangsAnimationKey);
     std::vector<std::shared_ptr<Texture>> texstures = {gFooTexture, gFooTexture1};
 
     auto background = std::make_shared<BackgroundObject>(log, gBackgroundTexture, FPoint(0, 0));
-    auto player = std::make_shared<PlayerOld>(log, gFooTexture, FPoint(240, 190));
+
     auto item = std::make_shared<ItemDrawing>(log, gFooTexture, FPoint(100, 20), "Boy");
 
     auto inventoryTexture = resourceManager->GetTextureFromFile(resFolder + "inventoryCell.png");
@@ -75,10 +67,6 @@ int main(int argc, char* argv[])
     inventory->AddItemForId(0);
     auto test_font = std::make_shared<Font>(log, render, resFolder + "fonts/DejaVuSans.ttf", 40, FPoint(70, 50));
     test_font->SetText("Тест");
-    auto sAnimation = std::make_shared<SpriteAnimation>(texturesTemp, 0.05);
-    //Old Player
-    player->Init(sAnimation);
-    //Old Player
 
     // b2World world(b2Vec2(0, -2));
     auto world = std::make_shared<b2World>(b2Vec2(0, 10.0f));
@@ -94,7 +82,7 @@ int main(int argc, char* argv[])
     map<string, SpriteSeries> spriteSeriesMap;
     spriteSeriesMap.insert(std::make_pair<std::string, SpriteSeries>(std::string("run"), SpriteSeries(texstures, 10.0)));
     auto playerPhysic = std::make_shared<PlayerPhysic>(world, gFooTexture->getWidth(), gFooTexture->getHeight(), FPoint(100, 100));
-    auto playerGraphic = std::make_shared<PlayerGraphic>(sA, log); //sa
+    auto playerGraphic = std::make_shared<PlayerGraphic>(sA, log);
     auto playerNew = std::make_shared<Player>(log, playerPhysic, playerGraphic);
     ///New player
     //Bound
@@ -111,7 +99,6 @@ int main(int argc, char* argv[])
 
     mainNode->AttachObject(bound);
     mainNode->AttachObject(background);
-    mainNode->AttachObject(player);
     mainNode->AttachObject(playerNew);
     mainNode->AttachObject(item);
     mainNode->AttachObject(inventory);

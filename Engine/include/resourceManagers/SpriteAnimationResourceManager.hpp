@@ -3,10 +3,13 @@
 
 #include <memory>
 #include <fstream>
-#include <SpriteAnimation.hpp>
-#include <settings/SystemSettings.hpp>
+#include "SpriteAnimation.hpp"
+#include "settings/SystemSettings.hpp"
 #include "utils/logger/Logger.hpp"
 #include "BaseResourceManager.hpp"
+#include "settings/SystemSettings.hpp"
+#include "Utils/fileSystem/FileSystemUtils.hpp"
+
 #include "rapidjson/document.h"
 
 using std::shared_ptr;
