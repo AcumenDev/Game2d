@@ -5,7 +5,7 @@
 #include <memory>
 #include <SDL.h>
 #include "SceneNode.hpp"
-#include "Logger.hpp"
+#include "utils/logger/Logger.hpp"
 #include "Utils/SceneManagerFpsCounterBase.hpp"
 #include "services/NotificationServices.hpp"
 #include "Box2D/Box2D.h"

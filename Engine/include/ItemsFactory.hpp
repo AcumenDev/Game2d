@@ -3,7 +3,7 @@
 #include <map>
 #include <ObjectsDrawing/Inventory/InventoryItem.hpp>
 #include "ResourceManager.hpp"
-#include "Logger.hpp"
+#include "utils/logger/Logger.hpp"
 
 class ItemsFactory
 {

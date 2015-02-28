@@ -93,7 +93,7 @@ set(HEADER_FILES_ENGINE
     Engine/include/DrawingObject.hpp
     Engine/include/Engine.hpp
     Engine/include/EventInputSystem.hpp
-    Engine/include/Logger.hpp
+    Engine/include/Utils/logger/Logger.hpp
     Engine/include/MainLoop.hpp
     Engine/include/ResourceManager.hpp
     Engine/include/SceneManager.hpp
@@ -118,6 +118,7 @@ set(HEADER_FILES_ENGINE
     Engine/include/resourceManagers/BaseResourceManager.hpp
     Engine/include/resourceManagers/SpriteAnimationResourceManager.hpp
     Engine/include/settings/SystemSettings.hpp
+    Engine/include/Utils/fileSystem/FileSystemUtils.hpp
 )
 
 set(SOURCE_FILES_ENGINE
@@ -132,7 +133,7 @@ set(SOURCE_FILES_ENGINE
     Engine/src/services/WidowService.cpp
     Engine/src/DrawingObject.cpp
     Engine/src/EventInputSystem.cpp
-    Engine/src/Logger.cpp
+    Engine/src/utils/logger/Logger.cpp
     Engine/src/MainLoop.cpp
     Engine/src/ResourceManager.cpp
     Engine/src/SceneManager.cpp

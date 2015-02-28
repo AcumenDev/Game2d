@@ -2,7 +2,7 @@
 #define WIDOWSERVICE_H
 #include <iostream>
 #include <memory>
-#include "Logger.hpp"
+#include "utils/logger/Logger.hpp"
 #include "Window.hpp"
 class WidowService {
 public:

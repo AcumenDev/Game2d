@@ -2,7 +2,7 @@
 #define FONT_H
 #include <memory>
 #include "SDL_ttf.h"
-#include "Logger.hpp"
+#include "utils/logger/Logger.hpp"
 #include "Utils/Point.hpp"
 #include "Texture.hpp"
 #include "DrawingObject.hpp"

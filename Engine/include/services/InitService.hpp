@@ -5,7 +5,7 @@
 #include "SDL.h"
 #include "SDL_image.h"
 #include "SDL_ttf.h"
-#include "Logger.hpp"
+#include "utils/logger/Logger.hpp"
 class InitService {
 public:
     InitService(std::shared_ptr<Logger> log);

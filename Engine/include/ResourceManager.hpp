@@ -4,7 +4,7 @@
 #include <vector>
 #include "Utils/Rectangle.hpp"
 #include "Texture.hpp"
-#include "Logger.hpp"
+#include "utils/logger/Logger.hpp"
 
 
 using std::vector;

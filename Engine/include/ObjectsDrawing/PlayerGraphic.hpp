@@ -1,26 +1,35 @@
 #ifndef PLAYERGRAPHIC_H
 #define PLAYERGRAPHIC_H
+
 #include <memory>
 #include "SpriteAnimation.hpp"
 #include "ObjectDrawingBase.hpp"
-#include "Logger.hpp"
+#include "utils/logger/Logger.hpp"
 #include "Utils/Point.hpp"
 #include <map>
 
 using std::shared_ptr;
 
 namespace Graphic {
-    class PlayerGraphic : public ObjectDrawingBase, public SpriteAnimation {
+    class PlayerGraphic : public ObjectDrawingBase {
     public:
 
-        PlayerGraphic(map<string, SpriteSeries> spriteSeries, shared_ptr<Logger> log);
+        PlayerGraphic(shared_ptr<SpriteAnimation> spriteAnimation, shared_ptr<Logger> log);
+
         void Draw() override;
 
         virtual void SetPosition(FPoint const &fPoint) override;
-        virtual ~PlayerGraphic();
+
+        void Update(float delta);
+        void SetSeries(string series);
+
+        virtual ~PlayerGraphic() {
+        }
+
     private:
         shared_ptr<Logger> _log;
         FPoint _fPoint;
+        shared_ptr<SpriteAnimation> _spriteAnimation;
     };
 }
 

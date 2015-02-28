@@ -3,7 +3,7 @@
 #include <Utils/Point.hpp>
 #include "DrawingObject.hpp"
 #include "Texture.hpp"
-#include "Logger.hpp"
+#include "utils/logger/Logger.hpp"
 using namespace Utils;
 class BackgroundObject : public DrawingObject {
 public:

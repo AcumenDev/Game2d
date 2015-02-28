@@ -14,7 +14,7 @@ using std::string;
 
 class SpriteSeries {
 public:
-    SpriteSeries(vector<shared_ptr<Texture>> textures, float animationSpeed) {
+    SpriteSeries(vector<shared_ptr<Texture>> textures, double animationSpeed) {
         _textures = textures;
         _animationSpeed = animationSpeed;
     }
@@ -23,7 +23,7 @@ public:
         return _animationSpeed;
     }
 
-    vector<shared_ptr<Texture>> const &get_textures() const {
+    vector<shared_ptr<Texture>>  get_textures()  {
         return _textures;
     }
 private:
@@ -33,18 +33,22 @@ private:
 
 class SpriteAnimation {
 public:
+    SpriteAnimation();
     SpriteAnimation(vector<shared_ptr<Texture>> textures, float animationSpeed);
     SpriteAnimation(map<string, SpriteSeries> spriteSeries);
     virtual ~SpriteAnimation();
     void SetSeries(string series);
     void Draw(FPoint point);
     void Step(float delta);
+
 private:
-    float _currentSprite = 0;
-    float _animationSpeed;
+    double _currentSprite = 0;
+    double _animationSpeed;
     bool _old;
     string _currentSirees;
     vector<shared_ptr<Texture>> _textures;
     map<string, SpriteSeries> _spriteSeries;
+    static unsigned int __curSpri; ///debug
 };
+
 #endif // SPRITEANIMATION_H

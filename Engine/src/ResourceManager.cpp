@@ -55,8 +55,8 @@ vector<shared_ptr<Texture>> ResourceManager::GetTexturesFromFile(string path, ve
         sdl_rect.w = item.RightBottom.x;
 
         SDL_BlitSurface(surface, &sdl_rect, surfaceTemp, NULL);
-        IMG_SavePNG(surface, string("debug/all.png").c_str());
-        IMG_SavePNG(surfaceTemp, string("debug/" + std::to_string(count) + ".png").c_str());
+        //  IMG_SavePNG(surface, string("debug/all.png").c_str());
+        //  IMG_SavePNG(surfaceTemp, string("debug/" + std::to_string(count) + ".png").c_str());
 
         SDL_Texture *sdl_texture = SDL_CreateTextureFromSurface(_render, surfaceTemp);
         int w, h;

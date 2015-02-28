@@ -6,6 +6,7 @@
 #include <iostream>
 #include "Utils/Point.hpp"
 using namespace Utils;
+using std::string;
 
 class Texture {
 public:

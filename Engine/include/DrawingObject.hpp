@@ -4,7 +4,8 @@
 #include <services/NotificationServices.hpp>
 #include "EventInputSystem.hpp"
 #include "Texture.hpp"
-#include "Logger.hpp"
+
+#include "utils/logger/Logger.hpp"
 #include "UpdateEventDto.hpp"
 #include "ObjectBase.hpp"
 #include "Utils/Point.hpp"

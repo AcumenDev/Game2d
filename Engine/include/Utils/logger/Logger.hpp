@@ -1,6 +1,8 @@
 #ifndef LOGGER_H
 #define LOGGER_H
 #include <iostream>
+
+//TODO Сделать фабрику и логер сингтоном
 class Logger {
 public:
     Logger() {}

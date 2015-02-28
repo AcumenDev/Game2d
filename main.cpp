@@ -45,7 +45,7 @@ int main(int argc, char* argv[])
     std::shared_ptr<Texture> gFooTexture1 = resourceManager->GetTextureFromFile(resFolder + "foo1.png");
 
 
-    auto spriteAnimationResourceManager = make_shared<SpriteAnimationResourceManager>(log,systemSettings );
+    auto spriteAnimationResourceManager = make_shared<SpriteAnimationResourceManager>(log,systemSettings,render );
 
 
     auto sA = spriteAnimationResourceManager->getResourse(string("player.json"));
@@ -80,7 +80,6 @@ int main(int argc, char* argv[])
     player->Init(sAnimation);
     //Old Player
 
-    ///New player
     // b2World world(b2Vec2(0, -2));
     auto world = std::make_shared<b2World>(b2Vec2(0, 10.0f));
 
@@ -95,7 +94,7 @@ int main(int argc, char* argv[])
     map<string, SpriteSeries> spriteSeriesMap;
     spriteSeriesMap.insert(std::make_pair<std::string, SpriteSeries>(std::string("run"), SpriteSeries(texstures, 10.0)));
     auto playerPhysic = std::make_shared<PlayerPhysic>(world, gFooTexture->getWidth(), gFooTexture->getHeight(), FPoint(100, 100));
-    auto playerGraphic = std::make_shared<PlayerGraphic>(spriteSeriesMap, log);
+    auto playerGraphic = std::make_shared<PlayerGraphic>(sA, log); //sa
     auto playerNew = std::make_shared<Player>(log, playerPhysic, playerGraphic);
     ///New player
     //Bound
