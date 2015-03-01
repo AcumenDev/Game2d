@@ -25,7 +25,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 int main(int argc, char* argv[])
 #endif
 {
-    auto log = std::make_shared<Logger>();
+    auto log = Logger::Get();
     auto initService = std::make_shared<InitService>(log);
     if (!initService->Init()) {
         exit(-1);

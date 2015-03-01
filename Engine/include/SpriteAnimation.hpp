@@ -47,6 +47,7 @@ public:
     void Step(float delta);
 
 private:
+    string _className;
     double _currentSprite = 0;
     string _currentSirees;
     map<string, SpriteSeries> _spriteSeries;

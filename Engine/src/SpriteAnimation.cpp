@@ -1,14 +1,18 @@
+#include <Utils/logger/Logger.hpp>
 #include "SpriteAnimation.hpp"
 
-SpriteAnimation::~SpriteAnimation()
-{}
+SpriteAnimation::~SpriteAnimation() {
+}
 
 SpriteAnimation::SpriteAnimation(map<string, SpriteSeries> spriteSeries) {
+    _className = "SpriteAnimation";
     _spriteSeries = spriteSeries;
     _currentSirees = _spriteSeries.begin()->first;
     _currentSprite = 0;
 }
+
 unsigned int SpriteAnimation::__curSpri = -1;
+
 void SpriteAnimation::SetSeries(string series) {
     if (_currentSirees != series) {
         _currentSirees = series;
@@ -19,8 +23,7 @@ void SpriteAnimation::SetSeries(string series) {
 void SpriteAnimation::Draw(FPoint point) {
     auto currentSprite = (unsigned int) _currentSprite;
     if (currentSprite != __curSpri) {
-        //TODO Писать через логгер
-        std::cout << "CurrentSeries: " << _currentSirees << " CurrentSprite: " << currentSprite << std::endl;
+        Logger::Get()->Debug(_className, "CurrentSeries: " + _currentSirees + " CurrentSprite: " + std::to_string(currentSprite));
         __curSpri = currentSprite;
     }
     SpriteSeries current = _spriteSeries.at(_currentSirees);
