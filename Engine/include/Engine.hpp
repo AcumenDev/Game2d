@@ -27,6 +27,7 @@
 #include "gameObjects/Player.hpp"
 #include "gameObjects/GameObjectBase.hpp"
 #include "gameObjects/GameObjectsFactory.hpp"
+#include "gameObjects/AnimationObject.hpp"
 #include "gameObjects/Bound.hpp"
 
 #include "ObjectsDrawing/ObjectDrawingBase.hpp"
@@ -35,6 +36,7 @@
 #include "ObjectsDrawing/BackgroundObject.hpp"
 #include "ObjectsDrawing/Inventory/Inventory.hpp"
 #include "ObjectsDrawing/Font.hpp"
+#include "ObjectsDrawing/SpriteAnimationDrawing.hpp"
 #include "ObjectsDrawing/Utils/ShowFps.hpp"
 #include "ObjectsDrawing/Utils/PhysicDraw.hpp"
 

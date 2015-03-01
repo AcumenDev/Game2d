@@ -1,13 +1,13 @@
 #include <iostream>
 
 #ifdef _WIN32
+
 #include <windows.h>
 
 #endif
+
 #include <SDL.h>
 #include <DrawingItems/ItemDrawing.hpp>
-
-
 
 #include "Engine.hpp"
 #include "Box2D/Box2D.h"
@@ -20,6 +20,7 @@ const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 
 #ifdef _WIN32
+
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)
 #else
 int main(int argc, char* argv[])
@@ -44,9 +45,13 @@ int main(int argc, char* argv[])
     std::shared_ptr<Texture> gFooTexture = resourceManager->getResourse(resFolder + "foo.png");
 
 
-    auto spriteAnimationResourceManager = make_shared<SpriteAnimationResourceManager>(systemSettings,render );
+    auto spriteAnimationResourceManager = make_shared<SpriteAnimationResourceManager>(systemSettings, render);
 
     auto sA = spriteAnimationResourceManager->getResourse(string("player.json"));
+    auto sAFire = spriteAnimationResourceManager->getResourse(string("fire.json"));
+    auto fireAnimation = std::make_shared<SpriteAnimationDrawing>(sAFire);
+    fireAnimation->SetPosition(FPoint(200, 200));
+    auto fireAnimationObject = make_shared<AnimationObject>(fireAnimation);
 
     auto background = std::make_shared<BackgroundObject>(log, gBackgroundTexture, FPoint(0, 0));
 
@@ -94,6 +99,7 @@ int main(int argc, char* argv[])
 
     mainNode->AttachObject(bound);
     mainNode->AttachObject(background);
+    mainNode->AttachObject(fireAnimationObject);
     mainNode->AttachObject(playerNew);
     mainNode->AttachObject(item);
     mainNode->AttachObject(inventory);

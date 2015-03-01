@@ -20,7 +20,7 @@ namespace Graphic {
 
         virtual void SetPosition(FPoint const &fPoint) override;
 
-        void Update(float delta);
+        void Update(float delta) ;
         void SetSeries(string series);
 
         virtual ~PlayerGraphic() {

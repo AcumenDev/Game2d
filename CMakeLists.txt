@@ -110,9 +110,11 @@ set(HEADER_FILES_ENGINE
     Engine/include/gameObjects/Player.hpp
     Engine/include/gameObjects/GameObjectBase.hpp
     Engine/include/gameObjects/Bound.hpp
+    Engine/include/gameObjects/AnimationObject.hpp
     Engine/include/ObjectsDrawing/PlayerGraphic.hpp
     Engine/include/ObjectsDrawing/ObjectDrawingBase.hpp
     Engine/include/ObjectsDrawing/TextureDrawing.hpp
+    Engine/include/ObjectsDrawing/SpriteAnimationDrawing.hpp
     Engine/include/resourceManagers/BaseResourceManager.hpp
     Engine/include/resourceManagers/SpriteAnimationResourceManager.hpp
     Engine/include/resourceManagers/TexturesResourceManager.hpp
@@ -147,8 +149,10 @@ set(SOURCE_FILES_ENGINE
     Engine/src/physics/BoundPhysic.cpp
     Engine/src/gameObjects/Player.cpp
     Engine/src/gameObjects/Bound.cpp
+    Engine/src/gameObjects/AnimationObject.cpp
     Engine/src/ObjectsDrawing/PlayerGraphic.cpp
     Engine/src/ObjectsDrawing/TextureDrawing.cpp
+    Engine/src/ObjectsDrawing/SpriteAnimationDrawing.cpp
     Engine/src/ObjectsDrawing/Utils/PhysicDraw.cpp
     Engine/src/resourceManagers/SpriteAnimationResourceManager.cpp
     Engine/src/resourceManagers/TexturesResourceManager.cpp
