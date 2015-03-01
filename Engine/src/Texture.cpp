@@ -20,7 +20,7 @@ void Texture::free() {
 
 void Texture::Draw(FPoint point) {
 
-    SDL_Rect renderQuad = {point.x, point.y, getWidth(), getHeight()};
+    SDL_Rect renderQuad = {(int)point.x, (int)point.y, getWidth(), getHeight()};
     SDL_RenderCopy(_render, _texture, NULL, &renderQuad);
 }
 int Texture::getWidth() {

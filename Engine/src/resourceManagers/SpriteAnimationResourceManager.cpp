@@ -1,17 +1,17 @@
 #include <resourceManagers/SpriteAnimationResourceManager.hpp>
 
-SpriteAnimationResourceManager::SpriteAnimationResourceManager(shared_ptr<Logger> logger, shared_ptr<SystemSettings> systemSettings, SDL_Renderer *render) {
+SpriteAnimationResourceManager::SpriteAnimationResourceManager(shared_ptr<SystemSettings> systemSettings, SDL_Renderer *render) {
     _name = "SpriteAnimationResourceManager";
-    _logger = logger;
     _systemSettings = systemSettings;
     _render = render;
 }
 
 shared_ptr<SpriteAnimation> SpriteAnimationResourceManager::getResourse(string name) {
     auto path = FileSystem::Path::Combine(_systemSettings->get_resFolder(), name);
+    Logger::Get()->Debug(_name,"Loading sprite animations from: "+ path);
     std::ifstream spriteAnimation(path.c_str());
     if (!spriteAnimation.is_open()) {
-        _logger->Error(_name, "Couldn't load the spriteAnimaton file : " + path);
+        Logger::Get()->Error(_name, "Couldn't load the spriteAnimaton file : " + path);
         return nullptr;
     }
     std::string jsonString = string((std::istreambuf_iterator<char>(spriteAnimation)), (std::istreambuf_iterator<char>()));
@@ -22,13 +22,12 @@ shared_ptr<SpriteAnimation> SpriteAnimationResourceManager::getResourse(string n
     string nameResFile = d["resFile"].GetString();
 
     string resFile = FileSystem::Path::Combine(_systemSettings->get_resFolder(), nameResFile);
-    _logger->Debug(_name, resFile);
 
-    _logger->Debug(_name, "Loaded textures from file: " + resFile);
+    Logger::Get()->Debug(_name, "Loaded textures from file: " + resFile);
     SDL_Surface *surface = IMG_Load(resFile.c_str());
 
     if (surface == nullptr) {
-        _logger->Error(_name, "Unable to load image " + resFile + " SDL_image Error: " + IMG_GetError());
+        Logger::Get()->Error(_name, "Unable to load image " + resFile + " SDL_image Error: " + IMG_GetError());
 
     }
 
@@ -39,7 +38,7 @@ shared_ptr<SpriteAnimation> SpriteAnimationResourceManager::getResourse(string n
         string nameSeries = a[i]["name"].GetString();
         double animationSpeed = a[i]["animationSpeed"].GetDouble();
 
-        _logger->Debug(_name, "Series: " + nameSeries + " animation speed: " + std::to_string(animationSpeed));
+        Logger::Get()->Debug(_name, "Series: " + nameSeries + " animation speed: " + std::to_string(animationSpeed));
 
         const Value &textures = a[i]["textures"];
         for (SizeType u = 0; u < textures.Size(); u++) {
@@ -73,7 +72,7 @@ shared_ptr<SpriteAnimation> SpriteAnimationResourceManager::getResourse(string n
 
             SDL_FreeSurface(surfaceTemp);
         }
-        _logger->Debug(_name, "Textures loaded: " + std::to_string(textures.Size()));
+        Logger::Get()->Debug(_name, "Textures loaded: " + std::to_string(textures.Size()));
         spriteSeries.insert(std::make_pair<string, SpriteSeries>(string(nameSeries), SpriteSeries(result_sprites, animationSpeed)));
     }
 

@@ -94,7 +94,6 @@ set(HEADER_FILES_ENGINE
     Engine/include/EventInputSystem.hpp
     Engine/include/Utils/logger/Logger.hpp
     Engine/include/MainLoop.hpp
-    Engine/include/ResourceManager.hpp
     Engine/include/SceneManager.hpp
     Engine/include/SceneNode.hpp
     Engine/include/SelectableDrawingObject.hpp
@@ -116,6 +115,7 @@ set(HEADER_FILES_ENGINE
     Engine/include/ObjectsDrawing/TextureDrawing.hpp
     Engine/include/resourceManagers/BaseResourceManager.hpp
     Engine/include/resourceManagers/SpriteAnimationResourceManager.hpp
+    Engine/include/resourceManagers/TexturesResourceManager.hpp
     Engine/include/settings/SystemSettings.hpp
     Engine/include/Utils/fileSystem/FileSystemUtils.hpp
 )
@@ -133,7 +133,6 @@ set(SOURCE_FILES_ENGINE
     Engine/src/EventInputSystem.cpp
     Engine/src/utils/logger/Logger.cpp
     Engine/src/MainLoop.cpp
-    Engine/src/ResourceManager.cpp
     Engine/src/SceneManager.cpp
     Engine/src/SceneNode.cpp
     Engine/src/SelectableDrawingObject.cpp
@@ -152,6 +151,7 @@ set(SOURCE_FILES_ENGINE
     Engine/src/ObjectsDrawing/TextureDrawing.cpp
     Engine/src/ObjectsDrawing/Utils/PhysicDraw.cpp
     Engine/src/resourceManagers/SpriteAnimationResourceManager.cpp
+    Engine/src/resourceManagers/TexturesResourceManager.cpp
     )
 
 set(HEADER_FILES_GAME

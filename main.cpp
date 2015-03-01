@@ -34,33 +34,30 @@ int main(int argc, char* argv[])
     auto windowService = std::make_shared<WidowService>(log);
     auto window = windowService->Create("Game", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT);
     auto render = window->GetRenderer();
-    auto resourceManager = std::make_shared<ResourceManager>(log, render);
+    auto resourceManager = std::make_shared<TexturesResourceManager>(render);
     std::string resFolder = "../res/";
 
     auto systemSettings = std::make_shared<SystemSettings>();
     systemSettings->set_resFolder(resFolder);
     log->Debug(systemSettings->get_resFolder());
-    std::shared_ptr<Texture> gBackgroundTexture = resourceManager->GetTextureFromFile(resFolder + "background.png");
-    std::shared_ptr<Texture> gFooTexture = resourceManager->GetTextureFromFile(resFolder + "foo.png");
-    std::shared_ptr<Texture> gFooTexture1 = resourceManager->GetTextureFromFile(resFolder + "foo1.png");
+    std::shared_ptr<Texture> gBackgroundTexture = resourceManager->getResourse(resFolder + "background.png");
+    std::shared_ptr<Texture> gFooTexture = resourceManager->getResourse(resFolder + "foo.png");
 
 
-    auto spriteAnimationResourceManager = make_shared<SpriteAnimationResourceManager>(log,systemSettings,render );
+    auto spriteAnimationResourceManager = make_shared<SpriteAnimationResourceManager>(systemSettings,render );
 
     auto sA = spriteAnimationResourceManager->getResourse(string("player.json"));
-
-    std::vector<std::shared_ptr<Texture>> texstures = {gFooTexture, gFooTexture1};
 
     auto background = std::make_shared<BackgroundObject>(log, gBackgroundTexture, FPoint(0, 0));
 
     auto item = std::make_shared<ItemDrawing>(log, gFooTexture, FPoint(100, 20), "Boy");
 
-    auto inventoryTexture = resourceManager->GetTextureFromFile(resFolder + "inventoryCell.png");
+    auto inventoryTexture = resourceManager->getResourse(resFolder + "inventoryCell.png");
 
     std::map<int, std::string> items;
     items.insert(std::make_pair<int, std::string>(0, std::string(resFolder + "inventoryItem.png")));
 
-    auto itemsFactory = std::make_shared<ItemsFactory>(log, items, resourceManager);
+    auto itemsFactory = std::make_shared<ItemsFactory>(items, resourceManager);
     auto inventory = std::make_shared<Inventory>(log, inventoryTexture, itemsFactory, FPoint(0, 0), 6, 5);
 
     //  auto inventoryItem =  std::make_shared<InventoryItem>(1, inventoryItemTexture);
@@ -79,14 +76,12 @@ int main(int argc, char* argv[])
     world->SetContactListener(&collisionDetector);
 
     ///New player
-    map<string, SpriteSeries> spriteSeriesMap;
-    spriteSeriesMap.insert(std::make_pair<std::string, SpriteSeries>(std::string("run"), SpriteSeries(texstures, 10.0)));
     auto playerPhysic = std::make_shared<PlayerPhysic>(world, gFooTexture->getWidth(), gFooTexture->getHeight(), FPoint(100, 100));
     auto playerGraphic = std::make_shared<PlayerGraphic>(sA, log);
     auto playerNew = std::make_shared<Player>(log, playerPhysic, playerGraphic);
     ///New player
     //Bound
-    auto boundTexture = resourceManager->GetTextureFromFile(resFolder + "Bound.png");
+    auto boundTexture = resourceManager->getResourse(resFolder + "Bound.png");
     auto boundGrapphic = std::make_shared<TextureDrawing>(boundTexture);
     auto boundPhysic = std::make_shared<BoundPhysic>(world, boundTexture->getWidth(), boundTexture->getHeight(), FPoint(0, 400));
     auto bound = std::make_shared<Bound>(boundGrapphic, boundPhysic);

@@ -7,7 +7,7 @@
 #include "Utils/Rectangle.hpp"
 
 #include "Texture.hpp"
-#include "ResourceManager.hpp"
+#include "resourceManagers/TexturesResourceManager.hpp"
 #include "SpriteAnimation.hpp"
 #include "MainLoop.hpp"
 #include "Window.hpp"
