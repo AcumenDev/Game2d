@@ -23,7 +23,7 @@ void SpriteAnimation::SetSeries(string series) {
 void SpriteAnimation::Draw(FPoint point) {
     auto currentSprite = (unsigned int) _currentSprite;
     if (currentSprite != __curSpri) {
-        Logger::Get()->Debug(_className, "CurrentSeries: " + _currentSirees + " CurrentSprite: " + std::to_string(currentSprite));
+       // Logger::Get()->Debug(_className, "CurrentSeries: " + _currentSirees + " CurrentSprite: " + std::to_string(currentSprite));
         __curSpri = currentSprite;
     }
     SpriteSeries current = _spriteSeries.at(_currentSirees);

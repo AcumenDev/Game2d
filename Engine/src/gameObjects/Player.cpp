@@ -24,6 +24,7 @@ void Player::Update(UpdateEventDto updateEventDto) {
             _physic->Jump(_jumpSize);
             SetIsOnGround(false);
         }
+        return;
     }
     if (updateEventDto.eventInputSystem->IsLeft()) {
         if (GetIsOnGround()) {
@@ -31,6 +32,7 @@ void Player::Update(UpdateEventDto updateEventDto) {
             _graphic->Update(updateEventDto.delta);
             _physic->ToLeft(_stepSize);
         }
+        return;
     }
 
     if (updateEventDto.eventInputSystem->IsRight()) {
@@ -39,6 +41,7 @@ void Player::Update(UpdateEventDto updateEventDto) {
             _graphic->Update(updateEventDto.delta);
             _physic->ToRight(_stepSize);
         }
+        return;
     }
 
     // _log->Debug("Player", "Position  x,y "+ std::to_string(position.x)+" "+std::to_string(position.y));

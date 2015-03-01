@@ -8,18 +8,18 @@ EventInputSystem::~EventInputSystem() {
 }
 
 bool EventInputSystem::IsJump() const {
-    return checInpunt(SDLK_UP);
+    return checkInpunt(SDLK_UP);
 }
 
 bool EventInputSystem::IsLeft() const {
-    return checInpunt(SDLK_LEFT);
+    return checkInpunt(SDLK_LEFT);
 }
 
 bool EventInputSystem::IsRight() const {
-    return checInpunt(SDLK_RIGHT);
+    return checkInpunt(SDLK_RIGHT);
 }
 
-bool EventInputSystem::checInpunt(SDL_Keycode keycode)const {
+bool EventInputSystem::checkInpunt(SDL_Keycode keycode)const {
     switch (event.type) {
         case SDL_KEYDOWN : {
             if (event.key.keysym.sym == keycode) {
