@@ -35,6 +35,7 @@ int main(int argc, char* argv[])
     auto windowService = std::make_shared<WidowService>(log);
     auto window = windowService->Create("Game", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT);
     auto render = window->GetRenderer();
+
     auto resourceManager = std::make_shared<TexturesResourceManager>(render);
     std::string resFolder = "../res/";
 
@@ -85,6 +86,7 @@ int main(int argc, char* argv[])
     auto playerGraphic = std::make_shared<PlayerGraphic>(sA, log);
     auto playerNew = std::make_shared<Player>(log, playerPhysic, playerGraphic);
     ///New player
+
     //Bound
     auto boundTexture = resourceManager->getResourse(resFolder + "Bound.png");
     auto boundGrapphic = std::make_shared<TextureDrawing>(boundTexture);

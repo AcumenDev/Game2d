@@ -41,7 +41,7 @@
 #include "ObjectsDrawing/Utils/PhysicDraw.hpp"
 
 
-
+#include "render/Camera.hpp"
 
 #include "services/WidowService.hpp"
 #include "services/InitService.hpp"

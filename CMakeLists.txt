@@ -120,6 +120,7 @@ set(HEADER_FILES_ENGINE
     Engine/include/resourceManagers/TexturesResourceManager.hpp
     Engine/include/settings/SystemSettings.hpp
     Engine/include/Utils/fileSystem/FileSystemUtils.hpp
+    Engine/include/render/Camera.hpp
 )
 
 set(SOURCE_FILES_ENGINE
@@ -156,6 +157,7 @@ set(SOURCE_FILES_ENGINE
     Engine/src/ObjectsDrawing/Utils/PhysicDraw.cpp
     Engine/src/resourceManagers/SpriteAnimationResourceManager.cpp
     Engine/src/resourceManagers/TexturesResourceManager.cpp
+    Engine/src/render/Camera.cpp
     )
 
 set(HEADER_FILES_GAME
