@@ -7,7 +7,7 @@
 using namespace Utils;
 class BackgroundObject : public DrawingObject {
 public:
-    BackgroundObject(std::shared_ptr<Logger> log, std::shared_ptr<Texture> texture, FPoint point);
+    BackgroundObject(std::shared_ptr<Texture> texture, FPoint point);
     virtual ~BackgroundObject();
     void Draw() override;
     void Update(UpdateEventDto updateEventDto) override;

@@ -17,7 +17,6 @@ using std::string;
 class SceneManager {
 public:
     SceneManager(
-            shared_ptr<Logger> log,
             SDL_Renderer *renderer,
             shared_ptr<b2World> physicWorld,
             shared_ptr<NotificationServices> notificationServices);
@@ -30,7 +29,6 @@ private:
     void _calcFps();
     shared_ptr<b2World> _physicWorld;
     vector<shared_ptr<SceneNode>> _childNodes;
-    shared_ptr<Logger> _log;
     SDL_Renderer *_renderer;
     shared_ptr<SceneManagerFpsCounterBase> _sceneManagerFpsCounterBase;
     unsigned int _fps_lasttime;

@@ -1,11 +1,9 @@
 #include <UpdateEventDto.hpp>
 #include "SceneManager.hpp"
 SceneManager::SceneManager(
-        shared_ptr<Logger> log,
         SDL_Renderer* renderer,
         shared_ptr<b2World> physicWorld,
         shared_ptr<NotificationServices> notificationServices) {
-    _log = log;
     _renderer = renderer;
     _notificationServices = notificationServices;
     _physicWorld = physicWorld;
@@ -15,7 +13,7 @@ SceneManager::~SceneManager() {
 }
 
 shared_ptr<SceneNode> SceneManager::AddChildNode(string name) {
-    auto childNode = std::make_shared<SceneNode>(_log, name);
+    auto childNode = std::make_shared<SceneNode>(name);
     _childNodes.push_back(childNode);
     return childNode;
 }

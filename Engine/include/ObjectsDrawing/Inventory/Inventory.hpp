@@ -11,7 +11,6 @@ using namespace Utils;
 class Inventory : public DrawingObject {
 public:
     Inventory(
-            std::shared_ptr<Logger> log,
             std::shared_ptr<Texture> textureCell,
             std::shared_ptr<ItemsFactory> itemsFactory,
             FPoint point,

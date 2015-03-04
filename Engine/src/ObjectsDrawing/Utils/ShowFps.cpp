@@ -1,7 +1,7 @@
 #include "ObjectsDrawing/Utils/ShowFps.hpp"
 
-ShowFps::ShowFps(std::shared_ptr<Logger> log, SDL_Renderer* render, std::string path, int size, FPoint point, int styleFont)
-    :Font(log,render,path,size, point, styleFont) {
+ShowFps::ShowFps(SDL_Renderer* render, std::string path, int size, FPoint point, int styleFont)
+    :Font(render,path,size, point, styleFont) {
 }
 
 ShowFps::~ShowFps() {

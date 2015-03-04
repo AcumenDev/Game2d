@@ -1,7 +1,7 @@
 #include <ObjectsDrawing/Inventory/Inventory.hpp>
 
-Inventory::Inventory(std::shared_ptr<Logger> log, std::shared_ptr<Texture> textureCell,std::shared_ptr<ItemsFactory> itemsFactory, FPoint point, int maxSize, int borderSize)
-    :DrawingObject(log, textureCell, point) {
+Inventory::Inventory(std::shared_ptr<Texture> textureCell,std::shared_ptr<ItemsFactory> itemsFactory, FPoint point, int maxSize, int borderSize)
+    :DrawingObject(textureCell, point) {
     _maxSize = maxSize;
     _textureCell = textureCell;
     _borderSize  = borderSize;
@@ -28,7 +28,7 @@ void Inventory::Update(UpdateEventDto updateEventDto) {
     }
 }
 void Inventory::Add(std::shared_ptr<InventoryItem> item) {
-    _log->Info("Inventory","Added to Inventory : "+ std::to_string(item->GetId()));
+    Logger::Get()->Info("Inventory","Added to Inventory : "+ std::to_string(item->GetId()));
     _inventoryItems.push_back(item);
 }
 

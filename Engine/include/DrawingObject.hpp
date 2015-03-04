@@ -13,7 +13,7 @@
 using namespace Utils;
 class DrawingObject {
 public:
-    DrawingObject(std::shared_ptr<Logger> log, std::shared_ptr<Texture> texture, FPoint Point);
+    DrawingObject(std::shared_ptr<Texture> texture, FPoint Point);
     virtual ~DrawingObject() {
     };
     virtual void Draw();
@@ -22,7 +22,6 @@ public:
 protected:
     std::shared_ptr<Texture> _texture;
     FPoint _point;
-    std::shared_ptr<Logger> _log;
     bool _isLive;
 };
 #endif // DRAWINGOBJECT_H

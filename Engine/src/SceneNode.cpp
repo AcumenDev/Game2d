@@ -1,8 +1,7 @@
 #include "SceneNode.hpp"
 #include <algorithm>
 
-SceneNode::SceneNode(shared_ptr<Logger> log, string nameNode) {
-    _log = log;
+SceneNode::SceneNode(string nameNode) {
     _nameNode = nameNode;
 }
 
@@ -48,7 +47,7 @@ void SceneNode::Update(UpdateEventDto updateEventDto) {
         _drawingObjectsOld.erase(
                 std::remove_if(_drawingObjectsOld.begin(), _drawingObjectsOld.end(), [this](std::shared_ptr<DrawingObject> item) -> bool {
                     if (!item->IsLive()) {
-                        _log->Debug("SceneNode", "Deleted drawing object: from node" + _nameNode);
+                        Logger::Get()->Debug("SceneNode", "Deleted drawing object: from node" + _nameNode);
                         return true;
                     }
                     return false;

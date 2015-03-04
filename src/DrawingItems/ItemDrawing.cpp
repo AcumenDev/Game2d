@@ -1,7 +1,7 @@
 #include "DrawingItems/ItemDrawing.hpp"
 
-ItemDrawing::ItemDrawing(std::shared_ptr<Logger> log, std::shared_ptr<Texture> texture, FPoint point, std::string name)
-        : DrawingObject(log, texture, point) {
+ItemDrawing::ItemDrawing(std::shared_ptr<Texture> texture, FPoint point, std::string name)
+        : DrawingObject(texture, point) {
     _notyfy = false;
     _name = name;
 }
@@ -24,7 +24,7 @@ void ItemDrawing::Update(UpdateEventDto updateEventDto) {
             auto point = FPoint(event.motion.x, event.motion.y);
             auto rect = FRectangle(_point, FPoint(_texture->getWidth(), _texture->getHeight()));
             if (_checkItemSelected(rect, point)) {
-                _log->Info("ItemDrawing", "Take an item :" + _name);
+                Logger::Get()->Info("ItemDrawing", "Take an item :" + _name);
                 updateEventDto.notificationServices->Notify("inventoryAdd", 0);
                 _notyfy = true;
                 _isLive = false;
