@@ -33,8 +33,8 @@ namespace Physic {
 
     }
 
-    void PlayerPhysic::Jump(int jampSize) {
-        _body->SetLinearVelocity(b2Vec2(0, toPhysicSize(-jampSize)));
+    void PlayerPhysic::Jump(int jumpSize) {
+        _body->SetLinearVelocity(b2Vec2(0, toPhysicSize(-jumpSize)));
     }
 
     void PlayerPhysic::ToLeft(int stepSize) {

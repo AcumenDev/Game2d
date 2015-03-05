@@ -3,7 +3,7 @@
 Player::Player(shared_ptr<PlayerPhysic> physic, shared_ptr<PlayerGraphic> graphic,
                shared_ptr<PlayerScript> playerScript) {
 
-    _physic = physic;
+     _physic = physic;
     _physic->SetUserData(this);
     _graphic = graphic;
     _camera = Render::Get()->GetCamera();
@@ -45,7 +45,6 @@ void Player::Update(UpdateEventDto updateEventDto) {
         }
         return;
     }
-
     if (updateEventDto.eventInputSystem->IsShot()) {
         _graphic->SetSeries("shot");
         return;
@@ -54,7 +53,6 @@ void Player::Update(UpdateEventDto updateEventDto) {
     if (GetIsOnGround()) {
         _graphic->SetSeries("run");
     }
-    // _log->Debug("Player", "Position  x,y "+ std::to_string(position.x)+" "+std::to_string(position.y));
 }
 
 shared_ptr<ObjectDrawingBase> Player::GetDrawing() const {

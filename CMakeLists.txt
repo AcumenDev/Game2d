@@ -120,6 +120,7 @@ set(HEADER_FILES_ENGINE
     Engine/include/physics/BoundPhysic.hpp
     Engine/include/gameObjects/Player.hpp
     Engine/include/gameObjects/GameObjectBase.hpp
+    Engine/include/gameObjects/GameObjectsFactory.hpp
     Engine/include/gameObjects/Bound.hpp
     Engine/include/gameObjects/AnimationObject.hpp
     Engine/include/ObjectsDrawing/PlayerGraphic.hpp
@@ -165,6 +166,7 @@ set(SOURCE_FILES_ENGINE
     Engine/src/physics/BasePhysicBody.cpp
     Engine/src/physics/PlayerPhysic.cpp
     Engine/src/physics/BoundPhysic.cpp
+    Engine/src/gameObjects/GameObjectsFactory.cpp
     Engine/src/gameObjects/Player.cpp
     Engine/src/gameObjects/Bound.cpp
     Engine/src/gameObjects/AnimationObject.cpp
