@@ -61,7 +61,7 @@ int main(int argc, char* argv[])
     auto inventoryTexture = texturesResourceManager->getResourse((string) "inventoryCell.png");
 
     std::map<int, string> items;
-    items.insert(make_pair<int, string>(0, string(resFolder + "inventoryItem.png")));
+    items.insert(std::make_pair<int, string>(0, string(resFolder + "inventoryItem.png")));
 
     auto itemsFactory = make_shared<ItemsFactory>(items, texturesResourceManager);
     auto inventory = make_shared<Inventory>(inventoryTexture, itemsFactory, FPoint(0, 0), 6, 5);
