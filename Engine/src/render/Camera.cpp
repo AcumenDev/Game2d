@@ -1,28 +1,19 @@
 #include "render/Camera.hpp"
 
-Camera::Camera(SDL_Renderer *renderer) {
-    _renderer = renderer;
+Camera::Camera() {
     _className = "Camera";
 }
 
-void Camera::SetPosition(IPoint point) {
-    SDL_Rect rect;
-    SDL_RenderGetViewport(_renderer, &rect);
+void Camera::SetPosition(FPoint point) {
+    _point = point;
+}
 
-    rect.x+=point.x;
-    rect.y+=point.y;
-    rect.w+=point.x;
-    rect.h+=point.y;
-
-    SDL_RenderSetViewport(_renderer, &rect);
-
-    // SDL_RenderSetViewport
+FPoint Camera::GetPosition() {
+    return _point;
 }
 
 Camera::~Camera() {
-
 }
-
 
 void Camera::ShowSizeVieport() {
     SDL_Rect rect;
@@ -33,4 +24,20 @@ void Camera::ShowSizeVieport() {
                     + " y: " + std::to_string(rect.y)
                     + " h: " + std::to_string(rect.h)
                     + " w: " + std::to_string(rect.w)));
+}
+
+void Camera::MoveToLeft(float x) {
+    _point.x += x;
+}
+
+void Camera::MoveToRight(float x) {
+    _point.x -= x;
+}
+
+void Camera::MoveToUp(float y) {
+    _point.x -= y;
+}
+
+void Camera::MoveToDown(float y) {
+    _point.x += y;
 }

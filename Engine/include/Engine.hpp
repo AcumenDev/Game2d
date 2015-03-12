@@ -42,6 +42,8 @@
 
 
 #include "render/Camera.hpp"
+#include "render/Render.hpp"
+
 
 #include "services/WidowService.hpp"
 #include "services/InitService.hpp"

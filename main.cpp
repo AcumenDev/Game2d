@@ -35,7 +35,7 @@ int main(int argc, char* argv[])
     auto windowService = std::make_shared<WidowService>(log);
     auto window = windowService->Create("Game", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT);
     auto render = window->GetRenderer();
-
+    Render::Init(render, make_shared<Camera>()); //todo Убрать в виндов сервис
     auto resourceManager = std::make_shared<TexturesResourceManager>(render);
     std::string resFolder = "../res/";
 
@@ -74,7 +74,7 @@ int main(int argc, char* argv[])
     // b2World world(b2Vec2(0, -2));
     auto world = std::make_shared<b2World>(b2Vec2(0, 10.0f));
 
-    Graphic::PhysicDraw *physicDraw = new Graphic::PhysicDraw(render, 100.0f);
+    Graphic::PhysicDraw *physicDraw = new Graphic::PhysicDraw(100.0f);
     world->SetDebugDraw(physicDraw);
 
     CollisionDetector collisionDetector;
@@ -90,7 +90,7 @@ int main(int argc, char* argv[])
     //Bound
     auto boundTexture = resourceManager->getResourse(resFolder + "Bound.png");
     auto boundGrapphic = std::make_shared<TextureDrawing>(boundTexture);
-    auto boundPhysic = std::make_shared<BoundPhysic>(world, boundTexture->getWidth(), boundTexture->getHeight(), FPoint(0, 400));
+    auto boundPhysic = std::make_shared<BoundPhysic>(world, boundTexture->getWidth()+1000, boundTexture->getHeight(), FPoint(0, 400));
     auto bound = std::make_shared<Bound>(boundGrapphic, boundPhysic);
     //Bound
 

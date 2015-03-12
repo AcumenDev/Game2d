@@ -7,7 +7,7 @@ Player::Player(std::shared_ptr<Logger> log, shared_ptr<PlayerPhysic> physic, sha
     _graphic = graphic;
     _jumpSize = 300;
     _stepSize = 300;
-
+    _camera = Render::Get()->GetCamera();
 }
 
 Player::~Player() {
@@ -31,6 +31,8 @@ void Player::Update(UpdateEventDto updateEventDto) {
             _graphic->SetSeries("run");
             _graphic->Update(updateEventDto.delta);
             _physic->ToLeft(_stepSize);
+            _camera->MoveToLeft(0.2);
+
         }
         return;
     }
@@ -40,6 +42,8 @@ void Player::Update(UpdateEventDto updateEventDto) {
             _graphic->SetSeries("run");
             _graphic->Update(updateEventDto.delta);
             _physic->ToRight(_stepSize);
+
+            _camera->MoveToRight(0.2);
         }
         return;
     }

@@ -5,6 +5,8 @@
 #include <string>
 #include <iostream>
 #include "Utils/Point.hpp"
+
+#include "render/Render.hpp"
 using namespace Utils;
 using std::string;
 

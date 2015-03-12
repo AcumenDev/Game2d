@@ -13,17 +13,28 @@ using namespace Utils;
 class Camera {
 
 public:
-    Camera(SDL_Renderer *renderer);
+    Camera();
 
-    void SetPosition(IPoint point);
+    void SetPosition(FPoint point);
+
+    FPoint GetPosition();
 
     void ShowSizeVieport();
+
+    void MoveToLeft(float x);
+
+    void MoveToRight(float x);
+
+    void MoveToUp(float y);
+
+    void MoveToDown(float y);
 
     ~Camera();
 
 private:
     SDL_Renderer *_renderer;
     string _className;
+    FPoint _point;
 };
 
 #endif
