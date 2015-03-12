@@ -13,20 +13,20 @@ GameObjectsFactory::GameObjectsFactory(
 GameObjectsFactory::~GameObjectsFactory() {
 }
 
-shared_ptr<GameObjectBase> GameObjectsFactory::CreateGameObjectById(object_id id) {
+shared_ptr<GameObjectBase> GameObjectsFactory::CreateGameObjectByIdAndPoint(object_id id, FPoint point) {
     switch (id) {
         case player_id:
-            return GameObjectsFactory::CreatePlayer();
+            return createPlayer(point);
         case bound_id:
-            return GameObjectsFactory::CreateBound();
+            return createBound(point);
         case animation_obj_id:
-            return GameObjectsFactory::CreateAnimationObj();
+            return createAnimationObj(point);
     }
 }
 
-shared_ptr<Player> GameObjectsFactory::CreatePlayer() {
+shared_ptr<Player> GameObjectsFactory::createPlayer(FPoint point) {
     auto playerFooTexture = _texturesResourceManager->getResourse(string("foo.png"));
-    auto playerPhysic = make_shared<PlayerPhysic>(_world, playerFooTexture->getWidth(), playerFooTexture->getHeight(), FPoint(100, 100));
+    auto playerPhysic = make_shared<PlayerPhysic>(_world, playerFooTexture->getWidth(), playerFooTexture->getHeight(), point);
     auto playerSpriteAnimation = _spriteAnimationResourceManager->getResourse(string("player.json"));
     auto playerGraphic = make_shared<PlayerGraphic>(playerSpriteAnimation);
     return make_shared<Player>(playerPhysic, playerGraphic);
@@ -34,18 +34,18 @@ shared_ptr<Player> GameObjectsFactory::CreatePlayer() {
 
 }
 
-shared_ptr<Bound> GameObjectsFactory::CreateBound() {
+shared_ptr<Bound> GameObjectsFactory::createBound(FPoint point) {
 
     auto boundTexture = _texturesResourceManager->getResourse(string("Bound.png"));
     auto boundGraphic = make_shared<TextureDrawing>(boundTexture);
-    auto boundPhysic = make_shared<BoundPhysic>(_world, boundTexture->getWidth(), boundTexture->getHeight(), FPoint(0, 400));
+    auto boundPhysic = make_shared<BoundPhysic>(_world, boundTexture->getWidth(), boundTexture->getHeight(), point);
     return make_shared<Bound>(boundGraphic, boundPhysic);
 }
 
-shared_ptr<AnimationObject> GameObjectsFactory::CreateAnimationObj() {
+shared_ptr<AnimationObject> GameObjectsFactory::createAnimationObj(FPoint point) {
 
     auto fireSpriteAnimation = _spriteAnimationResourceManager->getResourse(string("fire.json"));
     auto fireAnimation = make_shared<SpriteAnimationDrawing>(fireSpriteAnimation);
-    fireAnimation->SetPosition(FPoint(200, 200));
+    fireAnimation->SetPosition(point);
     return make_shared<AnimationObject>(fireAnimation);
 }

@@ -132,6 +132,7 @@ set(HEADER_FILES_ENGINE
     Engine/include/resourceManagers/SpriteAnimationResourceManager.hpp
     Engine/include/resourceManagers/TexturesResourceManager.hpp
     Engine/include/resourceManagers/ScriptResourceManager.hpp
+    Engine/include/resourceManagers/MapResourceManager.hpp
     Engine/include/settings/SystemSettings.hpp
     Engine/include/Utils/fileSystem/FileSystemUtils.hpp
     Engine/include/render/Camera.hpp
@@ -178,6 +179,7 @@ set(SOURCE_FILES_ENGINE
     Engine/src/resourceManagers/SpriteAnimationResourceManager.cpp
     Engine/src/resourceManagers/TexturesResourceManager.cpp
     Engine/src/resourceManagers/ScriptResourceManager.cpp
+    Engine/src/resourceManagers/MapResourceManager.cpp
     Engine/src/render/Camera.cpp
     Engine/src/render/Render.cpp
     Engine/src/ObjectsDrawing/Utils/debugEngine/TraceEngineUtils.cpp

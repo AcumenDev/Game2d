@@ -79,8 +79,9 @@ int main(int argc, char* argv[])
     ///
 
     auto gameObjFactory = make_shared<GameObjectsFactory>(texturesResourceManager, spriteAnimationResourceManager, world);
+
     ///New player
-    auto playerNew = gameObjFactory->CreateGameObjectById(player_id);
+    auto playerNew = gameObjFactory->CreateGameObjectByIdAndPoint(player_id, FPoint(100, 100));
     
     
     auto scriptResourceManager = std::make_shared<ScriptResourceManager>(systemSettings);  перенести в фабрику
@@ -88,14 +89,11 @@ int main(int argc, char* argv[])
     auto playerScript = make_shared<PlayerScript>(scriptResourceManager->getResourse("Player"));
 
   //  auto playerNew = std::make_shared<Player>(playerPhysic, playerGraphic, playerScript);
-    ///New player
 
     //Bound
-    auto bound = gameObjFactory->CreateGameObjectById(bound_id);
-    //Bound
+    auto bound = gameObjFactory->CreateGameObjectByIdAndPoint(bound_id, FPoint(0, 400));
     //Fire
-    auto fireAnimationObject = gameObjFactory->CreateGameObjectById(animation_obj_id);
-    //Fire
+    auto fireAnimationObject = gameObjFactory->CreateGameObjectByIdAndPoint(animation_obj_id, FPoint(100, 150));
 
     auto notificationServices = make_shared<NotificationServices>();
     notificationServices->RegisterListener("inventoryAdd",

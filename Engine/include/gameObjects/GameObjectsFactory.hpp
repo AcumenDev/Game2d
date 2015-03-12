@@ -13,6 +13,7 @@
 using std::make_shared;
 using std::shared_ptr;
 using std::string;
+using Utils::FPoint;
 
 enum object_id {
     player_id = 0, bound_id, animation_obj_id
@@ -26,18 +27,18 @@ public:
 
     virtual ~GameObjectsFactory();
 
-    shared_ptr<GameObjectBase> CreateGameObjectById(object_id id);
+    shared_ptr<GameObjectBase> CreateGameObjectByIdAndPoint(object_id id, FPoint point);
 
 private:
     shared_ptr<TexturesResourceManager> _texturesResourceManager;
     shared_ptr<SpriteAnimationResourceManager> _spriteAnimationResourceManager;
     shared_ptr<b2World> _world;
 
-    shared_ptr<Player> CreatePlayer();
+    shared_ptr<Player> createPlayer(FPoint point);
 
-    shared_ptr<Bound> CreateBound();
+    shared_ptr<Bound> createBound(FPoint point);
 
-    shared_ptr<AnimationObject> CreateAnimationObj();
+    shared_ptr<AnimationObject> createAnimationObj(FPoint point);
 };
 
 #endif
