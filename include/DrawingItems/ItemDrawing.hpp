@@ -5,12 +5,16 @@
 #include <DrawingObject.hpp>
 #include <SelectableDrawingObject.hpp>
 
-class ItemDrawing: public DrawingObject,public SelectableDrawingObject {
+class ItemDrawing : public DrawingObject, public SelectableDrawingObject {
 public:
     ItemDrawing(std::shared_ptr<Texture> texture, FPoint point, std::string name);
+
     virtual ~ItemDrawing();
+
     void Draw() override;
+
     void Update(UpdateEventDto updateEventDto) override;
+
 protected:
 private:
     bool _notyfy;

@@ -18,7 +18,7 @@ void  Render::Init(SDL_Renderer *renderer, shared_ptr<Camera> camera) {
 
 void Render::RenderTexture(SDL_Texture *texture, Utils::IRectangle rectangle) {
     SDL_Rect renderQuad = {rectangle.LeftTop.x, rectangle.LeftTop.y, rectangle.RightBottom.x, rectangle.RightBottom.y};
-    if (_camera) {
+    if (_camera && !_localFixed) {
         FPoint positionCamera = _camera->GetPosition();
         renderQuad.x += positionCamera.x;
         renderQuad.y += positionCamera.y;
@@ -58,4 +58,23 @@ shared_ptr<Camera> Render::GetCamera() {
 
 void Render::SetRenderDrawColor(float r, float g, float b, float a) {
     SDL_SetRenderDrawColor(_sdlRender, (int) r * 255, (int) g * 255, (int) b * 255, (int) a * 255);
+}
+
+
+FPoint Render::ToWorldCoordinate(FPoint point) {
+    FPoint positionCamera = _camera->GetPosition();
+    return FPoint(point.x + positionCamera.x, point.y + positionCamera.y);
+}
+
+FPoint Render::ToLocalCoordinate(FPoint point) {
+    FPoint positionCamera = _camera->GetPosition();
+    return FPoint(point.x - positionCamera.x, point.y - positionCamera.y);
+}
+
+
+void Render::RenderTolocal() {
+    _localFixed = true;
+}
+void Render::RenderToGlobal() {
+    _localFixed = false;
 }

@@ -1,14 +1,24 @@
 #include "SceneNode.hpp"
 #include <algorithm>
 
-SceneNode::SceneNode(string nameNode) {
+SceneNode::SceneNode(string nameNode, bool fixedCord) {
     _nameNode = nameNode;
+    _fixedCord = fixedCord;
 }
 
 SceneNode::~SceneNode() {
 }
 
 void SceneNode::Draw() {
+    if (_fixedCord) {
+        Render::Get()->RenderTolocal();
+    } else {
+        Render::Get()->RenderToGlobal();
+    }
+    _draw();
+}
+
+void SceneNode::_draw() {
     for (const auto &drawingObject : _drawingObjectsOld) {
         drawingObject->Draw();
     }
@@ -27,6 +37,7 @@ void SceneNode::Draw() {
         node->Draw();
     }
 }
+
 
 void SceneNode::Update(UpdateEventDto updateEventDto) {
 

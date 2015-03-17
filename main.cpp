@@ -104,9 +104,12 @@ int main(int argc, char* argv[])
     mainNode->AttachObject(fireAnimationObject);
     mainNode->AttachObject(playerNew);
     mainNode->AttachObject(item);
-    mainNode->AttachObject(inventory);
+
     mainNode->AttachObject(test_font);
-    auto debugNode = _sceneManager->AddChildNode("DebugNode");
+    auto hudNode = _sceneManager->AddChildNode("HudNode", true);
+    hudNode->AttachObject(inventory);
+
+    auto debugNode = _sceneManager->AddChildNode("DebugNode", true);
     auto fps = std::make_shared<ShowFps>(render, resFolder + "fonts/DejaVuSans.ttf", 40, FPoint(SCREEN_WIDTH - 100, 10));
     _sceneManager->SetFpsListener(fps);
     debugNode->AttachObject(fps);

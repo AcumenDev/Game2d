@@ -21,7 +21,7 @@ public:
             shared_ptr<b2World> physicWorld,
             shared_ptr<NotificationServices> notificationServices);
     virtual ~SceneManager();
-    shared_ptr<SceneNode> AddChildNode(string name);
+    shared_ptr<SceneNode> AddChildNode(string name, bool fixedCord = false);
     void Draw();
     void Update(float delta, shared_ptr<EventInputSystem> eventInputSystem);
     void SetFpsListener(shared_ptr<SceneManagerFpsCounterBase> sceneManagerFpsCounterBase);

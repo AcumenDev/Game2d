@@ -15,7 +15,7 @@ using namespace Graphic;
 
 class SceneNode{
 public:
-    SceneNode(string nameNode);
+    SceneNode(string nameNode, bool fixedCord);
     virtual ~SceneNode();
     void Draw();
     void Update(UpdateEventDto updateEventDto);
@@ -25,7 +25,9 @@ public:
     void AttachObject(shared_ptr<GameObjectBase> gameObjectBase);
 protected:
 private:
+    void _draw();
     string _nameNode;
+    bool _fixedCord;
     vector<shared_ptr<SceneNode>> _childNodes;
 
     vector<shared_ptr<DrawingObject>> _drawingObjectsOld;

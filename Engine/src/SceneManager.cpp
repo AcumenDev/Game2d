@@ -12,13 +12,16 @@ SceneManager::SceneManager(
 SceneManager::~SceneManager() {
 }
 
-shared_ptr<SceneNode> SceneManager::AddChildNode(string name) {
-    auto childNode = std::make_shared<SceneNode>(name);
+shared_ptr<SceneNode> SceneManager::AddChildNode(string name, bool fixedCord) {
+    auto childNode = std::make_shared<SceneNode>(name, fixedCord);
     _childNodes.push_back(childNode);
     return childNode;
 }
 
 void SceneManager::Draw() {
+    SDL_SetRenderDrawColor(_renderer, 255, 255, 255, 255);
+
+    SDL_RenderClear(_renderer);
     for(const auto & node : _childNodes) {
         node->Draw();
     }

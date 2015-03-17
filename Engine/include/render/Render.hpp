@@ -22,16 +22,28 @@ public:
     static void Init(SDL_Renderer *renderer, shared_ptr<Camera> camera);
 
     void RenderTexture(SDL_Texture *texture, Utils::IRectangle rectangle);
+
     void DrawLines(vector<SDL_Point> points);
+
     void DrawLine(FPoint point1, FPoint point2);
 
     void SetRenderDrawColor(float r, float g, float b, float a);
+
     shared_ptr<Camera> GetCamera();
+
+    FPoint ToWorldCoordinate(FPoint point);
+
+    FPoint ToLocalCoordinate(FPoint point);
+
+    void RenderTolocal();
+
+    void RenderToGlobal();
 
 private:
     Render(SDL_Renderer *renderer, shared_ptr<Camera> camera);
 
     Render() {
+        _localFixed = false;
     }
 
     Render(const Render &) {
@@ -43,6 +55,9 @@ private:
     shared_ptr<Camera> _camera;
     static shared_ptr<Render> _render;
     string _className;
+
+    bool _localFixed;
+
 };
 
 
