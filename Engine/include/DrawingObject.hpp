@@ -11,6 +11,7 @@
 #include "Utils/Point.hpp"
 
 using namespace Utils;
+
 class DrawingObject {
 public:
     DrawingObject(std::shared_ptr<Texture> texture, FPoint Point);

@@ -25,10 +25,6 @@ void SceneManager::Draw() {
     for(const auto & node : _childNodes) {
         node->Draw();
     }
-
-    if(_sceneManagerFpsCounterBase) {
-        _sceneManagerFpsCounterBase->Update(_fps_current);
-    }
     _calcFps();
     _physicWorld->DrawDebugData();
     SDL_RenderPresent( _renderer );
@@ -51,7 +47,9 @@ void SceneManager::Update(float delta, shared_ptr<EventInputSystem> eventInputSy
 //1.0f/60.0f
     _physicWorld->Step(delta, 6, 4);
 
-
+    if(_sceneManagerFpsCounterBase) {
+        _sceneManagerFpsCounterBase->Update(_fps_current);
+    }
 }
 void SceneManager::SetFpsListener(shared_ptr<SceneManagerFpsCounterBase> sceneManagerFpsCounterBase) {
     _sceneManagerFpsCounterBase = sceneManagerFpsCounterBase;

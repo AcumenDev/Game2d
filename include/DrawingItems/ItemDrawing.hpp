@@ -5,7 +5,9 @@
 #include <DrawingObject.hpp>
 #include <SelectableDrawingObject.hpp>
 
-class ItemDrawing : public DrawingObject, public SelectableDrawingObject {
+class ItemDrawing : public DrawingObject, public SelectableDrawingObject
+// TODO Убрать наследование от DrawingObject  вместо него юзать ObjectDrawingBase
+{
 public:
     ItemDrawing(std::shared_ptr<Texture> texture, FPoint point, std::string name);
 

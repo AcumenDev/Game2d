@@ -1,11 +1,11 @@
 #ifndef SHOWFPS_H
 #define SHOWFPS_H
-#include <Utils/Point.hpp>
+#include "Utils/Point.hpp"
 #include "ObjectsDrawing/Font.hpp"
 #include "Utils/SceneManagerFpsCounterBase.hpp"
 
 using namespace Utils;
-class ShowFps : public Font, public SceneManagerFpsCounterBase {
+class ShowFps : public Graphic::Font, public SceneManagerFpsCounterBase {
 public:
     /** Default constructor */
     ShowFps(SDL_Renderer *render, std::string path, int size, FPoint point, int style = TTF_STYLE_BOLD);

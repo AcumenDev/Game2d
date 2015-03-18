@@ -25,7 +25,6 @@ public:
     void AttachObject(shared_ptr<GameObjectBase> gameObjectBase);
 protected:
 private:
-    void _draw();
     string _nameNode;
     bool _fixedCord;
     vector<shared_ptr<SceneNode>> _childNodes;

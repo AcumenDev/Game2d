@@ -97,10 +97,13 @@ int main(int argc, char* argv[])
     auto notificationServices = std::make_shared<NotificationServices>();
     notificationServices->RegisterListener("inventoryAdd", std::bind(&Inventory::AddItemForId, inventory, std::placeholders::_1));
     auto _sceneManager = std::make_shared<SceneManager>(render, world, notificationServices);
+
+    auto backgroundNode = _sceneManager->AddChildNode("BackGroundNode");
+    backgroundNode->AttachObject(background);
     auto mainNode = _sceneManager->AddChildNode("MainNode");
 
     mainNode->AttachObject(bound);
-    mainNode->AttachObject(background);
+
     mainNode->AttachObject(fireAnimationObject);
     mainNode->AttachObject(playerNew);
     mainNode->AttachObject(item);

@@ -39,7 +39,6 @@ void Render::DrawLines(vector<SDL_Point> points) {
     SDL_RenderDrawLines(_sdlRender, points.data(), points.size());
 }
 
-
 void Render::DrawLine(FPoint point1, FPoint point2) {
     FPoint positionCamera = _camera->GetPosition();
     SDL_RenderDrawLine(_sdlRender, point1.x + positionCamera.x, point1.y + positionCamera.y, point2.x + positionCamera.x, point2.y + positionCamera.y);
@@ -60,7 +59,6 @@ void Render::SetRenderDrawColor(float r, float g, float b, float a) {
     SDL_SetRenderDrawColor(_sdlRender, (int) r * 255, (int) g * 255, (int) b * 255, (int) a * 255);
 }
 
-
 FPoint Render::ToWorldCoordinate(FPoint point) {
     FPoint positionCamera = _camera->GetPosition();
     return FPoint(point.x + positionCamera.x, point.y + positionCamera.y);
@@ -71,10 +69,10 @@ FPoint Render::ToLocalCoordinate(FPoint point) {
     return FPoint(point.x - positionCamera.x, point.y - positionCamera.y);
 }
 
-
 void Render::RenderTolocal() {
     _localFixed = true;
 }
+
 void Render::RenderToGlobal() {
     _localFixed = false;
 }

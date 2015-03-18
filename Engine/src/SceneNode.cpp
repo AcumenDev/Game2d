@@ -15,10 +15,6 @@ void SceneNode::Draw() {
     } else {
         Render::Get()->RenderToGlobal();
     }
-    _draw();
-}
-
-void SceneNode::_draw() {
     for (const auto &drawingObject : _drawingObjectsOld) {
         drawingObject->Draw();
     }
@@ -37,7 +33,6 @@ void SceneNode::_draw() {
         node->Draw();
     }
 }
-
 
 void SceneNode::Update(UpdateEventDto updateEventDto) {
 
