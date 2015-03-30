@@ -61,12 +61,17 @@ void Render::SetRenderDrawColor(float r, float g, float b, float a) {
 
 FPoint Render::ToWorldCoordinate(FPoint point) {
     FPoint positionCamera = _camera->GetPosition();
-    return FPoint(point.x + positionCamera.x, point.y + positionCamera.y);
+    return FPoint(point.x - positionCamera.x, point.y - positionCamera.y);
+}
+
+IPoint Render::ToWorldCoordinate(IPoint point) {
+    FPoint positionCamera = _camera->GetPosition();
+    return IPoint(point.x - positionCamera.x, point.y - positionCamera.y);
 }
 
 FPoint Render::ToLocalCoordinate(FPoint point) {
     FPoint positionCamera = _camera->GetPosition();
-    return FPoint(point.x - positionCamera.x, point.y - positionCamera.y);
+    return FPoint(point.x + positionCamera.x, point.y + positionCamera.y);
 }
 
 void Render::RenderTolocal() {

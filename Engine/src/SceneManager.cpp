@@ -1,12 +1,14 @@
-#include <UpdateEventDto.hpp>
 #include "SceneManager.hpp"
+
 SceneManager::SceneManager(
-        SDL_Renderer* renderer,
+        SDL_Renderer *renderer,
         shared_ptr<b2World> physicWorld,
-        shared_ptr<NotificationServices> notificationServices) {
+        shared_ptr<NotificationServices> notificationServices,
+        shared_ptr<DebugEngineBase> debugEngineBase) {
     _renderer = renderer;
     _notificationServices = notificationServices;
     _physicWorld = physicWorld;
+    _debugEngineBase = debugEngineBase;
 }
 
 SceneManager::~SceneManager() {
@@ -19,15 +21,18 @@ shared_ptr<SceneNode> SceneManager::AddChildNode(string name, bool fixedCord) {
 }
 
 void SceneManager::Draw() {
-    SDL_SetRenderDrawColor(_renderer, 255, 255, 255, 255);
+    _debugEngineBase->SetRenderTime(calkTimeExecute([this] {
+        SDL_SetRenderDrawColor(_renderer, 255, 255, 255, 255);
 
-    SDL_RenderClear(_renderer);
-    for(const auto & node : _childNodes) {
-        node->Draw();
-    }
-    _calcFps();
-    _physicWorld->DrawDebugData();
-    SDL_RenderPresent( _renderer );
+        SDL_RenderClear(_renderer);
+        for (const auto &node : _childNodes) {
+            node->Draw();
+        }
+
+        _calcFps();
+        _physicWorld->DrawDebugData();
+        SDL_RenderPresent(_renderer);
+    }));
 }
 
 void SceneManager::_calcFps() {
@@ -39,19 +44,16 @@ void SceneManager::_calcFps() {
     }
 }
 
-
 void SceneManager::Update(float delta, shared_ptr<EventInputSystem> eventInputSystem) {
-    for(const auto & node : _childNodes) {
-        node->Update(UpdateEventDto(delta, _notificationServices, eventInputSystem));
-    }
-//1.0f/60.0f
-    _physicWorld->Step(delta, 6, 4);
+    _debugEngineBase->SetUpdateTime(calkTimeExecute([this, delta, eventInputSystem] {
+        auto updateEventDto = UpdateEventDto(delta, _notificationServices, eventInputSystem);
+        for (const auto &node : _childNodes) {
+            node->Update(updateEventDto);
+        }
 
-    if(_sceneManagerFpsCounterBase) {
-        _sceneManagerFpsCounterBase->Update(_fps_current);
-    }
-}
-void SceneManager::SetFpsListener(shared_ptr<SceneManagerFpsCounterBase> sceneManagerFpsCounterBase) {
-    _sceneManagerFpsCounterBase = sceneManagerFpsCounterBase;
-}
+        _physicWorld->Step(delta, 6, 4);  //1.0f/60.0f
 
+        _debugEngineBase->SetFps(_fps_current);
+        _debugEngineBase->Update(updateEventDto);
+    }));
+}

@@ -37,7 +37,6 @@
 #include "ObjectsDrawing/Inventory/Inventory.hpp"
 #include "ObjectsDrawing/Font.hpp"
 #include "ObjectsDrawing/SpriteAnimationDrawing.hpp"
-#include "ObjectsDrawing/Utils/ShowFps.hpp"
 #include "ObjectsDrawing/Utils/PhysicDraw.hpp"
 
 

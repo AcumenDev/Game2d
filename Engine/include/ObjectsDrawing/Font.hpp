@@ -20,7 +20,7 @@ namespace Graphic {
 
         void SetPosition(FPoint const &fPoint) override;
 
-        void SetText(std::string text);
+        void SetText(std::string text, int sizeRow = -1);
 
     protected:
     private:

@@ -8,6 +8,7 @@
 
 #include <SDL.h>
 #include <DrawingItems/ItemDrawing.hpp>
+#include <ObjectsDrawing/Utils/DrawDebugEngine.hpp>
 
 #include "Engine.hpp"
 #include "Box2D/Box2D.h"
@@ -44,8 +45,7 @@ int main(int argc, char* argv[])
     log->Debug(systemSettings->get_resFolder());
     std::shared_ptr<Texture> gBackgroundTexture = resourceManager->getResourse(resFolder + "background.png");
     std::shared_ptr<Texture> gFooTexture = resourceManager->getResourse(resFolder + "foo.png");
-
-
+    
     auto spriteAnimationResourceManager = make_shared<SpriteAnimationResourceManager>(systemSettings, render);
 
     auto sA = spriteAnimationResourceManager->getResourse(string("player.json"));
@@ -90,13 +90,14 @@ int main(int argc, char* argv[])
     //Bound
     auto boundTexture = resourceManager->getResourse(resFolder + "Bound.png");
     auto boundGrapphic = std::make_shared<TextureDrawing>(boundTexture);
-    auto boundPhysic = std::make_shared<BoundPhysic>(world, boundTexture->getWidth()+1000, boundTexture->getHeight(), FPoint(0, 400));
+    auto boundPhysic = std::make_shared<BoundPhysic>(world, boundTexture->getWidth() + 1000, boundTexture->getHeight(), FPoint(0, 400));
     auto bound = std::make_shared<Bound>(boundGrapphic, boundPhysic);
     //Bound
 
     auto notificationServices = std::make_shared<NotificationServices>();
     notificationServices->RegisterListener("inventoryAdd", std::bind(&Inventory::AddItemForId, inventory, std::placeholders::_1));
-    auto _sceneManager = std::make_shared<SceneManager>(render, world, notificationServices);
+    auto drawDebugEngine = std::make_shared<DrawDebugEngine>(make_shared<Font>(render, resFolder + "fonts/DejaVuSans.ttf", 14, FPoint(SCREEN_WIDTH - 200, 10), TTF_STYLE_NORMAL));
+    auto _sceneManager = std::make_shared<SceneManager>(render, world, notificationServices, drawDebugEngine);
 
     auto backgroundNode = _sceneManager->AddChildNode("BackGroundNode");
     backgroundNode->AttachObject(background);
@@ -113,9 +114,8 @@ int main(int argc, char* argv[])
     hudNode->AttachObject(inventory);
 
     auto debugNode = _sceneManager->AddChildNode("DebugNode", true);
-    auto fps = std::make_shared<ShowFps>(render, resFolder + "fonts/DejaVuSans.ttf", 40, FPoint(SCREEN_WIDTH - 100, 10));
-    _sceneManager->SetFpsListener(fps);
-    debugNode->AttachObject(fps);
+
+    debugNode->AttachObject(drawDebugEngine);
     MainLoop mainLoop(_sceneManager, log);
     mainLoop.Start();
     return 0;

@@ -32,7 +32,7 @@ public:
     shared_ptr<Camera> GetCamera();
 
     FPoint ToWorldCoordinate(FPoint point);
-
+    IPoint ToWorldCoordinate(IPoint point);////todo обобщить
     FPoint ToLocalCoordinate(FPoint point);
 
     void RenderTolocal();
