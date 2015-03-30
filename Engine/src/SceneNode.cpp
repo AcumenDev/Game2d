@@ -1,15 +1,20 @@
 #include "SceneNode.hpp"
 #include <algorithm>
 
-SceneNode::SceneNode(shared_ptr<Logger> log, string nameNode) {
-    _log = log;
+SceneNode::SceneNode(string nameNode, bool fixedCord) {
     _nameNode = nameNode;
+    _fixedCord = fixedCord;
 }
 
 SceneNode::~SceneNode() {
 }
 
 void SceneNode::Draw() {
+    if (_fixedCord) {
+        Render::Get()->RenderTolocal();
+    } else {
+        Render::Get()->RenderToGlobal();
+    }
     for (const auto &drawingObject : _drawingObjectsOld) {
         drawingObject->Draw();
     }
@@ -48,7 +53,7 @@ void SceneNode::Update(UpdateEventDto updateEventDto) {
         _drawingObjectsOld.erase(
                 std::remove_if(_drawingObjectsOld.begin(), _drawingObjectsOld.end(), [this](std::shared_ptr<DrawingObject> item) -> bool {
                     if (!item->IsLive()) {
-                        _log->Debug("SceneNode", "Deleted drawing object: from node" + _nameNode);
+                        Logger::Get()->Debug("SceneNode", "Deleted drawing object: from node" + _nameNode);
                         return true;
                     }
                     return false;

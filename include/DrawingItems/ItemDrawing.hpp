@@ -5,12 +5,18 @@
 #include <DrawingObject.hpp>
 #include <SelectableDrawingObject.hpp>
 
-class ItemDrawing: public DrawingObject,public SelectableDrawingObject {
+class ItemDrawing : public DrawingObject, public SelectableDrawingObject
+// TODO Убрать наследование от DrawingObject  вместо него юзать ObjectDrawingBase
+{
 public:
-    ItemDrawing(std::shared_ptr<Logger> log, std::shared_ptr<Texture> texture, FPoint point, std::string name);
+    ItemDrawing(std::shared_ptr<Texture> texture, FPoint point, std::string name);
+
     virtual ~ItemDrawing();
+
     void Draw() override;
+
     void Update(UpdateEventDto updateEventDto) override;
+
 protected:
 private:
     bool _notyfy;

@@ -79,7 +79,6 @@ ${RAPIDJSON_HEADERS}
 set(HEADER_FILES_ENGINE
     Engine/include/ObjectsDrawing/Inventory/Inventory.hpp
     Engine/include/ObjectsDrawing/Inventory/InventoryItem.hpp
-    Engine/include/ObjectsDrawing/Utils/ShowFps.hpp
     Engine/include/ObjectsDrawing/Utils/PhysicDraw.hpp
     Engine/include/ObjectsDrawing/BackgroundObject.hpp
     Engine/include/ObjectsDrawing/Font.hpp
@@ -88,7 +87,6 @@ set(HEADER_FILES_ENGINE
     Engine/include/services/WidowService.hpp
     Engine/include/Utils/Point.hpp
     Engine/include/Utils/Rectangle.hpp
-    Engine/include/Utils/SceneManagerFpsCounterBase.hpp
     Engine/include/DrawingObject.hpp
     Engine/include/Engine.hpp
     Engine/include/EventInputSystem.hpp
@@ -115,17 +113,21 @@ set(HEADER_FILES_ENGINE
     Engine/include/ObjectsDrawing/ObjectDrawingBase.hpp
     Engine/include/ObjectsDrawing/TextureDrawing.hpp
     Engine/include/ObjectsDrawing/SpriteAnimationDrawing.hpp
+    Engine/include/ObjectsDrawing/Utils/DrawDebugEngine.hpp
     Engine/include/resourceManagers/BaseResourceManager.hpp
     Engine/include/resourceManagers/SpriteAnimationResourceManager.hpp
     Engine/include/resourceManagers/TexturesResourceManager.hpp
     Engine/include/settings/SystemSettings.hpp
     Engine/include/Utils/fileSystem/FileSystemUtils.hpp
+    Engine/include/render/Camera.hpp
+    Engine/include/render/Render.hpp
+    Engine/include/Utils/debugEngine/DebugEngineBase.hpp
+    Engine/include/Utils/debugEngine/TraceEngineUtils.hpp
 )
 
 set(SOURCE_FILES_ENGINE
     Engine/src/ObjectsDrawing/Inventory/InventoryItem.cpp
     Engine/src/ObjectsDrawing/Inventory/Inventory.cpp
-    Engine/src/ObjectsDrawing/Utils/ShowFps.cpp
     Engine/src/ObjectsDrawing/BackgroundObject.cpp
     Engine/src/ObjectsDrawing/Font.cpp
     Engine/src/services/InitService.cpp
@@ -154,8 +156,12 @@ set(SOURCE_FILES_ENGINE
     Engine/src/ObjectsDrawing/TextureDrawing.cpp
     Engine/src/ObjectsDrawing/SpriteAnimationDrawing.cpp
     Engine/src/ObjectsDrawing/Utils/PhysicDraw.cpp
+    Engine/src/ObjectsDrawing/Utils/DrawDebugEngine.cpp
     Engine/src/resourceManagers/SpriteAnimationResourceManager.cpp
     Engine/src/resourceManagers/TexturesResourceManager.cpp
+    Engine/src/render/Camera.cpp
+    Engine/src/render/Render.cpp
+    Engine/src/ObjectsDrawing/Utils/debugEngine/TraceEngineUtils.cpp
     )
 
 set(HEADER_FILES_GAME

@@ -1,5 +1,8 @@
 #ifndef POINT_H
 #define POINT_H
+
+#include <iostream>
+using  std::string;
 namespace Utils {
     template<typename T>
     class Point {
@@ -21,7 +24,12 @@ namespace Utils {
         virtual ~Point() {
         };
         T x, y;
-    };
+
+        string toString()
+        {
+            return "x: "+ std::to_string(x)+" y: "+std::to_string(y);
+        }
+     };
     typedef Point<float> FPoint;
     typedef Point<int> IPoint;
 

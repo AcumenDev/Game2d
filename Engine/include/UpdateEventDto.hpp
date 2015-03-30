@@ -15,7 +15,8 @@ public:
               eventInputSystem(eventInputSystem) {
     }
     float delta;
-    std::shared_ptr<EventInputSystem> eventInputSystem;
+
     std::shared_ptr<NotificationServices> notificationServices;
+    std::shared_ptr<EventInputSystem> eventInputSystem;
 };
 #endif

@@ -1,6 +1,10 @@
 #include "EventInputSystem.hpp"
+EventInputSystem::EventInputSystem() {
+    _mousePosition = IPoint();
+}
 
-EventInputSystem::EventInputSystem(SDL_Event event) {
+
+void EventInputSystem::Update(SDL_Event event) {
     this->event = event;
 }
 
@@ -17,6 +21,19 @@ bool EventInputSystem::IsLeft() const {
 
 bool EventInputSystem::IsRight() const {
     return checkInpunt(SDLK_RIGHT);
+}
+
+IPoint EventInputSystem::getMousePosition()
+{
+    switch (event.type) {
+        case SDL_MOUSEMOTION : {
+            _mousePosition = IPoint(event.motion.x,event.motion.y);
+            return _mousePosition;
+        }
+        default:
+            return _mousePosition;
+    }
+
 }
 
 bool EventInputSystem::checkInpunt(SDL_Keycode keycode)const {

@@ -30,7 +30,8 @@ protected:
 private:
     Logger() {}
     Logger( const Logger& ){};
-    Logger& operator=( Logger& ){};
+
+    Logger& operator=( Logger& ){        };
     static std::shared_ptr<Logger> _logger;
 
     void _write(std::string level, std::string msg);

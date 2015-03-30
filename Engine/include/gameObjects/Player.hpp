@@ -4,6 +4,7 @@
 #include "GameObjectBase.hpp"
 #include "physics/PlayerPhysic.hpp"
 #include "ObjectsDrawing/PlayerGraphic.hpp"
+#include "render/Camera.hpp"
 
 using namespace Physic;
 using namespace Graphic;
@@ -24,6 +25,7 @@ private:
     bool _isOnGround;
     int _stepSize;
     int _jumpSize;
+    shared_ptr<Camera> _camera;
 };
 
 #endif // PLAYER_H

@@ -3,6 +3,7 @@
 MainLoop::MainLoop(std::shared_ptr<SceneManager> sceneManager, std::shared_ptr<Logger> log) {
     _sceneManager = sceneManager;
     _log = log;
+
 }
 
 MainLoop::~MainLoop() {
@@ -25,7 +26,7 @@ void MainLoop::CheckInput() {
             break;
         }
     }
-    _currentEventInputSystem = std::make_shared<EventInputSystem>(event);
+    _currentEventInputSystem->Update(event);
 }
 
 void MainLoop::Update(float delta) {
@@ -35,6 +36,7 @@ void MainLoop::Update(float delta) {
 void MainLoop::Start() {
     _currentTime = (float) SDL_GetTicks();
     _run = true;
+    _currentEventInputSystem = make_shared<EventInputSystem>();
     while (_run) {
         UpdateDeltaTime();
         CheckInput();

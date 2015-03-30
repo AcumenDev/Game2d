@@ -1,23 +1,33 @@
 #ifndef FONT_H
 #define FONT_H
+
 #include <memory>
 #include "SDL_ttf.h"
 #include "utils/logger/Logger.hpp"
 #include "Utils/Point.hpp"
 #include "Texture.hpp"
 #include "DrawingObject.hpp"
-class Font : public DrawingObject {
-public:
-    Font(std::shared_ptr<Logger> log, SDL_Renderer* render, std::string path, int size, FPoint point, int style = TTF_STYLE_NORMAL);
-    virtual ~Font();
+#include "ObjectDrawingBase.hpp"
 
-    void Update(UpdateEventDto updateEventDto) override;
-    void Draw() override;
-    void SetText(std::string text);
-protected:
-private:
-    TTF_Font * _font;;
-    std::shared_ptr<Logger> _log;
-    SDL_Renderer* _render;
-};
+namespace Graphic {
+    class Font : public ObjectDrawingBase {
+    public:
+        Font(SDL_Renderer *render, std::string path, int size, FPoint point, int style = TTF_STYLE_NORMAL);
+
+        virtual ~Font();
+
+        void Draw() override;
+
+        void SetPosition(FPoint const &fPoint) override;
+
+        void SetText(std::string text, int sizeRow = -1);
+
+    protected:
+    private:
+        TTF_Font *_font;;
+        SDL_Renderer *_render;
+        FPoint _point;
+        shared_ptr<Texture> _texture;
+    };
+}
 #endif // FONT_H

@@ -4,13 +4,24 @@
 #include "DrawingObject.hpp"
 #include "Texture.hpp"
 #include "utils/logger/Logger.hpp"
+#include "ObjectDrawingBase.hpp"
+
 using namespace Utils;
-class BackgroundObject : public DrawingObject {
-public:
-    BackgroundObject(std::shared_ptr<Logger> log, std::shared_ptr<Texture> texture, FPoint point);
-    virtual ~BackgroundObject();
-    void Draw() override;
-    void Update(UpdateEventDto updateEventDto) override;
-};
+namespace Graphic {
+    class BackgroundObject : public ObjectDrawingBase {
+    public:
+        BackgroundObject(std::shared_ptr<Texture> texture, FPoint point);
+
+        virtual ~BackgroundObject();
+
+        void Draw() override;
+
+        void SetPosition(FPoint const &fPoint) override;
+
+    private:
+        FPoint _point;
+        shared_ptr<Texture> _texture;
+    };
+}
 
 #endif // BACKGROUNDOBJECT_HPP

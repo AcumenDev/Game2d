@@ -19,10 +19,9 @@ void Texture::free() {
 }
 
 void Texture::Draw(FPoint point) {
-
-    SDL_Rect renderQuad = {(int)point.x, (int)point.y, getWidth(), getHeight()};
-    SDL_RenderCopy(_render, _texture, NULL, &renderQuad);
+    Render::Get()-> RenderTexture(_texture, Utils::IRectangle(Utils::IPoint(point.x, point.y), Utils::IPoint(getWidth(), getHeight())));
 }
+
 int Texture::getWidth() {
     return _w;
 }
