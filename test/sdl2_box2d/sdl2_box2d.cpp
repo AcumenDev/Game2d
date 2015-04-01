@@ -7,6 +7,8 @@
 #include <fstream>
 #include <vector>
 #include <SDL.h>
+#include <render/Camera.hpp>
+#include <render/Render.hpp>
 #include "ObjectsDrawing/Utils/PhysicDraw.hpp"
 
 const int SCREEN_WIDTH = 800;
@@ -68,19 +70,8 @@ int main(int argc, char* argv[])
         return false;
     }
 
-    // int imgFlags  = IMG_INIT_PNG | IMG_INIT_JPG | IMG_INIT_TIF | IMG_INIT_WEBP;
-    //  if( !( IMG_Init( imgFlags ) & imgFlags ) ) {
-    //      _log-> Error("SDL_image could not initialize! SDL_image Error: "+ std::string(SDL_GetError()));
-    //       return false;
-    //   }
     SDL_Window *gWindow = SDL_CreateWindow("Game", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 
-
-    // SDL_GLContext glContext = SDL_GL_CreateContext(gWindow);
-    //  if (glContext == nullptr) {
-//  _log-> Error("GLContext could not be created! SDL Error: "+ std::string(SDL_GetError()));
-
-    //  }
 
     SDL_Renderer *renderer = SDL_CreateRenderer(gWindow, -1, SDL_RENDERER_ACCELERATED);
     if (renderer == nullptr) {
@@ -89,8 +80,8 @@ int main(int argc, char* argv[])
     }
 
     b2Vec2 gravity(0.0f, 10.0f);
-
-    Graphic::PhysicDraw physicDraw(renderer, StP);
+    Render::Init(renderer, std::make_shared<Camera>());
+    Graphic::PhysicDraw physicDraw(StP);
     b2World world(gravity);
     world.SetDebugDraw(&physicDraw);
     ContactListener contactListener;
