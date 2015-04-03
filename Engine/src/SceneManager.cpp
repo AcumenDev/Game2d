@@ -29,8 +29,9 @@ void SceneManager::Draw() {
             node->Draw();
         }
 
-        _calcFps();
+
         _physicWorld->DrawDebugData();
+        _calcFps();
         SDL_RenderPresent(_renderer);
     }));
 }
