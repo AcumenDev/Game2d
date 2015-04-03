@@ -31,7 +31,7 @@ void Player::Update(UpdateEventDto updateEventDto) {
             _graphic->SetSeries("run");
             _graphic->Update(updateEventDto.delta);
             _physic->ToLeft(_stepSize);
-            _camera->MoveToLeft(0.2);
+            _camera->MoveToLeft(updateEventDto.delta*10);
 
         }
         return;
@@ -43,7 +43,7 @@ void Player::Update(UpdateEventDto updateEventDto) {
             _graphic->Update(updateEventDto.delta);
             _physic->ToRight(_stepSize);
 
-            _camera->MoveToRight(0.2);
+            _camera->MoveToRight(updateEventDto.delta*10);
         }
         return;
     }

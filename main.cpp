@@ -116,7 +116,7 @@ int main(int argc, char* argv[])
     auto debugNode = _sceneManager->AddChildNode("DebugNode", true);
 
     debugNode->AttachObject(drawDebugEngine);
-    MainLoop mainLoop(_sceneManager, log);
+    MainLoop mainLoop(_sceneManager);
     mainLoop.Start();
     return 0;
 }

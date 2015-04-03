@@ -1,9 +1,7 @@
 #include "MainLoop.hpp"
 
-MainLoop::MainLoop(std::shared_ptr<SceneManager> sceneManager, std::shared_ptr<Logger> log) {
+MainLoop::MainLoop(std::shared_ptr<SceneManager> sceneManager) {
     _sceneManager = sceneManager;
-    _log = log;
-
 }
 
 MainLoop::~MainLoop() {
@@ -34,15 +32,31 @@ void MainLoop::Update(float delta) {
 }
 
 void MainLoop::Start() {
-    _currentTime = (float) SDL_GetTicks();
     _run = true;
     _currentEventInputSystem = make_shared<EventInputSystem>();
+
+    unsigned nextGameTick = SDL_GetTicks();
+    int loops;
+
     while (_run) {
-        UpdateDeltaTime();
-        CheckInput();
-        Update(_GetDeltaTime());
+
+        loops = 0;
+        while (SDL_GetTicks() > nextGameTick && loops < MAX_FRAME_SKIP) {
+            UpdateDeltaTime();
+            _updateGame();
+
+            nextGameTick += SKIP_TICKS;
+            loops++;
+        }
+
         Draw();
     }
+}
+
+void MainLoop::_updateGame() {
+
+    CheckInput();
+    Update(_GetDeltaTime());
 }
 
 void MainLoop::Stop() {
@@ -51,7 +65,7 @@ void MainLoop::Stop() {
 
 void MainLoop::UpdateDeltaTime() {
     auto nowTime = (float) SDL_GetTicks();
-    _deltaTime = (nowTime - _currentTime)/1000;
+    _deltaTime = (nowTime - _currentTime) / 1000;
     _currentTime = nowTime;
 }
 
