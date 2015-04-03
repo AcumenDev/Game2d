@@ -15,16 +15,6 @@ FPoint Camera::GetPosition() {
 Camera::~Camera() {
 }
 
-void Camera::ShowSizeVieport() {
-    SDL_Rect rect;
-    SDL_RenderGetViewport(_renderer, &rect);
-
-    Logger::Get()->Debug(_className, string(
-            "Size vieport x: " + std::to_string(rect.x)
-                    + " y: " + std::to_string(rect.y)
-                    + " h: " + std::to_string(rect.h)
-                    + " w: " + std::to_string(rect.w)));
-}
 
 void Camera::MoveToLeft(float x) {
     _point.x += x;
@@ -40,4 +30,39 @@ void Camera::MoveToUp(float y) {
 
 void Camera::MoveToDown(float y) {
     _point.x += y;
+}
+
+void Camera::CetnrToPoint(FPoint point) {
+    unsigned witch = 640;
+    unsigned heich = 480;
+
+
+    FPoint targetPoint;
+
+    targetPoint.x = point.x;//- witch / 2;
+    targetPoint.y = point.y;//- heich / 2;
+
+    // _point = targetPoint;
+
+    float intervalWidtch = witch / 100;
+
+    float coff = 5.1f;
+
+    if (_point.x <= (targetPoint.x - intervalWidtch)) {
+        _point.x += coff;
+    }
+    else if (_point.x >= (targetPoint.x + intervalWidtch)) {
+        _point.x -= coff;
+    }
+
+/*    else if (_point.x < targetPoint.x - intervalWidtch && _point.x > targetPoint.x + intervalWidtch) {
+        _point.x -= coff;
+    }*/
+
+    /*  if (_point.y > targetPoint.y) {
+          _point.y -= coff;
+      } else if (_point.y < targetPoint.y) {
+          _point.y += coff;
+      }*/
+
 }

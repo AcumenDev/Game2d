@@ -8,6 +8,7 @@ Player::Player(std::shared_ptr<Logger> log, shared_ptr<PlayerPhysic> physic, sha
     _jumpSize = 300;
     _stepSize = 300;
     _camera = Render::Get()->GetCamera();
+    _updateGraficPosition();
 }
 
 Player::~Player() {
@@ -17,7 +18,7 @@ Player::~Player() {
 void Player::Update(UpdateEventDto updateEventDto) {
     auto position = _physic->GetPosition();
     _graphic->SetPosition(position);
-
+    _camera->CetnrToPoint(position);
     if (updateEventDto.eventInputSystem->IsJump()) {
         if (GetIsOnGround()) {
             _graphic->SetSeries("jump");
@@ -31,7 +32,9 @@ void Player::Update(UpdateEventDto updateEventDto) {
             _graphic->SetSeries("run");
             _graphic->Update(updateEventDto.delta);
             _physic->ToLeft(_stepSize);
-            _camera->MoveToLeft(updateEventDto.delta*10);
+          //  _camera->MoveToLeft(updateEventDto.delta*10);
+
+
 
         }
         return;
@@ -43,7 +46,8 @@ void Player::Update(UpdateEventDto updateEventDto) {
             _graphic->Update(updateEventDto.delta);
             _physic->ToRight(_stepSize);
 
-            _camera->MoveToRight(updateEventDto.delta*10);
+           // _camera->MoveToRight(updateEventDto.delta*10);
+
         }
         return;
     }
@@ -66,4 +70,8 @@ void Player::SetIsOnGround(bool isOnGround) {
     {
         _graphic->SetSeries("run");
     }
+}
+
+void Player::_updateGraficPosition() {
+    _graphic->SetPosition(_physic->GetPosition());
 }

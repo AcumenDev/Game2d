@@ -19,8 +19,6 @@ public:
 
     FPoint GetPosition();
 
-    void ShowSizeVieport();
-
     void MoveToLeft(float x);
 
     void MoveToRight(float x);
@@ -29,10 +27,11 @@ public:
 
     void MoveToDown(float y);
 
+    void CetnrToPoint(FPoint point);
+
     ~Camera();
 
 private:
-    SDL_Renderer *_renderer;
     string _className;
     FPoint _point;
 };

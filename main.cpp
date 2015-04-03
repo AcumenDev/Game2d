@@ -34,7 +34,8 @@ int main(int argc, char* argv[])
     }
 
     auto windowService = std::make_shared<WidowService>(log);
-    auto window = windowService->Create("Game", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT);
+    auto window = windowService->Create("Game", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH,
+                                        SCREEN_HEIGHT);
     auto render = window->GetRenderer();
     Render::Init(render, make_shared<Camera>()); //todo Убрать в виндов сервис
     auto resourceManager = std::make_shared<TexturesResourceManager>(render);
@@ -45,13 +46,13 @@ int main(int argc, char* argv[])
     log->Debug(systemSettings->get_resFolder());
     std::shared_ptr<Texture> gBackgroundTexture = resourceManager->getResourse(resFolder + "background.png");
     std::shared_ptr<Texture> gFooTexture = resourceManager->getResourse(resFolder + "foo.png");
-    
+
     auto spriteAnimationResourceManager = make_shared<SpriteAnimationResourceManager>(systemSettings, render);
 
     auto sA = spriteAnimationResourceManager->getResourse(string("player.json"));
     auto sAFire = spriteAnimationResourceManager->getResourse(string("fire.json"));
     auto fireAnimation = std::make_shared<SpriteAnimationDrawing>(sAFire);
-    fireAnimation->SetPosition(FPoint(200, 200));
+    fireAnimation->SetPosition(FPoint(SCREEN_WIDTH/2, SCREEN_HEIGHT/2));
     auto fireAnimationObject = make_shared<AnimationObject>(fireAnimation);
 
     auto background = std::make_shared<BackgroundObject>(gBackgroundTexture, FPoint(0, 0));
@@ -82,7 +83,8 @@ int main(int argc, char* argv[])
     world->SetContactListener(&collisionDetector);
 
     ///New player
-    auto playerPhysic = std::make_shared<PlayerPhysic>(world, gFooTexture->getWidth(), gFooTexture->getHeight(), FPoint(100, 100));
+    auto playerPhysic = std::make_shared<PlayerPhysic>(world, gFooTexture->getWidth(), gFooTexture->getHeight(),
+                                                       FPoint(100, 100));
     auto playerGraphic = std::make_shared<PlayerGraphic>(sA, log);
     auto playerNew = std::make_shared<Player>(log, playerPhysic, playerGraphic);
     ///New player
@@ -90,13 +92,17 @@ int main(int argc, char* argv[])
     //Bound
     auto boundTexture = resourceManager->getResourse(resFolder + "Bound.png");
     auto boundGrapphic = std::make_shared<TextureDrawing>(boundTexture);
-    auto boundPhysic = std::make_shared<BoundPhysic>(world, boundTexture->getWidth() + 1000, boundTexture->getHeight(), FPoint(0, 400));
+    auto boundPhysic = std::make_shared<BoundPhysic>(world, boundTexture->getWidth() + 1000, boundTexture->getHeight(),
+                                                     FPoint(0, 400));
     auto bound = std::make_shared<Bound>(boundGrapphic, boundPhysic);
     //Bound
 
     auto notificationServices = std::make_shared<NotificationServices>();
-    notificationServices->RegisterListener("inventoryAdd", std::bind(&Inventory::AddItemForId, inventory, std::placeholders::_1));
-    auto drawDebugEngine = std::make_shared<DrawDebugEngine>(make_shared<Font>(render, resFolder + "fonts/DejaVuSans.ttf", 14, FPoint(SCREEN_WIDTH - 200, 10), TTF_STYLE_NORMAL));
+    notificationServices->RegisterListener("inventoryAdd",
+                                           std::bind(&Inventory::AddItemForId, inventory, std::placeholders::_1));
+    auto drawDebugEngine = std::make_shared<DrawDebugEngine>(
+            make_shared<Font>(render, resFolder + "fonts/DejaVuSans.ttf", 14, FPoint(SCREEN_WIDTH - 200, 10),
+                              TTF_STYLE_NORMAL));
     auto _sceneManager = std::make_shared<SceneManager>(render, world, notificationServices, drawDebugEngine);
 
     auto backgroundNode = _sceneManager->AddChildNode("BackGroundNode");
