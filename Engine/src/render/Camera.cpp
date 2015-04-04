@@ -39,30 +39,25 @@ void Camera::CetnrToPoint(FPoint point) {
 
     FPoint targetPoint;
 
-    targetPoint.x = point.x;//- witch / 2;
-    targetPoint.y = point.y;//- heich / 2;
-
-    // _point = targetPoint;
+    targetPoint.x = point.x - witch / 3;
+    targetPoint.y = point.y - heich / 2;
 
     float intervalWidtch = witch / 100;
 
-    float coff = 5.1f;
+    float coff = 3.5f;
 
-    if (_point.x <= (targetPoint.x - intervalWidtch)) {
+    if (-_point.x <= (targetPoint.x - intervalWidtch)) {
+        _point.x -= coff;
+    }
+    else if (-_point.x >= (targetPoint.x + intervalWidtch)) {
         _point.x += coff;
     }
-    else if (_point.x >= (targetPoint.x + intervalWidtch)) {
-        _point.x -= coff;
+
+
+    if (-_point.y <= (targetPoint.y - intervalWidtch)) {
+        _point.y -= coff;
     }
-
-/*    else if (_point.x < targetPoint.x - intervalWidtch && _point.x > targetPoint.x + intervalWidtch) {
-        _point.x -= coff;
-    }*/
-
-    /*  if (_point.y > targetPoint.y) {
-          _point.y -= coff;
-      } else if (_point.y < targetPoint.y) {
-          _point.y += coff;
-      }*/
-
+    else if (-_point.y >= (targetPoint.y + intervalWidtch)) {
+        _point.y += coff;
+    }
 }
