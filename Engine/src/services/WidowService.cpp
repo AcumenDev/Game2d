@@ -1,14 +1,15 @@
+
 #include "services/WidowService.hpp"
 
-WidowService::WidowService(std::shared_ptr<Logger> log) {
+WidowService::WidowService(shared_ptr<Logger> log) {
     _log = log;
 }
 
 WidowService::~WidowService() {
 }
 
-std::shared_ptr<Window> WidowService::Create(std::string title, int x, int y, int w, int h) {
-    SDL_Window * gWindow = SDL_CreateWindow(title.c_str(), x, y, w, h, SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL);
+shared_ptr<Window> WidowService::Create(string title, int x, int y, int w, int h) {
+    SDL_Window * gWindow = SDL_CreateWindow(title.c_str(), x, y, w, h, SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL );
     if( gWindow == nullptr ) {
         _log-> Error("Window could not be created! SDL Error: "+ std::string(SDL_GetError()));
         return nullptr;
@@ -25,5 +26,8 @@ std::shared_ptr<Window> WidowService::Create(std::string title, int x, int y, in
         _log-> Error("GLContext could not be created! SDL Error: "+ std::string(SDL_GetError()));
         return nullptr;
     }
-    return std::make_shared<Window>(gWindow, gRenderer, glContext);
+
+    Render::Init(gRenderer, make_shared<Camera>(w,h));
+
+    return make_shared<Window>(gWindow, gRenderer, glContext);
 }

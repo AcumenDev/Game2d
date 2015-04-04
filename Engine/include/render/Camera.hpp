@@ -13,27 +13,28 @@ using namespace Utils;
 class Camera {
 
 public:
-    Camera();
+    Camera(int width, int height);
 
     void SetPosition(FPoint point);
+    void SetSizeMap(int width, int height);
 
     FPoint GetPosition();
 
-    void MoveToLeft(float x);
-
-    void MoveToRight(float x);
-
-    void MoveToUp(float y);
-
-    void MoveToDown(float y);
-
-    void CetnrToPoint(FPoint point);
+    void CenterToPoint(FPoint point);
 
     ~Camera();
 
 private:
     string _className;
     FPoint _point;
+
+    int _width;
+    int _height;
+
+    int _mapWidth;
+    int _mapHeight;
+
+    float _speedCamera;
 };
 
 #endif

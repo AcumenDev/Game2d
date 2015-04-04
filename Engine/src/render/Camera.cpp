@@ -1,11 +1,18 @@
 #include "render/Camera.hpp"
 
-Camera::Camera() {
-    _className = "Camera";
-}
+Camera::Camera(int width, int height) :
+        _className("Camera"),
+        _width(width),
+        _height(height), _speedCamera(3.5f) { }
 
 void Camera::SetPosition(FPoint point) {
     _point = point;
+}
+
+
+void Camera::SetSizeMap(int width, int height) {
+    _mapWidth = width;
+    _mapHeight = height;
 }
 
 FPoint Camera::GetPosition() {
@@ -15,49 +22,27 @@ FPoint Camera::GetPosition() {
 Camera::~Camera() {
 }
 
+void Camera::CenterToPoint(FPoint point) {
 
-void Camera::MoveToLeft(float x) {
-    _point.x += x;
-}
-
-void Camera::MoveToRight(float x) {
-    _point.x -= x;
-}
-
-void Camera::MoveToUp(float y) {
-    _point.x -= y;
-}
-
-void Camera::MoveToDown(float y) {
-    _point.x += y;
-}
-
-void Camera::CetnrToPoint(FPoint point) {
-    unsigned witch = 640;
-    unsigned heich = 480;
-
-//todo Передавать размер камеры и размер карты
+//TODO Сделать чтобы камера не уходила за размер карты
     FPoint targetPoint;
 
-    targetPoint.x = point.x - witch / 3;
-    targetPoint.y = point.y - heich / 2;
+    targetPoint.x = point.x - _width / 3;
+    targetPoint.y = point.y - _height / 2;
 
-    float intervalWidtch = witch / 100;
+    float interval = _width / 100;
 
-    float coff = 3.5f;
-
-    if (-_point.x <= (targetPoint.x - intervalWidtch)) {
-        _point.x -= coff;
+    if (-_point.x <= (targetPoint.x - interval)) {
+        _point.x -= _speedCamera;
     }
-    else if (-_point.x >= (targetPoint.x + intervalWidtch)) {
-        _point.x += coff;
+    else if (-_point.x >= (targetPoint.x + interval)) {
+        _point.x += _speedCamera;
     }
 
-
-    if (-_point.y <= (targetPoint.y - intervalWidtch)) {
-        _point.y -= coff;
+    if (-_point.y <= (targetPoint.y - interval)) {
+        _point.y -= _speedCamera;
     }
-    else if (-_point.y >= (targetPoint.y + intervalWidtch)) {
-        _point.y += coff;
+    else if (-_point.y >= (targetPoint.y + interval)) {
+        _point.y += _speedCamera;
     }
 }

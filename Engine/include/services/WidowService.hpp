@@ -4,14 +4,19 @@
 #include <memory>
 #include "utils/logger/Logger.hpp"
 #include "Window.hpp"
+#include "render/Render.hpp"
+
+using std::make_shared;
+using std::shared_ptr;
+using std::string;
 class WidowService {
 public:
-    WidowService(std::shared_ptr<Logger> log);
-    std::shared_ptr<Window> Create(std::string title, int x, int y, int w, int h);
+    WidowService(shared_ptr<Logger> log);
+    shared_ptr<Window> Create(string title, int x, int y, int w, int h);
     virtual ~WidowService();
 protected:
 private:
-    std::shared_ptr<Logger> _log;
+    shared_ptr<Logger> _log;
 };
 
 #endif // WIDOWSERVICE_H

@@ -17,8 +17,8 @@ using std::string;
 using std::shared_ptr;
 using std::make_shared;
 
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
+const int SCREEN_WIDTH = 800;
+const int SCREEN_HEIGHT = 600;
 
 #ifdef _WIN32
 
@@ -34,10 +34,9 @@ int main(int argc, char* argv[])
     }
 
     auto windowService = std::make_shared<WidowService>(log);
-    auto window = windowService->Create("Game", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH,
-                                        SCREEN_HEIGHT);
+    auto window = windowService->Create("Game", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT);
     auto render = window->GetRenderer();
-    Render::Init(render, make_shared<Camera>()); //todo Убрать в виндов сервис
+
     auto resourceManager = std::make_shared<TexturesResourceManager>(render);
     std::string resFolder = "../res/";
 
