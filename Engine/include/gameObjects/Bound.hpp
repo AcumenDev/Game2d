@@ -11,7 +11,9 @@ public:
     void Update(UpdateEventDto updateEventDto) override;
     shared_ptr<ObjectDrawingBase> GetDrawing() const override;
 
+
 private:
+    void _updateGraficPosition();
     std::shared_ptr<Graphic::ObjectDrawingBase> _graphic;
     std::shared_ptr<Physic::BoundPhysic> _physic;
 };

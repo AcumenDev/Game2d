@@ -1,11 +1,18 @@
 #include "render/Camera.hpp"
 
-Camera::Camera() {
-    _className = "Camera";
-}
+Camera::Camera(int width, int height) :
+        _className("Camera"),
+        _width(width),
+        _height(height), _speedCamera(3.5f) { }
 
 void Camera::SetPosition(FPoint point) {
     _point = point;
+}
+
+
+void Camera::SetSizeMap(int width, int height) {
+    _mapWidth = width;
+    _mapHeight = height;
 }
 
 FPoint Camera::GetPosition() {
@@ -15,29 +22,27 @@ FPoint Camera::GetPosition() {
 Camera::~Camera() {
 }
 
-void Camera::ShowSizeVieport() {
-    SDL_Rect rect;
-    SDL_RenderGetViewport(_renderer, &rect);
+void Camera::CenterToPoint(FPoint point) {
 
-    Logger::Get()->Debug(_className, string(
-            "Size vieport x: " + std::to_string(rect.x)
-                    + " y: " + std::to_string(rect.y)
-                    + " h: " + std::to_string(rect.h)
-                    + " w: " + std::to_string(rect.w)));
-}
+//TODO Сделать чтобы камера не уходила за размер карты
+    FPoint targetPoint;
 
-void Camera::MoveToLeft(float x) {
-    _point.x += x;
-}
+    targetPoint.x = point.x - _width / 3;
+    targetPoint.y = point.y - _height / 2;
 
-void Camera::MoveToRight(float x) {
-    _point.x -= x;
-}
+    float interval = _width / 100;
 
-void Camera::MoveToUp(float y) {
-    _point.x -= y;
-}
+    if (-_point.x <= (targetPoint.x - interval)) {
+        _point.x -= _speedCamera;
+    }
+    else if (-_point.x >= (targetPoint.x + interval)) {
+        _point.x += _speedCamera;
+    }
 
-void Camera::MoveToDown(float y) {
-    _point.x += y;
+    if (-_point.y <= (targetPoint.y - interval)) {
+        _point.y -= _speedCamera;
+    }
+    else if (-_point.y >= (targetPoint.y + interval)) {
+        _point.y += _speedCamera;
+    }
 }
