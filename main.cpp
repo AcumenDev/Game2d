@@ -9,6 +9,7 @@
 #include <SDL.h>
 #include <DrawingItems/ItemDrawing.hpp>
 #include <ObjectsDrawing/Utils/DrawDebugEngine.hpp>
+#include <resourceManagers/MapResourceManager.hpp>
 #include <resourceManagers/ScriptResourceManager.hpp>
 
 #include "Engine.hpp"
@@ -35,6 +36,7 @@ int main(int argc, char* argv[])
     }
 
     ///
+    auto windowService = make_shared<WidowService>(log);
     auto window = windowService->Create("Game", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH,
                                         SCREEN_HEIGHT);
     auto render = window->GetRenderer();
@@ -77,11 +79,15 @@ int main(int argc, char* argv[])
     CollisionDetector collisionDetector;
     world->SetContactListener(&collisionDetector);
     ///
+    auto gameObjFactory = make_shared<GameObjectsFactory>(texturesResourceManager, spriteAnimationResourceManager,
+                                                          world);
 
-    auto gameObjFactory = make_shared<GameObjectsFactory>(texturesResourceManager, spriteAnimationResourceManager, world);
+    auto notificationServices = make_shared<NotificationServices>();
+    notificationServices->RegisterListener("inventoryAdd",
+                                           std::bind(&Inventory::AddItemForId, inventory, std::placeholders::_1));
+    auto sceneManager = make_shared<SceneManager>(log, render, world, notificationServices);
 
-    ///New player
-    auto playerNew = gameObjFactory->CreateGameObjectByIdAndPoint(player_id, FPoint(100, 100));
+    auto mapResourceManager = make_shared<MapResourceManager>(sceneManager, gameObjFactory, systemSettings);
     
     
     auto scriptResourceManager = std::make_shared<ScriptResourceManager>(systemSettings);  перенести в фабрику
@@ -90,14 +96,8 @@ int main(int argc, char* argv[])
 
   //  auto playerNew = std::make_shared<Player>(playerPhysic, playerGraphic, playerScript);
 
-    //Bound
-    auto bound = gameObjFactory->CreateGameObjectByIdAndPoint(bound_id, FPoint(0, 400));
-    //Fire
-    auto fireAnimationObject = gameObjFactory->CreateGameObjectByIdAndPoint(animation_obj_id, FPoint(100, 150));
 
-    auto notificationServices = make_shared<NotificationServices>();
-    notificationServices->RegisterListener("inventoryAdd",
-                                           std::bind(&Inventory::AddItemForId, inventory, std::placeholders::_1));
+    auto mainNode = mapResourceManager->getResourse("Map_lvl1.txt");
     auto drawDebugEngine = std::make_shared<DrawDebugEngine>(
             make_shared<Font>(render, resFolder + "fonts/DejaVuSans.ttf", 14, FPoint(SCREEN_WIDTH - 200, 10),
                               TTF_STYLE_NORMAL));
@@ -105,12 +105,11 @@ int main(int argc, char* argv[])
 
     auto backgroundNode = _sceneManager->AddChildNode("BackGroundNode");
     backgroundNode->AttachObject(background);
-    auto mainNode = _sceneManager->AddChildNode("MainNode");
-
-    mainNode->AttachObject(bound);
-
-    mainNode->AttachObject(fireAnimationObject);
-    mainNode->AttachObject(playerNew);
+mainNode->AttachObject(bound);
+    if (mainNode == nullptr) {
+        log->Error("Map load failed!");
+        return 0;
+    }
     mainNode->AttachObject(item);
 
     mainNode->AttachObject(test_font);
