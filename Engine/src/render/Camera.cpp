@@ -36,7 +36,7 @@ void Camera::CetnrToPoint(FPoint point) {
     unsigned witch = 640;
     unsigned heich = 480;
 
-
+//todo Передавать размер камеры и размер карты
     FPoint targetPoint;
 
     targetPoint.x = point.x - witch / 3;
