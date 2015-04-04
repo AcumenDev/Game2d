@@ -4,7 +4,7 @@
 
 #include "Utils/debugEngine/TraceEngineUtils.hpp"
 
-float calkTimeExecute(std::function<void(void)> func) {
+long long calkTimeExecute(std::function<void(void)> func) {
     high_resolution_clock::time_point t1 = high_resolution_clock::now();
     func();
     high_resolution_clock::time_point t2 = high_resolution_clock::now();

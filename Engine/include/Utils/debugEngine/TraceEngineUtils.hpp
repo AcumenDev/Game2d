@@ -14,7 +14,7 @@
 using namespace std::chrono;
 using namespace std;
 
-float calkTimeExecute(std::function<void(void)> func);
+long long calkTimeExecute(std::function<void(void)> func);
 
 
 #endif //_GAME_TRACEENGINEUTILS_HPP_

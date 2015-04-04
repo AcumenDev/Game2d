@@ -27,19 +27,19 @@ public:
     virtual void SetFps(int fps);
 
 
-    virtual void SetRenderTime(int time) override;
+    virtual void SetRenderTime(long long time) override;
 
-    virtual void SetUpdateTime(int time) override;
+    virtual void SetUpdateTime(long long time) override;
 
 private:
-    void _linearInterpolation(vector<int> values, float &outTime);
+    void _linearInterpolation(vector<long long> values, float &outTime, int step);
 
     IPoint _mousePoint;
     shared_ptr<Font> _font;
     string _fps;
 
-    vector<int> _renderTimes;
-    vector<int> _updateTimes;
+    vector<long long> _renderTimes;
+    vector<long long> _updateTimes;
     float _renderTime;
     float _updateTime;
 

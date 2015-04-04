@@ -44,18 +44,18 @@ void DrawDebugEngine::SetFps(int fps) {
     _fps = std::to_string(_fpsCount) + " FPS";
 }
 
-void DrawDebugEngine::SetRenderTime(int time) {
+void DrawDebugEngine::SetRenderTime(long long time) {
     _renderTimes.push_back(time);
-    _linearInterpolation(_renderTimes, _renderTime);
+    _linearInterpolation(_renderTimes, _renderTime,2000);
 }
 
-void DrawDebugEngine::SetUpdateTime(int time) {
+void DrawDebugEngine::SetUpdateTime(long long time) {
     _updateTimes.push_back(time);
-    _linearInterpolation(_updateTimes, _updateTime);
+    _linearInterpolation(_updateTimes, _updateTime,500);
 }
 
-void DrawDebugEngine::_linearInterpolation(vector<int> values, float &outTime) {
-    if (values.size() > 2000) {
+void DrawDebugEngine::_linearInterpolation(vector<long long> values, float &outTime, int step) {
+    if (values.size() > step) {
         outTime = std::accumulate(values.begin(), values.end(), 0)/(float)values.size();
         values.clear();
     }

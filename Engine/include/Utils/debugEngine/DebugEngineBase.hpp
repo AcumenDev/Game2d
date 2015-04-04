@@ -9,9 +9,9 @@ public:
 
     virtual void SetFps(int fps) = 0;
 
-    virtual void SetRenderTime(int time) = 0;
+    virtual void SetRenderTime(long long time) = 0;
 
-    virtual void SetUpdateTime(int time) = 0;
+    virtual void SetUpdateTime(long long time) = 0;
 
 };
 
