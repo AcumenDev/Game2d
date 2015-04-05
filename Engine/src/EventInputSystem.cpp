@@ -23,6 +23,11 @@ bool EventInputSystem::IsRight() const {
     return checkInpunt(SDLK_RIGHT);
 }
 
+
+bool EventInputSystem::IsShot() const {
+    return checkInpunt(SDLK_SPACE);
+}
+
 IPoint EventInputSystem::getMousePosition()
 {
     switch (event.type) {

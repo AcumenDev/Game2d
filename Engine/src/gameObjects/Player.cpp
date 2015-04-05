@@ -1,13 +1,12 @@
 #include "gameObjects/Player.hpp"
 
-Player::Player(std::shared_ptr<Logger> log, shared_ptr<PlayerPhysic> physic, shared_ptr<PlayerGraphic> graphic) {
-    _log = log;
+Player::Player(shared_ptr<PlayerPhysic> physic, shared_ptr<PlayerGraphic> graphic, shared_ptr<PlayerScript> playerScript) {
+
     _physic = physic;
     _physic->SetUserData(this);
     _graphic = graphic;
-    _jumpSize = 300;
-    _stepSize = 300;
     _camera = Render::Get()->GetCamera();
+    _playerScript= playerScript;
     _updateGraficPosition();
 }
 
@@ -23,7 +22,7 @@ void Player::Update(UpdateEventDto updateEventDto) {
     if (updateEventDto.eventInputSystem->IsJump()) {
         if (GetIsOnGround()) {
             _graphic->SetSeries("jump");
-            _physic->Jump(_jumpSize);
+            _physic->Jump(_playerScript->GetJuamSize());
             SetIsOnGround(false);
         }
         return;
@@ -32,7 +31,7 @@ void Player::Update(UpdateEventDto updateEventDto) {
         if (GetIsOnGround()) {
             _graphic->SetSeries("run");
             _graphic->Update(updateEventDto.delta);
-            _physic->ToLeft(_stepSize);
+            _physic->ToLeft(_playerScript->GetStepSIze());
         }
         return;
     }
@@ -41,8 +40,17 @@ void Player::Update(UpdateEventDto updateEventDto) {
         if (GetIsOnGround()) {
             _graphic->SetSeries("run");
             _graphic->Update(updateEventDto.delta);
-            _physic->ToRight(_stepSize);
+            _physic->ToRight(_playerScript->GetStepSIze());
         }
+        return;
+    }
+
+    if (updateEventDto.eventInputSystem->IsShot()) {
+        //if (GetIsOnGround()) {
+            _graphic->SetSeries("shot");
+            _graphic->Update(updateEventDto.delta);
+          //  _physic->ToRight(_playerScript->GetStepSIze());
+      //  }
         return;
     }
 
