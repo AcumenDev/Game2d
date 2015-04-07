@@ -13,6 +13,10 @@ public:
         return _resFolder;
     }
 
+    string get_mapPathForLvl(string lvl) const {
+        return _resFolder + "map/" + lvl + ".map";
+    }
+
     void set_resFolder(string resFolder) {
         _resFolder = resFolder;
     }

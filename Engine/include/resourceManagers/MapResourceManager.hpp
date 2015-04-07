@@ -12,8 +12,9 @@
 using std::shared_ptr;
 using std::string;
 
-struct GameObjParams {
-    int id, x, y;
+struct MapItem {
+    unsigned int id;
+    FPoint point;
 };
 
 class MapResourceManager : public BaseResourceManager<shared_ptr<SceneNode>> {
@@ -26,18 +27,18 @@ public:
 
     virtual ~MapResourceManager();
 
-    shared_ptr<SceneNode> getResourse(string name) override;
+    shared_ptr<SceneNode> getResourse(string lvl) override;
 
 private:
     string _name;
     shared_ptr<SceneManager> _sceneManager;
     shared_ptr<GameObjectsFactory> _gameObjFactory;
     shared_ptr<SystemSettings> _systemSettings;
-    vector<GameObjParams> _parmsFromFile;
+    vector<MapItem> _mapItems;
 
-    void AddObjectsToSceneNode(shared_ptr<SceneNode> scene);
+    void _addMapItemsToSceneNode(shared_ptr<SceneNode> scene);
 
-    void GetParamsFromFile(std::ifstream &map);
+    void _getMapItemsFromFile(std::ifstream &mapFile);
 };
 
 #endif

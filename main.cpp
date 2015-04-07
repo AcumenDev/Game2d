@@ -9,9 +9,8 @@
 #include <SDL.h>
 #include <DrawingItems/ItemDrawing.hpp>
 #include <ObjectsDrawing/Utils/DrawDebugEngine.hpp>
-#include <resourceManagers/MapResourceManager.hpp>
+#include "resourceManagers/MapResourceManager.hpp"
 #include <resourceManagers/ScriptResourceManager.hpp>
-
 #include "Engine.hpp"
 #include "Box2D/Box2D.h"
 
@@ -89,7 +88,7 @@ int main(int argc, char* argv[])
 
     auto mapResourceManager = make_shared<MapResourceManager>(sceneManager, gameObjFactory, systemSettings);
     
-    
+    auto mainNode = mapResourceManager->getResourse("Level1");
     auto scriptResourceManager = std::make_shared<ScriptResourceManager>(systemSettings);  перенести в фабрику
   
     auto playerScript = make_shared<PlayerScript>(scriptResourceManager->getResourse("Player"));
@@ -97,7 +96,6 @@ int main(int argc, char* argv[])
   //  auto playerNew = std::make_shared<Player>(playerPhysic, playerGraphic, playerScript);
 
 
-    auto mainNode = mapResourceManager->getResourse("Map_lvl1.txt");
     auto drawDebugEngine = std::make_shared<DrawDebugEngine>(
             make_shared<Font>(render, resFolder + "fonts/DejaVuSans.ttf", 14, FPoint(SCREEN_WIDTH - 200, 10),
                               TTF_STYLE_NORMAL));

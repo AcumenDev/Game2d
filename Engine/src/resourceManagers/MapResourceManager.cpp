@@ -13,37 +13,39 @@ MapResourceManager::MapResourceManager(
 MapResourceManager::~MapResourceManager() {
 }
 
-shared_ptr<SceneNode> MapResourceManager::getResourse(string name) {
-    auto path = FileSystem::Path::Combine(_systemSettings->get_resFolder(), name);
+shared_ptr<SceneNode> MapResourceManager::getResourse(string lvl) {
+    auto path = _systemSettings->get_mapPathForLvl(lvl);
     Logger::Get()->Debug(_name, "Loading map from: " + path);
-    std::ifstream map(path.c_str());
-    if (!map.is_open()) {
+    std::ifstream mapFile(path.c_str());
+    if (!mapFile.is_open()) {
         Logger::Get()->Error(_name, "Couldn't load map file : " + path);
         return nullptr;
     }
+    _getMapItemsFromFile(mapFile);
+    mapFile.close();
     auto sceneNode = _sceneManager->AddChildNode("MainNode");
-    GetParamsFromFile(map);
-    AddObjectsToSceneNode(sceneNode);
+    _addMapItemsToSceneNode(sceneNode);
     return sceneNode;
 }
 
-void MapResourceManager::GetParamsFromFile(std::ifstream &map) {
-    while (!map.eof()) {
-        GameObjParams params;
+void MapResourceManager::_getMapItemsFromFile(std::ifstream &mapFile) {
+    while (!mapFile.eof()) {
+        MapItem params;
         string c;
-        getline(map, c, ',');
+        getline(mapFile, c, ',');
         params.id = stoi(c);
-        getline(map, c, ',');
-        params.x = stoi(c);
-        getline(map, c, ',');
-        params.y = stoi(c);
-        _parmsFromFile.push_back(params);
+        getline(mapFile, c, ',');
+        int x = stoi(c);
+        getline(mapFile, c, ',');
+        int y = stoi(c);
+        params.point = FPoint(x, y);
+        _mapItems.push_back(params);
     }
 }
 
-void MapResourceManager::AddObjectsToSceneNode(shared_ptr<SceneNode> scene) {
-    for (const auto &item : _parmsFromFile) {
+void MapResourceManager::_addMapItemsToSceneNode(shared_ptr<SceneNode> scene) {
+    for (const auto &item : _mapItems) {
         scene->AttachObject(
-                _gameObjFactory->CreateGameObjectByIdAndPoint((object_id) item.id, FPoint(item.x, item.y)));
+                _gameObjFactory->CreateGameObjectByIdAndPoint((object_id) item.id, item.point));
     }
 }
