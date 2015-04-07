@@ -33,7 +33,7 @@ void MapResourceManager::_getMapItemsFromFile(std::ifstream &mapFile) {
         MapItem params;
         string c;
         getline(mapFile, c, ',');
-        params.id = stoi(c);
+        params.id = (objectId) stoi(c);
         getline(mapFile, c, ',');
         int x = stoi(c);
         getline(mapFile, c, ',');
@@ -46,6 +46,6 @@ void MapResourceManager::_getMapItemsFromFile(std::ifstream &mapFile) {
 void MapResourceManager::_addMapItemsToSceneNode(shared_ptr<SceneNode> scene) {
     for (const auto &item : _mapItems) {
         scene->AttachObject(
-                _gameObjFactory->CreateGameObjectByIdAndPoint((object_id) item.id, item.point));
+                _gameObjFactory->CreateGameObjectByIdAndPoint(item.id, item.point));
     }
 }

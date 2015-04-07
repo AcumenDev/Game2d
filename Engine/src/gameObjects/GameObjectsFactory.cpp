@@ -13,7 +13,7 @@ GameObjectsFactory::GameObjectsFactory(
 GameObjectsFactory::~GameObjectsFactory() {
 }
 
-shared_ptr<GameObjectBase> GameObjectsFactory::CreateGameObjectByIdAndPoint(object_id id, FPoint point) {
+shared_ptr<GameObjectBase> GameObjectsFactory::CreateGameObjectByIdAndPoint(objectId id, FPoint point) {
     switch (id) {
         case player_id:
             return createPlayer(point);

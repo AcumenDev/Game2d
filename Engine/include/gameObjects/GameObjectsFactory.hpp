@@ -15,7 +15,7 @@ using std::shared_ptr;
 using std::string;
 using Utils::FPoint;
 
-enum object_id {
+enum objectId {
     player_id = 0, bound_id, animation_obj_id
 };
 
@@ -27,7 +27,7 @@ public:
 
     virtual ~GameObjectsFactory();
 
-    shared_ptr<GameObjectBase> CreateGameObjectByIdAndPoint(object_id id, FPoint point);
+    shared_ptr<GameObjectBase> CreateGameObjectByIdAndPoint(objectId id, FPoint point);
 
 private:
     shared_ptr<TexturesResourceManager> _texturesResourceManager;

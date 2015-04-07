@@ -13,7 +13,7 @@ using std::shared_ptr;
 using std::string;
 
 struct MapItem {
-    unsigned int id;
+    objectId id;
     FPoint point;
 };
 
