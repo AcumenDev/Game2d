@@ -22,6 +22,7 @@ public:
     bool IsLeft() const;
 
     bool IsRight() const;
+    bool IsShot() const;
 
     IPoint getMousePosition();
 

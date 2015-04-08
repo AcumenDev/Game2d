@@ -1,6 +1,7 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 #include <memory>
+#include <scriptBinding/PlayerScript.hpp>
 #include "GameObjectBase.hpp"
 #include "physics/PlayerPhysic.hpp"
 #include "ObjectsDrawing/PlayerGraphic.hpp"
@@ -12,7 +13,7 @@ using std::shared_ptr;
 
 class Player : public virtual GameObjectBase {
 public:
-    Player(shared_ptr<Logger> log, shared_ptr<PlayerPhysic> physic, shared_ptr<PlayerGraphic> graphic);
+    Player(shared_ptr<PlayerPhysic> physic, shared_ptr<PlayerGraphic> graphic, shared_ptr<PlayerScript> playerScript);
     ~Player();
     void Update(UpdateEventDto updateEventDto) override;
     shared_ptr<ObjectDrawingBase> GetDrawing() const override;
@@ -22,10 +23,8 @@ private:
     void _updateGraficPosition();
     shared_ptr<PlayerPhysic> _physic;
     shared_ptr<PlayerGraphic> _graphic;
-    shared_ptr<Logger> _log;
+    shared_ptr<PlayerScript> _playerScript;
     bool _isOnGround;
-    int _stepSize;
-    int _jumpSize;
     shared_ptr<Camera> _camera;
 };
 

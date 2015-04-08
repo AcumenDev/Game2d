@@ -1,18 +1,19 @@
 #ifndef ENGINE_HPP_INCLUDED
 #define ENGINE_HPP_INCLUDED
 
-#include <settings/SystemSettings.hpp>
+#include "settings/SystemSettings.hpp"
 
 #include "Utils/Point.hpp"
 #include "Utils/Rectangle.hpp"
 
 #include "Texture.hpp"
-#include "resourceManagers/TexturesResourceManager.hpp"
+
 #include "SpriteAnimation.hpp"
 #include "MainLoop.hpp"
 #include "Window.hpp"
 
-#include <resourceManagers/SpriteAnimationResourceManager.hpp>
+#include "resourceManagers/TexturesResourceManager.hpp"
+#include "resourceManagers/SpriteAnimationResourceManager.hpp"
 
 #include "DrawingObject.hpp"
 

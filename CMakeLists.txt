@@ -64,6 +64,17 @@ set_property(TARGET GLM PROPERTY IMPORTED_LOCATION ${GLM_LIB})
 set(RAPIDJSON_HEADERS "${BASE_DIR}/lib/rapidjson/include")
 #rapidjson
 
+#Lua
+set(LUA_HEADERS "${BASE_DIR}/lib/lua-5.1.5/include")
+set(LUA_LIB "${BASE_DIR}/lib/lua-5.1.5/liblua5.1.a")
+add_library(LUA STATIC IMPORTED)
+set_property(TARGET LUA PROPERTY IMPORTED_LOCATION ${LUA_LIB})
+#Lua
+
+#LuaBridge
+set(LUABRIDGE_HEADERS "${BASE_DIR}/lib/LuaBridge")
+#LuaBridge
+
 include_directories(
 Engine/include
 include
@@ -74,6 +85,8 @@ ${BOX2D_HEADERS}
 ${GLEW_HEADERS}
 ${GLM_HEADERS}
 ${RAPIDJSON_HEADERS}
+${LUABRIDGE_HEADERS}
+${LUA_HEADERS}
 )
 
 set(HEADER_FILES_ENGINE
@@ -117,12 +130,15 @@ set(HEADER_FILES_ENGINE
     Engine/include/resourceManagers/BaseResourceManager.hpp
     Engine/include/resourceManagers/SpriteAnimationResourceManager.hpp
     Engine/include/resourceManagers/TexturesResourceManager.hpp
+    Engine/include/resourceManagers/ScriptResourceManager.hpp
     Engine/include/settings/SystemSettings.hpp
     Engine/include/Utils/fileSystem/FileSystemUtils.hpp
     Engine/include/render/Camera.hpp
     Engine/include/render/Render.hpp
     Engine/include/Utils/debugEngine/DebugEngineBase.hpp
     Engine/include/Utils/debugEngine/TraceEngineUtils.hpp
+    Engine/include/scriptBinding/PlayerScript.hpp
+     Engine/include/scriptBinding/Script.hpp
 )
 
 set(SOURCE_FILES_ENGINE
@@ -159,9 +175,12 @@ set(SOURCE_FILES_ENGINE
     Engine/src/ObjectsDrawing/Utils/DrawDebugEngine.cpp
     Engine/src/resourceManagers/SpriteAnimationResourceManager.cpp
     Engine/src/resourceManagers/TexturesResourceManager.cpp
+    Engine/src/resourceManagers/ScriptResourceManager.cpp
     Engine/src/render/Camera.cpp
     Engine/src/render/Render.cpp
     Engine/src/ObjectsDrawing/Utils/debugEngine/TraceEngineUtils.cpp
+    Engine/src/scriptBinding/PlayerScript.cpp
+    Engine/src/scriptBinding/Script.cpp
     )
 
 set(HEADER_FILES_GAME
@@ -174,7 +193,7 @@ set(SOURCE_FILES_GAME
     )
 
 add_executable(${PROJECT_NAME}  ${SOURCE_FILES_ENGINE} ${SOURCE_FILES_GAME}  ${HEADER_FILES_ENGINE}  ${HEADER_FILES_GAME})
-target_link_libraries(${PROJECT_NAME} SDL2 SDL2Main SDL2_image SDL2_ttf Box2D)
+target_link_libraries(${PROJECT_NAME} SDL2 SDL2Main SDL2_image SDL2_ttf Box2D LUA)
 
 
 add_executable(test_box2d test/test_box2d.cpp)

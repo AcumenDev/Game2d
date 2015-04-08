@@ -9,6 +9,7 @@
 #include <SDL.h>
 #include <DrawingItems/ItemDrawing.hpp>
 #include <ObjectsDrawing/Utils/DrawDebugEngine.hpp>
+#include <resourceManagers/ScriptResourceManager.hpp>
 
 #include "Engine.hpp"
 #include "Box2D/Box2D.h"
@@ -34,7 +35,8 @@ int main(int argc, char* argv[])
     }
 
     auto windowService = std::make_shared<WidowService>(log);
-    auto window = windowService->Create("Game", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT);
+    auto window = windowService->Create("Game", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH,
+                                        SCREEN_HEIGHT);
     auto render = window->GetRenderer();
 
     auto resourceManager = std::make_shared<TexturesResourceManager>(render);
@@ -51,7 +53,7 @@ int main(int argc, char* argv[])
     auto sA = spriteAnimationResourceManager->getResourse(string("player.json"));
     auto sAFire = spriteAnimationResourceManager->getResourse(string("fire.json"));
     auto fireAnimation = std::make_shared<SpriteAnimationDrawing>(sAFire);
-    fireAnimation->SetPosition(FPoint(SCREEN_WIDTH/2, SCREEN_HEIGHT/2));
+    fireAnimation->SetPosition(FPoint(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2));
     auto fireAnimationObject = make_shared<AnimationObject>(fireAnimation);
 
     auto background = std::make_shared<BackgroundObject>(gBackgroundTexture, FPoint(0, 0));
@@ -82,10 +84,16 @@ int main(int argc, char* argv[])
     world->SetContactListener(&collisionDetector);
 
     ///New player
+
+    auto scriptResourceManager = std::make_shared<ScriptResourceManager>(systemSettings);
+
     auto playerPhysic = std::make_shared<PlayerPhysic>(world, gFooTexture->getWidth(), gFooTexture->getHeight(),
                                                        FPoint(100, 100));
     auto playerGraphic = std::make_shared<PlayerGraphic>(sA, log);
-    auto playerNew = std::make_shared<Player>(log, playerPhysic, playerGraphic);
+
+    auto playerScript = make_shared<PlayerScript>(scriptResourceManager->getResourse("Player"));
+
+    auto playerNew = std::make_shared<Player>(playerPhysic, playerGraphic, playerScript);
     ///New player
 
     //Bound
