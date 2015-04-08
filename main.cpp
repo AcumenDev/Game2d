@@ -9,6 +9,7 @@
 #include <SDL.h>
 #include <DrawingItems/ItemDrawing.hpp>
 #include <ObjectsDrawing/Utils/DrawDebugEngine.hpp>
+#include <resourceManagers/ScriptResourceManager.hpp>
 
 #include "Engine.hpp"
 #include "Box2D/Box2D.h"
@@ -83,11 +84,14 @@ int main(int argc, char* argv[])
     world->SetContactListener(&collisionDetector);
 
     ///New player
+
+    auto scriptResourceManager = std::make_shared<ScriptResourceManager>(systemSettings);
+
     auto playerPhysic = std::make_shared<PlayerPhysic>(world, gFooTexture->getWidth(), gFooTexture->getHeight(),
                                                        FPoint(100, 100));
     auto playerGraphic = std::make_shared<PlayerGraphic>(sA, log);
 
-    auto playerScript = make_shared<PlayerScript>(make_shared<Script>(systemSettings->GetScriptPath("Player")));
+    auto playerScript = make_shared<PlayerScript>(scriptResourceManager->getResourse("Player"));
 
     auto playerNew = std::make_shared<Player>(playerPhysic, playerGraphic, playerScript);
     ///New player

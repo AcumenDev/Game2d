@@ -1,12 +1,13 @@
 #include "gameObjects/Player.hpp"
 
-Player::Player(shared_ptr<PlayerPhysic> physic, shared_ptr<PlayerGraphic> graphic, shared_ptr<PlayerScript> playerScript) {
+Player::Player(shared_ptr<PlayerPhysic> physic, shared_ptr<PlayerGraphic> graphic,
+               shared_ptr<PlayerScript> playerScript) {
 
     _physic = physic;
     _physic->SetUserData(this);
     _graphic = graphic;
     _camera = Render::Get()->GetCamera();
-    _playerScript= playerScript;
+    _playerScript = playerScript;
     _updateGraficPosition();
 }
 
@@ -46,14 +47,13 @@ void Player::Update(UpdateEventDto updateEventDto) {
     }
 
     if (updateEventDto.eventInputSystem->IsShot()) {
-        //if (GetIsOnGround()) {
-            _graphic->SetSeries("shot");
-            _graphic->Update(updateEventDto.delta);
-          //  _physic->ToRight(_playerScript->GetStepSIze());
-      //  }
+        _graphic->SetSeries("shot");
         return;
     }
 
+    if (GetIsOnGround()) {
+        _graphic->SetSeries("run");
+    }
     // _log->Debug("Player", "Position  x,y "+ std::to_string(position.x)+" "+std::to_string(position.y));
 }
 
