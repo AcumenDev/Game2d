@@ -9,6 +9,7 @@
 #include "Bound.hpp"
 #include "GameObjectBase.hpp"
 #include "AnimationObject.hpp"
+#include "resourceManagers/ScriptResourceManager.hpp"
 
 using std::make_shared;
 using std::shared_ptr;
@@ -23,6 +24,7 @@ class GameObjectsFactory {
 public:
     GameObjectsFactory(shared_ptr<TexturesResourceManager> texturesResourceManager,
             shared_ptr<SpriteAnimationResourceManager> spriteAnimationResourceManager,
+                       shared_ptr<ScriptResourceManager> scriptResourceManager,
             shared_ptr<b2World> world);
 
     virtual ~GameObjectsFactory();
@@ -32,6 +34,8 @@ public:
 private:
     shared_ptr<TexturesResourceManager> _texturesResourceManager;
     shared_ptr<SpriteAnimationResourceManager> _spriteAnimationResourceManager;
+    shared_ptr<ScriptResourceManager> _scriptResourceManager;
+
     shared_ptr<b2World> _world;
 
     shared_ptr<Player> createPlayer(FPoint point);

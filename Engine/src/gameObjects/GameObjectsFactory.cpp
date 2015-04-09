@@ -3,10 +3,12 @@
 GameObjectsFactory::GameObjectsFactory(
         shared_ptr<TexturesResourceManager> texturesResourceManager,
         shared_ptr<SpriteAnimationResourceManager> spriteAnimationResourceManager,
+        shared_ptr<ScriptResourceManager> scriptResourceManager,
         shared_ptr<b2World> world
 ) {
     _texturesResourceManager = texturesResourceManager;
     _spriteAnimationResourceManager = spriteAnimationResourceManager;
+    _scriptResourceManager = scriptResourceManager;
     _world = world;
 }
 
@@ -26,10 +28,12 @@ shared_ptr<GameObjectBase> GameObjectsFactory::CreateGameObjectByIdAndPoint(obje
 
 shared_ptr<Player> GameObjectsFactory::createPlayer(FPoint point) {
     auto playerFooTexture = _texturesResourceManager->getResourse(string("foo.png"));
-    auto playerPhysic = make_shared<PlayerPhysic>(_world, playerFooTexture->getWidth(), playerFooTexture->getHeight(), point);
+    auto playerPhysic = make_shared<PlayerPhysic>(_world, playerFooTexture->getWidth(), playerFooTexture->getHeight(),
+                                                  point);
     auto playerSpriteAnimation = _spriteAnimationResourceManager->getResourse(string("player.json"));
     auto playerGraphic = make_shared<PlayerGraphic>(playerSpriteAnimation);
-    return make_shared<Player>(playerPhysic, playerGraphic);
+    auto playerScript = make_shared<PlayerScript>(_scriptResourceManager->getResourse("Player"));
+    return make_shared<Player>(playerPhysic, playerGraphic, playerScript);
 
 
 }

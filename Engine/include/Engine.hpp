@@ -14,7 +14,7 @@
 
 #include "resourceManagers/TexturesResourceManager.hpp"
 #include "resourceManagers/SpriteAnimationResourceManager.hpp"
-
+#include "resourceManagers/ScriptResourceManager.hpp"
 #include "DrawingObject.hpp"
 
 #include "EventInputSystem.hpp"

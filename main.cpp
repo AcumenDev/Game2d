@@ -10,7 +10,6 @@
 #include <DrawingItems/ItemDrawing.hpp>
 #include <ObjectsDrawing/Utils/DrawDebugEngine.hpp>
 #include "resourceManagers/MapResourceManager.hpp"
-#include <resourceManagers/ScriptResourceManager.hpp>
 #include "Engine.hpp"
 #include "Box2D/Box2D.h"
 
@@ -55,7 +54,7 @@ int main(int argc, char* argv[])
     shared_ptr<Texture> gBackgroundTexture = texturesResourceManager->getResourse((string) "background.png");
     shared_ptr<Texture> gFooTexture = texturesResourceManager->getResourse((string) "foo.png");
 
-    auto background = make_shared<BackgroundObject>(log, gBackgroundTexture, FPoint(0, 0));
+    auto background = make_shared<BackgroundObject>(gBackgroundTexture, FPoint(0, 0));
 
     auto item = std::make_shared<ItemDrawing>(gFooTexture, FPoint(100, 20), "Boy");
 
@@ -78,32 +77,23 @@ int main(int argc, char* argv[])
     CollisionDetector collisionDetector;
     world->SetContactListener(&collisionDetector);
     ///
+    auto scriptResourceManager = std::make_shared<ScriptResourceManager>(systemSettings);
     auto gameObjFactory = make_shared<GameObjectsFactory>(texturesResourceManager, spriteAnimationResourceManager,
+                                                          scriptResourceManager,
                                                           world);
 
     auto notificationServices = make_shared<NotificationServices>();
     notificationServices->RegisterListener("inventoryAdd",
                                            std::bind(&Inventory::AddItemForId, inventory, std::placeholders::_1));
-    auto sceneManager = make_shared<SceneManager>(log, render, world, notificationServices);
-
-    auto mapResourceManager = make_shared<MapResourceManager>(sceneManager, gameObjFactory, systemSettings);
-    
-    auto mainNode = mapResourceManager->getResourse("Level1");
-    auto scriptResourceManager = std::make_shared<ScriptResourceManager>(systemSettings);  перенести в фабрику
-  
-    auto playerScript = make_shared<PlayerScript>(scriptResourceManager->getResourse("Player"));
-
-  //  auto playerNew = std::make_shared<Player>(playerPhysic, playerGraphic, playerScript);
-
-
     auto drawDebugEngine = std::make_shared<DrawDebugEngine>(
             make_shared<Font>(render, resFolder + "fonts/DejaVuSans.ttf", 14, FPoint(SCREEN_WIDTH - 200, 10),
                               TTF_STYLE_NORMAL));
     auto _sceneManager = std::make_shared<SceneManager>(render, world, notificationServices, drawDebugEngine);
 
+    auto mapResourceManager = make_shared<MapResourceManager>(_sceneManager, gameObjFactory, systemSettings);
     auto backgroundNode = _sceneManager->AddChildNode("BackGroundNode");
     backgroundNode->AttachObject(background);
-mainNode->AttachObject(bound);
+    auto mainNode = mapResourceManager->getResourse("Level1");
     if (mainNode == nullptr) {
         log->Error("Map load failed!");
         return 0;
