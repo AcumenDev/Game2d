@@ -1,9 +1,8 @@
 #include "ObjectsDrawing/PlayerGraphic.hpp"
 
 namespace Graphic {
-    PlayerGraphic::PlayerGraphic(shared_ptr<SpriteAnimation> spriteAnimation, shared_ptr<Logger> log) {
+    PlayerGraphic::PlayerGraphic(shared_ptr<SpriteAnimation> spriteAnimation) {
         _spriteAnimation = spriteAnimation;
-        _log = log;
     }
 
     void PlayerGraphic::Draw() {

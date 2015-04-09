@@ -14,7 +14,7 @@ namespace Graphic {
     class PlayerGraphic : public ObjectDrawingBase {
     public:
 
-        PlayerGraphic(shared_ptr<SpriteAnimation> spriteAnimation, shared_ptr<Logger> log);
+        PlayerGraphic(shared_ptr<SpriteAnimation> spriteAnimation);
 
         void Draw() override;
 
@@ -27,7 +27,6 @@ namespace Graphic {
         }
 
     private:
-        shared_ptr<Logger> _log;
         FPoint _fPoint;
         shared_ptr<SpriteAnimation> _spriteAnimation;
     };

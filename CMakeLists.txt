@@ -120,6 +120,7 @@ set(HEADER_FILES_ENGINE
     Engine/include/physics/BoundPhysic.hpp
     Engine/include/gameObjects/Player.hpp
     Engine/include/gameObjects/GameObjectBase.hpp
+    Engine/include/gameObjects/GameObjectsFactory.hpp
     Engine/include/gameObjects/Bound.hpp
     Engine/include/gameObjects/AnimationObject.hpp
     Engine/include/ObjectsDrawing/PlayerGraphic.hpp
@@ -131,6 +132,7 @@ set(HEADER_FILES_ENGINE
     Engine/include/resourceManagers/SpriteAnimationResourceManager.hpp
     Engine/include/resourceManagers/TexturesResourceManager.hpp
     Engine/include/resourceManagers/ScriptResourceManager.hpp
+    Engine/include/resourceManagers/MapResourceManager.hpp
     Engine/include/settings/SystemSettings.hpp
     Engine/include/Utils/fileSystem/FileSystemUtils.hpp
     Engine/include/render/Camera.hpp
@@ -165,6 +167,7 @@ set(SOURCE_FILES_ENGINE
     Engine/src/physics/BasePhysicBody.cpp
     Engine/src/physics/PlayerPhysic.cpp
     Engine/src/physics/BoundPhysic.cpp
+    Engine/src/gameObjects/GameObjectsFactory.cpp
     Engine/src/gameObjects/Player.cpp
     Engine/src/gameObjects/Bound.cpp
     Engine/src/gameObjects/AnimationObject.cpp
@@ -176,6 +179,7 @@ set(SOURCE_FILES_ENGINE
     Engine/src/resourceManagers/SpriteAnimationResourceManager.cpp
     Engine/src/resourceManagers/TexturesResourceManager.cpp
     Engine/src/resourceManagers/ScriptResourceManager.cpp
+    Engine/src/resourceManagers/MapResourceManager.cpp
     Engine/src/render/Camera.cpp
     Engine/src/render/Render.cpp
     Engine/src/ObjectsDrawing/Utils/debugEngine/TraceEngineUtils.cpp
