@@ -6,15 +6,15 @@
 
 using std::string;
 
-//TODO Перенести реализация в cpp
+//TODO РџРµСЂРµРЅРµСЃС‚Рё СЂРµР°Р»РµР·Р°С†РёСЋ  РІ cpp
 class SystemSettings {
 public:
     string get_resFolder() const {
         return _resFolder;
     }
 
-    string get_mapPathForLvl(string lvl) const {
-        return _resFolder + "map/" + lvl + ".map";
+    string get_mapPathForLvl(string name) const {
+        return FileSystem::Path::Combine(string(_resFolder + "maps"), name + ".map");
     }
 
     void set_resFolder(string resFolder) {
