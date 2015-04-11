@@ -123,6 +123,7 @@ set(HEADER_FILES_ENGINE
     Engine/include/gameObjects/GameObjectsFactory.hpp
     Engine/include/gameObjects/Bound.hpp
     Engine/include/gameObjects/AnimationObject.hpp
+    Engine/include/gameObjects/weapons/Akm.hpp
     Engine/include/ObjectsDrawing/PlayerGraphic.hpp
     Engine/include/ObjectsDrawing/ObjectDrawingBase.hpp
     Engine/include/ObjectsDrawing/TextureDrawing.hpp
@@ -171,6 +172,7 @@ set(SOURCE_FILES_ENGINE
     Engine/src/gameObjects/Player.cpp
     Engine/src/gameObjects/Bound.cpp
     Engine/src/gameObjects/AnimationObject.cpp
+    Engine/src/gameObjects/weapons/Akm.cpp
     Engine/src/ObjectsDrawing/PlayerGraphic.cpp
     Engine/src/ObjectsDrawing/TextureDrawing.cpp
     Engine/src/ObjectsDrawing/SpriteAnimationDrawing.cpp

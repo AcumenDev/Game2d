@@ -34,8 +34,6 @@ shared_ptr<Player> GameObjectsFactory::createPlayer(FPoint point) {
     auto playerGraphic = make_shared<PlayerGraphic>(playerSpriteAnimation);
     auto playerScript = make_shared<PlayerScript>(_scriptResourceManager->getResourse("Player"));
     return make_shared<Player>(playerPhysic, playerGraphic, playerScript);
-
-
 }
 
 shared_ptr<Bound> GameObjectsFactory::createBound(FPoint point) {
