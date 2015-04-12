@@ -3,7 +3,7 @@
 Player::Player(shared_ptr<PlayerPhysic> physic, shared_ptr<PlayerGraphic> graphic,
                shared_ptr<PlayerScript> playerScript) {
 
-     _physic = physic;
+    _physic = physic;
     _physic->SetUserData(this);
     _graphic = graphic;
     _camera = Render::Get()->GetCamera();
@@ -18,6 +18,7 @@ Player::~Player() {
 void Player::Update(UpdateEventDto updateEventDto) {
     auto position = _physic->GetPosition();
     _graphic->SetPosition(position);
+    _weapon->SetPosition(position);
     _camera->CenterToPoint(position);
 
     if (updateEventDto.eventInputSystem->IsJump()) {
@@ -46,7 +47,8 @@ void Player::Update(UpdateEventDto updateEventDto) {
         return;
     }
     if (updateEventDto.eventInputSystem->IsShot()) {
-        _graphic->SetSeries("shot");
+        //  _graphic->SetSeries("shot");
+        _weapon->Shot();
         return;
     }
 
@@ -72,4 +74,15 @@ void Player::SetIsOnGround(bool isOnGround) {
 
 void Player::_updateGraficPosition() {
     _graphic->SetPosition(_physic->GetPosition());
+}
+
+void Player::SetWeapon(shared_ptr<WeaponBase> weapon) {
+    _weapon = weapon;
+    if (_sceneNode) {
+        _sceneNode->AttachObject(_weapon);
+    }
+}
+
+void Player::SetSceneNone(shared_ptr<SceneNode> sceneNode) {
+    _sceneNode = sceneNode;
 }

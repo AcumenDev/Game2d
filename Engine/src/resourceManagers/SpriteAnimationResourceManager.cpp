@@ -7,7 +7,7 @@ SpriteAnimationResourceManager::SpriteAnimationResourceManager(shared_ptr<System
 }
 
 shared_ptr<SpriteAnimation> SpriteAnimationResourceManager::getResourse(string name) {
-    auto path = FileSystem::Path::Combine(_systemSettings->get_resFolder(), name);
+    auto path = _systemSettings->GetSpriteAnimationPath(name);
     Logger::Get()->Debug(_name,"Loading sprite animations from: "+ path);
     std::ifstream spriteAnimation(path.c_str());
     if (!spriteAnimation.is_open()) {
@@ -21,7 +21,7 @@ shared_ptr<SpriteAnimation> SpriteAnimationResourceManager::getResourse(string n
     d.Parse<ParseFlag::kParseDefaultFlags>(jsonString.c_str());
     string nameResFile = d["resFile"].GetString();
 
-    string resFile = FileSystem::Path::Combine(_systemSettings->get_resFolder(), nameResFile);
+    string resFile = _systemSettings->GetTexturePath(nameResFile);
 
     Logger::Get()->Debug(_name, "Loaded textures from file: " + resFile);
     SDL_Surface *surface = IMG_Load(resFile.c_str());

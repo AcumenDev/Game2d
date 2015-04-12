@@ -12,6 +12,7 @@ SceneManager::SceneManager(
 }
 
 SceneManager::~SceneManager() {
+    _childNodes.clear();
 }
 
 shared_ptr<SceneNode> SceneManager::AddChildNode(string name, bool fixedCord) {
@@ -21,19 +22,19 @@ shared_ptr<SceneNode> SceneManager::AddChildNode(string name, bool fixedCord) {
 }
 
 void SceneManager::Draw() {
-    _debugEngineBase->SetRenderTime( calkTimeExecute([this] {
-            SDL_SetRenderDrawColor(_renderer, 255, 255, 255, 255);
+    _debugEngineBase->SetRenderTime(calkTimeExecute([this] {
+        SDL_SetRenderDrawColor(_renderer, 255, 255, 255, 255);
 
-            SDL_RenderClear(_renderer);
-            for (const auto &node : _childNodes) {
-                node->Draw();
-            }
+        SDL_RenderClear(_renderer);
+        for (const auto &node : _childNodes) {
+            node->Draw();
+        }
 
 
-            _physicWorld->DrawDebugData();
-            _calcFps();
-            SDL_RenderPresent(_renderer);
-        }));
+        _physicWorld->DrawDebugData();
+        _calcFps();
+        SDL_RenderPresent(_renderer);
+    }));
 }
 
 void SceneManager::_calcFps() {

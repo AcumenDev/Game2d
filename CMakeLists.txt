@@ -123,6 +123,7 @@ set(HEADER_FILES_ENGINE
     Engine/include/gameObjects/GameObjectsFactory.hpp
     Engine/include/gameObjects/Bound.hpp
     Engine/include/gameObjects/AnimationObject.hpp
+    Engine/include/gameObjects/weapons/WeaponBase.hpp
     Engine/include/gameObjects/weapons/Akm.hpp
     Engine/include/ObjectsDrawing/PlayerGraphic.hpp
     Engine/include/ObjectsDrawing/ObjectDrawingBase.hpp
@@ -140,8 +141,10 @@ set(HEADER_FILES_ENGINE
     Engine/include/render/Render.hpp
     Engine/include/Utils/debugEngine/DebugEngineBase.hpp
     Engine/include/Utils/debugEngine/TraceEngineUtils.hpp
+    Engine/include/scriptBinding/Script.hpp
     Engine/include/scriptBinding/PlayerScript.hpp
-     Engine/include/scriptBinding/Script.hpp
+    Engine/include/scriptBinding/weapons/AkmScript.hpp
+    Engine/include/gameManagers/WeaponsManager.hpp
 )
 
 set(SOURCE_FILES_ENGINE
@@ -185,8 +188,9 @@ set(SOURCE_FILES_ENGINE
     Engine/src/render/Camera.cpp
     Engine/src/render/Render.cpp
     Engine/src/ObjectsDrawing/Utils/debugEngine/TraceEngineUtils.cpp
-    Engine/src/scriptBinding/PlayerScript.cpp
     Engine/src/scriptBinding/Script.cpp
+    Engine/src/scriptBinding/PlayerScript.cpp
+    Engine/src/scriptBinding/weapons/AkmScript.cpp
     )
 
 set(HEADER_FILES_GAME

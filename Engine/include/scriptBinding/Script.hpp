@@ -21,7 +21,7 @@ class Script{
 public:
     Script(string path);
     lua_State*  GetLuaState();
-
+~Script();
 private:
     lua_State* _luaState;
 

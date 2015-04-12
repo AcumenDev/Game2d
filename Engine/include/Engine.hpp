@@ -15,6 +15,7 @@
 #include "resourceManagers/TexturesResourceManager.hpp"
 #include "resourceManagers/SpriteAnimationResourceManager.hpp"
 #include "resourceManagers/ScriptResourceManager.hpp"
+#include "resourceManagers/MapResourceManager.hpp"
 #include "DrawingObject.hpp"
 
 #include "EventInputSystem.hpp"
@@ -30,6 +31,8 @@
 #include "gameObjects/GameObjectsFactory.hpp"
 #include "gameObjects/AnimationObject.hpp"
 #include "gameObjects/Bound.hpp"
+#include "gameObjects/weapons/WeaponBase.hpp"
+#include "gameObjects/weapons/Akm.hpp"
 
 #include "ObjectsDrawing/ObjectDrawingBase.hpp"
 #include "ObjectsDrawing/PlayerGraphic.hpp"
@@ -48,5 +51,13 @@
 #include "services/WidowService.hpp"
 #include "services/InitService.hpp"
 
+#include "scriptBinding/Script.hpp"
+#include "scriptBinding/PlayerScript.hpp"
+#include "scriptBinding/weapons/AkmScript.hpp"
+
+
+#include "ObjectsDrawing/Utils/DrawDebugEngine.hpp"
+
+#include "gameManagers/WeaponsManager.hpp"
 
 #endif // ENGINE_HPP_INCLUDED
