@@ -1,7 +1,8 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 #include <memory>
-#include <scriptBinding/PlayerScript.hpp>
+#include "scriptBinding/PlayerScript.hpp"
+#include "gameObjects/weapons/WeaponBase.hpp"
 #include "GameObjectBase.hpp"
 #include "physics/PlayerPhysic.hpp"
 #include "ObjectsDrawing/PlayerGraphic.hpp"
@@ -19,6 +20,10 @@ public:
     shared_ptr<ObjectDrawingBase> GetDrawing() const override;
     bool GetIsOnGround() const;
     void SetIsOnGround(bool isOnGround);
+    void SetWeapon(shared_ptr<WeaponBase> weapon);
+
+    void SetSceneNone(shared_ptr<SceneNode> sceneNode) override;
+
 private:
     void _updateGraficPosition();
     shared_ptr<PlayerPhysic> _physic;
@@ -26,6 +31,9 @@ private:
     shared_ptr<PlayerScript> _playerScript;
     bool _isOnGround;
     shared_ptr<Camera> _camera;
+
+    shared_ptr<WeaponBase> _weapon;
+    shared_ptr<SceneNode> _sceneNode;
 };
 
 #endif // PLAYER_H

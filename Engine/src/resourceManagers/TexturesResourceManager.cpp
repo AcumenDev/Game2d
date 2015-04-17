@@ -9,7 +9,7 @@ TexturesResourceManager::~TexturesResourceManager() {
 }
 
 std::shared_ptr<Texture> TexturesResourceManager::getResourse(string name) {
-    auto path = FileSystem::Path::Combine(_systemSettings->get_resFolder(), name);
+    auto path =_systemSettings->GetTexturePath(name);
     Logger::Get()->Debug(_name, "Loaded texture from file: " + path);
     SDL_Texture *newTexture = IMG_LoadTexture(_render, path.c_str());
     std::shared_ptr<Texture> texture;

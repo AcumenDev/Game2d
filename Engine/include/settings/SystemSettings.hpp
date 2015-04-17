@@ -25,6 +25,15 @@ public:
         return FileSystem::Path::Combine(string(_resFolder + "scripts"), name + ".lua");
     }
 
+
+    string GetTexturePath(string name) {
+        return FileSystem::Path::Combine(string(_resFolder + "textures"), name);
+    }
+
+    string GetSpriteAnimationPath(string name) {
+        return FileSystem::Path::Combine(string(_resFolder + "textures"), name+ ".json");
+    }
+
 private:
     string _resFolder;
 };

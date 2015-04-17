@@ -4,9 +4,15 @@
 SceneNode::SceneNode(string nameNode, bool fixedCord) {
     _nameNode = nameNode;
     _fixedCord = fixedCord;
+    _thisSceneNode.reset(this);
 }
 
 SceneNode::~SceneNode() {
+    _childNodes.clear();
+    _drawingObjectsOld.clear();
+    _gameObjects.clear();
+    _drawingObjects.clear();
+    _thisSceneNode.reset();
 }
 
 void SceneNode::Draw() {
@@ -51,13 +57,15 @@ void SceneNode::Update(UpdateEventDto updateEventDto) {
 
     if (_drawingObjectsOld.size() > 0) {
         _drawingObjectsOld.erase(
-                std::remove_if(_drawingObjectsOld.begin(), _drawingObjectsOld.end(), [this](std::shared_ptr<DrawingObject> item) -> bool {
-                    if (!item->IsLive()) {
-                        Logger::Get()->Debug("SceneNode", "Deleted drawing object: from node" + _nameNode);
-                        return true;
-                    }
-                    return false;
-                }), _drawingObjectsOld.end()
+                std::remove_if(_drawingObjectsOld.begin(), _drawingObjectsOld.end(),
+                               [this](std::shared_ptr<DrawingObject> item) -> bool {
+                                   if (!item->IsLive()) {
+                                       Logger::Get()->Debug("SceneNode",
+                                                            "Deleted drawing object: from node" + _nameNode);
+                                       return true;
+                                   }
+                                   return false;
+                               }), _drawingObjectsOld.end()
         );
     }
 }
@@ -72,4 +80,6 @@ void SceneNode::AttachObject(shared_ptr<ObjectDrawingBase> drawingObject) {
 
 void SceneNode::AttachObject(shared_ptr<GameObjectBase> gameObjectBase) {
     _gameObjects.push_back(gameObjectBase);
+
+    gameObjectBase->SetSceneNone(_thisSceneNode);
 }

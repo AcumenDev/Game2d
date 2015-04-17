@@ -16,3 +16,8 @@ Script::Script(string path) {
 lua_State *Script::GetLuaState() {
     return _luaState;
 }
+
+
+Script::~Script() {
+    lua_close(_luaState);
+}

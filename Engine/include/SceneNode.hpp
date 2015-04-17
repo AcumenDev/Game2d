@@ -13,6 +13,8 @@ using std::string;
 using std::vector;
 using namespace Graphic;
 
+class GameObjectBase;
+
 class SceneNode{
 public:
     SceneNode(string nameNode, bool fixedCord);
@@ -28,7 +30,7 @@ private:
     string _nameNode;
     bool _fixedCord;
     vector<shared_ptr<SceneNode>> _childNodes;
-
+    shared_ptr<SceneNode> _thisSceneNode;
     vector<shared_ptr<DrawingObject>> _drawingObjectsOld;
     vector<shared_ptr<GameObjectBase>> _gameObjects;
     vector<shared_ptr<ObjectDrawingBase>> _drawingObjects;

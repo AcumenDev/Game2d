@@ -8,8 +8,8 @@
 
 #include <SDL.h>
 #include <DrawingItems/ItemDrawing.hpp>
-#include <ObjectsDrawing/Utils/DrawDebugEngine.hpp>
-#include "resourceManagers/MapResourceManager.hpp"
+
+
 #include "Engine.hpp"
 #include "Box2D/Box2D.h"
 
@@ -61,7 +61,7 @@ int main(int argc, char* argv[])
     auto inventoryTexture = texturesResourceManager->getResourse((string) "inventoryCell.png");
 
     std::map<int, string> items;
-    items.insert(std::make_pair<int, string>(0, string(resFolder + "inventoryItem.png")));
+    items.insert(std::make_pair<int, string>(0, (string) "inventoryItem.png"));
 
     auto itemsFactory = make_shared<ItemsFactory>(items, texturesResourceManager);
     auto inventory = make_shared<Inventory>(inventoryTexture, itemsFactory, FPoint(0, 0), 6, 5);
@@ -78,9 +78,11 @@ int main(int argc, char* argv[])
     world->SetContactListener(&collisionDetector);
     ///
     auto scriptResourceManager = std::make_shared<ScriptResourceManager>(systemSettings);
+
+    auto weaponsManager = make_shared<WeaponsManager>();
     auto gameObjFactory = make_shared<GameObjectsFactory>(texturesResourceManager, spriteAnimationResourceManager,
                                                           scriptResourceManager,
-                                                          world);
+                                                          world, weaponsManager);
 
     auto notificationServices = make_shared<NotificationServices>();
     notificationServices->RegisterListener("inventoryAdd",
@@ -98,6 +100,10 @@ int main(int argc, char* argv[])
         log->Error("Map load failed!");
         return 0;
     }
+
+    weaponsManager->SetWeapon(gameObjFactory->CreateWeapon(objectId::weaponAkm));
+
+
     mainNode->AttachObject(item);
 
     mainNode->AttachObject(test_font);
