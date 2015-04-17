@@ -3,6 +3,7 @@
 
 #include <memory>
 #include <fstream>
+#include <rapidjson/document.h>
 #include "SpriteAnimation.hpp"
 #include "settings/SystemSettings.hpp"
 #include "utils/logger/Logger.hpp"
@@ -10,17 +11,15 @@
 #include "settings/SystemSettings.hpp"
 #include "Utils/fileSystem/FileSystemUtils.hpp"
 
-#include "rapidjson/document.h"
-
 using std::shared_ptr;
 using std::string;
 using namespace rapidjson;
 
-class SpriteAnimationResourceManager : public  BaseResourceManager<shared_ptr<SpriteAnimation>> {
+class SpriteAnimationResourceManager : public BaseResourceManager<shared_ptr<SpriteAnimation>> {
 public:
     SpriteAnimationResourceManager(shared_ptr<SystemSettings> systemSettings, SDL_Renderer *render);
 
-    shared_ptr<SpriteAnimation> getResourse(string  name) override;
+    shared_ptr<SpriteAnimation> getResourse(string name) override;
 
 private:
     string _name;

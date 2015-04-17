@@ -20,4 +20,8 @@ namespace Graphic {
     void PlayerGraphic::SetSeries(string series) {
         _spriteAnimation->SetSeries(series);
     }
+
+    void PlayerGraphic::RunOneSiries(string series) {
+        _spriteAnimation->RunOneSiries(series);
+    }
 }
