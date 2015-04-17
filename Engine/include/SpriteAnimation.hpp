@@ -35,12 +35,13 @@ private:
 
 class SpriteAnimation {
 public:
-
     SpriteAnimation(map<string, SpriteSeries> spriteSeries);
 
     virtual ~SpriteAnimation();
 
-    void SetSeries(string series);
+    void SetSeries(string name);
+
+    void RunOneSiries(string name);
 
     void Draw(FPoint point);
 
@@ -49,9 +50,10 @@ public:
 private:
     string _className;
     double _currentSprite = 0;
-    string _currentSirees;
+    string _currentSeries;
+    string _beforeSeries;
     map<string, SpriteSeries> _spriteSeries;
-    static unsigned int __curSpri; ///debug
+    bool _oneRun;
 };
 
 #endif // SPRITEANIMATION_H

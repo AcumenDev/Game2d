@@ -11,7 +11,7 @@
 using std::shared_ptr;
 
 namespace Graphic {
-    class PlayerGraphic : public ObjectDrawingBase {
+    class PlayerGraphic : public ObjectDrawingBase  {  ////TODO Вроде можно относледоваться и не дублировать : public SpriteAnimation
     public:
 
         PlayerGraphic(shared_ptr<SpriteAnimation> spriteAnimation);
@@ -22,6 +22,8 @@ namespace Graphic {
 
         void Update(float delta) ;
         void SetSeries(string series);
+        void RunOneSiries(string series);
+
 
         virtual ~PlayerGraphic() {
         }

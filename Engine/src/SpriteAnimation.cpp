@@ -7,34 +7,38 @@ SpriteAnimation::~SpriteAnimation() {
 SpriteAnimation::SpriteAnimation(map<string, SpriteSeries> spriteSeries) {
     _className = "SpriteAnimation";
     _spriteSeries = spriteSeries;
-    _currentSirees = _spriteSeries.begin()->first;
+    _currentSeries = _spriteSeries.begin()->first;
     _currentSprite = 0;
+    _oneRun = false;
 }
 
-unsigned int SpriteAnimation::__curSpri = -1;
-
-void SpriteAnimation::SetSeries(string series) {
-    if (_currentSirees != series) {
-        _currentSirees = series;
+void SpriteAnimation::SetSeries(string name) {
+    if (_currentSeries != name && !_oneRun) {
+        _currentSeries = name;
         _currentSprite = 0;
     }
 }
 
 void SpriteAnimation::Draw(FPoint point) {
     auto currentSprite = (unsigned int) _currentSprite;
-    if (currentSprite != __curSpri) {
-       // Logger::Get()->Debug(_className, "CurrentSeries: " + _currentSirees + " CurrentSprite: " + std::to_string(currentSprite));
-        __curSpri = currentSprite;
-    }
-    SpriteSeries current = _spriteSeries.at(_currentSirees);
+    SpriteSeries current = _spriteSeries.at(_currentSeries);
     current.get_textures().at(currentSprite)->Draw(point);
 }
 
 void SpriteAnimation::Step(float delta) {
-    SpriteSeries current = _spriteSeries.at(_currentSirees);
+    SpriteSeries current = _spriteSeries.at(_currentSeries);
     _currentSprite += (current.get_animationSpeed() * delta);
-
     if ((unsigned int) _currentSprite > current.get_textures().size() - 1) {
         _currentSprite = 0;
+        if (_oneRun) {
+            _oneRun = false;
+            _currentSeries = _beforeSeries;
+        }
     }
+}
+
+void SpriteAnimation::RunOneSiries(string name) {
+    _beforeSeries = _currentSeries;
+    SetSeries(name);
+    _oneRun = true;
 }

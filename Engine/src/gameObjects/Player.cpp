@@ -2,10 +2,10 @@
 
 Player::Player(shared_ptr<PlayerPhysic> physic, shared_ptr<PlayerGraphic> graphic,
                shared_ptr<PlayerScript> playerScript) {
-
     _physic = physic;
     _physic->SetUserData(this);
     _graphic = graphic;
+    _graphic->SetSeries("stay");
     _camera = Render::Get()->GetCamera();
     _playerScript = playerScript;
     _updateGraficPosition();
@@ -20,10 +20,10 @@ void Player::Update(UpdateEventDto updateEventDto) {
     _graphic->SetPosition(position);
     _weapon->SetPosition(position);
     _camera->CenterToPoint(position);
-
+    _graphic->Update(updateEventDto.delta);
     if (updateEventDto.eventInputSystem->IsJump()) {
         if (GetIsOnGround()) {
-            _graphic->SetSeries("jump");
+            _graphic->RunOneSiries("jump");
             _physic->Jump(_playerScript->GetJuamSize());
             SetIsOnGround(false);
         }
@@ -32,7 +32,6 @@ void Player::Update(UpdateEventDto updateEventDto) {
     if (updateEventDto.eventInputSystem->IsLeft()) {
         if (GetIsOnGround()) {
             _graphic->SetSeries("run");
-            _graphic->Update(updateEventDto.delta);
             _physic->ToLeft(_playerScript->GetStepSIze());
         }
         return;
@@ -41,20 +40,16 @@ void Player::Update(UpdateEventDto updateEventDto) {
     if (updateEventDto.eventInputSystem->IsRight()) {
         if (GetIsOnGround()) {
             _graphic->SetSeries("run");
-            _graphic->Update(updateEventDto.delta);
             _physic->ToRight(_playerScript->GetStepSIze());
         }
         return;
     }
     if (updateEventDto.eventInputSystem->IsShot()) {
-        //  _graphic->SetSeries("shot");
+        _graphic->RunOneSiries("shot");
         _weapon->Shot();
         return;
     }
-
-    if (GetIsOnGround()) {
-        _graphic->SetSeries("run");
-    }
+    _graphic->SetSeries("stay");
 }
 
 shared_ptr<ObjectDrawingBase> Player::GetDrawing() const {

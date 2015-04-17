@@ -1,6 +1,7 @@
 #include <resourceManagers/SpriteAnimationResourceManager.hpp>
 
-SpriteAnimationResourceManager::SpriteAnimationResourceManager(shared_ptr<SystemSettings> systemSettings, SDL_Renderer *render) {
+SpriteAnimationResourceManager::SpriteAnimationResourceManager(shared_ptr<SystemSettings> systemSettings,
+                                                               SDL_Renderer *render) {
     _name = "SpriteAnimationResourceManager";
     _systemSettings = systemSettings;
     _render = render;
@@ -8,13 +9,14 @@ SpriteAnimationResourceManager::SpriteAnimationResourceManager(shared_ptr<System
 
 shared_ptr<SpriteAnimation> SpriteAnimationResourceManager::getResourse(string name) {
     auto path = _systemSettings->GetSpriteAnimationPath(name);
-    Logger::Get()->Debug(_name,"Loading sprite animations from: "+ path);
+    Logger::Get()->Debug(_name, "Loading sprite animations from: " + path);
     std::ifstream spriteAnimation(path.c_str());
     if (!spriteAnimation.is_open()) {
         Logger::Get()->Error(_name, "Couldn't load the spriteAnimaton file : " + path);
         return nullptr;
     }
-    std::string jsonString = string((std::istreambuf_iterator<char>(spriteAnimation)), (std::istreambuf_iterator<char>()));
+    std::string jsonString = string((std::istreambuf_iterator<char>(spriteAnimation)),
+                                    (std::istreambuf_iterator<char>()));
 
     map<string, SpriteSeries> spriteSeries;
     Document d;
@@ -28,7 +30,6 @@ shared_ptr<SpriteAnimation> SpriteAnimationResourceManager::getResourse(string n
 
     if (surface == nullptr) {
         Logger::Get()->Error(_name, "Unable to load image " + resFile + " SDL_image Error: " + IMG_GetError());
-
     }
 
     const Value &a = d["series"];
@@ -38,7 +39,6 @@ shared_ptr<SpriteAnimation> SpriteAnimationResourceManager::getResourse(string n
         string nameSeries = a[i]["name"].GetString();
         double animationSpeed = a[i]["animationSpeed"].GetDouble();
 
-        Logger::Get()->Debug(_name, "Series: " + nameSeries + " animation speed: " + std::to_string(animationSpeed));
 
         const Value &textures = a[i]["textures"];
         for (SizeType u = 0; u < textures.Size(); u++) {
@@ -49,11 +49,11 @@ shared_ptr<SpriteAnimation> SpriteAnimationResourceManager::getResourse(string n
             int w = textures[u]["w"].GetInt();
 
             SDL_Surface *surfaceTemp = SDL_CreateRGBSurface(0, w, h,
-                    surface->format->BitsPerPixel,
-                    surface->format->Rmask,
-                    surface->format->Gmask,
-                    surface->format->Bmask,
-                    surface->format->Amask
+                                                            surface->format->BitsPerPixel,
+                                                            surface->format->Rmask,
+                                                            surface->format->Gmask,
+                                                            surface->format->Bmask,
+                                                            surface->format->Amask
             );
 
             SDL_Rect sdl_rect;
@@ -72,8 +72,10 @@ shared_ptr<SpriteAnimation> SpriteAnimationResourceManager::getResourse(string n
 
             SDL_FreeSurface(surfaceTemp);
         }
-        Logger::Get()->Debug(_name, "Textures loaded: " + std::to_string(textures.Size()));
-        spriteSeries.insert(std::make_pair<string, SpriteSeries>(string(nameSeries), SpriteSeries(result_sprites, animationSpeed)));
+        Logger::Get()->Debug(_name, "Series loaded: " + nameSeries + ", speed: " + std::to_string(animationSpeed) +
+                                    ", textures : " + std::to_string(textures.Size()));
+        spriteSeries.insert(
+                std::make_pair<string, SpriteSeries>(string(nameSeries), SpriteSeries(result_sprites, animationSpeed)));
     }
 
     return std::make_shared<SpriteAnimation>(spriteSeries);
