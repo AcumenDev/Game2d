@@ -101,7 +101,7 @@ int main(int argc, char* argv[])
         return 0;
     }
 
-    weaponsManager->SetWeapon(gameObjFactory->CreateWeapon(objectId::weaponAkm));
+   // weaponsManager->SetWeapon(gameObjFactory->CreateWeapon(objectId::weaponAkm));
 
 
     mainNode->AttachObject(item);

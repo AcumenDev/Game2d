@@ -18,7 +18,9 @@ Player::~Player() {
 void Player::Update(UpdateEventDto updateEventDto) {
     auto position = _physic->GetPosition();
     _graphic->SetPosition(position);
-    _weapon->SetPosition(position);
+    if(_weapon) {
+        _weapon->SetPosition(position);
+    }
     _camera->CenterToPoint(position);
     _graphic->Update(updateEventDto.delta);
     if (updateEventDto.eventInputSystem->IsJump()) {
@@ -45,8 +47,8 @@ void Player::Update(UpdateEventDto updateEventDto) {
         return;
     }
     if (updateEventDto.eventInputSystem->IsShot()) {
-        _graphic->RunOneSiries("shot");
-        _weapon->Shot();
+        _graphic->RunOneSiries("sword_attack");
+       // _weapon->Shot();
         return;
     }
     _graphic->SetSeries("stay");
