@@ -2,6 +2,7 @@
 
 MainLoop::MainLoop(std::shared_ptr<SceneManager> sceneManager) {
     _sceneManager = sceneManager;
+    _className = "MainLoop";
 }
 
 MainLoop::~MainLoop() {
@@ -31,7 +32,7 @@ void MainLoop::Update(float delta) {
     _sceneManager->Update(delta, _currentEventInputSystem);
 }
 
-void MainLoop::Start() {
+int MainLoop::Start() {
     _run = true;
     _currentEventInputSystem = make_shared<EventInputSystem>();
 
@@ -51,6 +52,7 @@ void MainLoop::Start() {
 
         Draw();
     }
+    return 0;
 }
 
 void MainLoop::_updateGame() {
@@ -60,6 +62,7 @@ void MainLoop::_updateGame() {
 }
 
 void MainLoop::Stop() {
+    Logger::Get()->Debug(_className, "Stopping");
     _run = false;
 }
 

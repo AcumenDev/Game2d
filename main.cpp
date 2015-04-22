@@ -114,6 +114,6 @@ int main(int argc, char* argv[])
 
     debugNode->AttachObject(drawDebugEngine);
     MainLoop mainLoop(_sceneManager);
-    mainLoop.Start();
-    return 0;
+
+    return mainLoop.Start();
 }

@@ -4,15 +4,15 @@
 SceneNode::SceneNode(string nameNode, bool fixedCord) {
     _nameNode = nameNode;
     _fixedCord = fixedCord;
-    _thisSceneNode.reset(this);
+    Logger::Get()->Debug("SceneNode", "Create node: " + _nameNode);
 }
 
 SceneNode::~SceneNode() {
-    _childNodes.clear();
+    Logger::Get()->Debug("SceneNode", "Delete node: " + _nameNode);
     _drawingObjectsOld.clear();
     _gameObjects.clear();
     _drawingObjects.clear();
-    _thisSceneNode.reset();
+    _childNodes.clear();
 }
 
 void SceneNode::Draw() {
@@ -42,9 +42,6 @@ void SceneNode::Draw() {
 
 void SceneNode::Update(UpdateEventDto updateEventDto) {
 
-    for (const auto &drawingObject : _drawingObjectsOld) {
-        drawingObject->Update(updateEventDto);
-    }
 
     for (const auto &gameObject : _gameObjects) {
         gameObject->Update(updateEventDto);
@@ -68,6 +65,10 @@ void SceneNode::Update(UpdateEventDto updateEventDto) {
                                }), _drawingObjectsOld.end()
         );
     }
+
+    for (const auto &drawingObject : _drawingObjectsOld) {
+        drawingObject->Update(updateEventDto);
+    }
 }
 
 void SceneNode::AttachObject(shared_ptr<DrawingObject> drawingObject) {
@@ -81,5 +82,5 @@ void SceneNode::AttachObject(shared_ptr<ObjectDrawingBase> drawingObject) {
 void SceneNode::AttachObject(shared_ptr<GameObjectBase> gameObjectBase) {
     _gameObjects.push_back(gameObjectBase);
 
-    gameObjectBase->SetSceneNone(_thisSceneNode);
+    gameObjectBase->SetSceneNone(shared_from_this());
 }

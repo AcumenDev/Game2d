@@ -1,5 +1,6 @@
 #ifndef SCENENODE_H
 #define SCENENODE_H
+
 #include <vector>
 #include <memory>
 #include <gameObjects/GameObjectBase.hpp>
@@ -15,24 +16,30 @@ using namespace Graphic;
 
 class GameObjectBase;
 
-class SceneNode{
+class SceneNode : public std::enable_shared_from_this<SceneNode> {
 public:
     SceneNode(string nameNode, bool fixedCord);
+
     virtual ~SceneNode();
+
     void Draw();
+
     void Update(UpdateEventDto updateEventDto);
 
     void AttachObject(shared_ptr<DrawingObject> drawingObject);
+
     void AttachObject(shared_ptr<ObjectDrawingBase> drawingObject);
+
     void AttachObject(shared_ptr<GameObjectBase> gameObjectBase);
+
 protected:
 private:
     string _nameNode;
     bool _fixedCord;
     vector<shared_ptr<SceneNode>> _childNodes;
-    shared_ptr<SceneNode> _thisSceneNode;
     vector<shared_ptr<DrawingObject>> _drawingObjectsOld;
     vector<shared_ptr<GameObjectBase>> _gameObjects;
     vector<shared_ptr<ObjectDrawingBase>> _drawingObjects;
 };
+
 #endif // SCENENODE_H

@@ -13,7 +13,7 @@ public:
 
     virtual ~MainLoop();
 
-    void Start();
+    int Start();
 
     void Stop();
 
@@ -36,6 +36,8 @@ private:
     shared_ptr<EventInputSystem> _currentEventInputSystem;
 
     void _updateGame();
+
+    string _className;
 
     const unsigned TICKS_PER_SECOND = 100;
     const unsigned SKIP_TICKS = 1000 / TICKS_PER_SECOND;
