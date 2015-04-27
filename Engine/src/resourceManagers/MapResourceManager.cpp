@@ -21,26 +21,31 @@ shared_ptr<SceneNode> MapResourceManager::getResourse(string lvl) {
         Logger::Get()->Error(_name, "Couldn't load map file : " + path);
         return nullptr;
     }
-    _getMapItemsFromFile(mapFile);
+
+    string jsonString = string((std::istreambuf_iterator<char>(mapFile)),
+                               (std::istreambuf_iterator<char>()));
+
+    Document doc;
+    doc.Parse<ParseFlag::kParseDefaultFlags>(jsonString.c_str());
+    const Value &map = doc["map"];
+
+    for (SizeType i = 0; i < map.Size(); i++) {
+        MapItem params;
+        objectId id = (objectId) map[i]["id"].GetInt();
+        FPoint xy = FPoint(map[i]["x"].GetInt(), map[i]["y"].GetInt());
+        if (map[i].HasMember("type")) {
+            FPoint hw(xy.x + map[i]["w"].GetInt(), xy.y + map[i]["h"].GetInt());
+            _generateSequence(id, xy, hw);
+        }
+        params.id = id;
+        params.point = xy;
+        _mapItems.push_back(params);
+    }
+
     mapFile.close();
     auto sceneNode = _sceneManager->AddChildNode("MainNode");
     _addMapItemsToSceneNode(sceneNode);
     return sceneNode;
-}
-
-void MapResourceManager::_getMapItemsFromFile(std::ifstream &mapFile) {
-    while (!mapFile.eof()) {
-        MapItem params;
-        string c;
-        getline(mapFile, c, ',');
-        params.id = (objectId) stoi(c);
-        getline(mapFile, c, ',');
-        int x = stoi(c);
-        getline(mapFile, c, ',');
-        int y = stoi(c);
-        params.point = FPoint(x, y);
-        _mapItems.push_back(params);
-    }
 }
 
 void MapResourceManager::_addMapItemsToSceneNode(shared_ptr<SceneNode> scene) {
@@ -48,4 +53,11 @@ void MapResourceManager::_addMapItemsToSceneNode(shared_ptr<SceneNode> scene) {
         scene->AttachObject(
                 _gameObjFactory->CreateGameObjectByIdAndPoint(item.id, item.point));
     }
+}
+
+vector<MapItem> MapResourceManager::_generateSequence(objectId id, FPoint xy, FPoint hw) {
+    std::vector<MapItem> result;
+// TODO Здесь будет заполнение необходимой области объектами
+    // TODO размер объекта будет браться из lua-скрипта нужно это сделать на подобии playerScript
+    return result;
 }

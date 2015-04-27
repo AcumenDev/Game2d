@@ -144,6 +144,7 @@ set(HEADER_FILES_ENGINE
     Engine/include/scriptBinding/Script.hpp
     Engine/include/scriptBinding/PlayerScript.hpp
     Engine/include/scriptBinding/BaseScriptBinding.hpp
+    Engine/include/scriptBinding/BoundScript.hpp
     Engine/include/scriptBinding/weapons/AkmScript.hpp
     Engine/include/gameManagers/WeaponsManager.hpp
 )
@@ -192,6 +193,7 @@ set(SOURCE_FILES_ENGINE
     Engine/src/scriptBinding/Script.cpp
     Engine/src/scriptBinding/PlayerScript.cpp
     Engine/src/scriptBinding/BaseScriptBinding.cpp
+    Engine/src/scriptBinding/BoundScript.cpp
     Engine/src/scriptBinding/weapons/AkmScript.cpp
     )
 
@@ -204,7 +206,7 @@ set(SOURCE_FILES_GAME
     main.cpp
     )
 
-add_executable(${PROJECT_NAME}  ${SOURCE_FILES_ENGINE} ${SOURCE_FILES_GAME}  ${HEADER_FILES_ENGINE}  ${HEADER_FILES_GAME})
+add_executable(${PROJECT_NAME}  ${SOURCE_FILES_ENGINE} ${SOURCE_FILES_GAME}  ${HEADER_FILES_ENGINE}  ${HEADER_FILES_GAME} Engine/include/scriptBinding/BoundScript.hpp Engine/include/scriptBinding/BoundScript.hpp)
 target_link_libraries(${PROJECT_NAME} SDL2 SDL2Main SDL2_image SDL2_ttf Box2D LUA)
 
 
@@ -215,6 +217,6 @@ add_executable(test_openGl_3 test/OpenGl/rectangle_shaders/test_openGl_3.cpp)
 target_link_libraries(test_openGl_3 SDL2 SDL2Main  opengl32 GLEW GLM )
 
 add_executable(test_sdl2_box2d test/sdl2_box2d/sdl2_box2d.cpp
- ${SOURCE_FILES_ENGINE} ${HEADER_FILES_ENGINE})
+ ${SOURCE_FILES_ENGINE} ${HEADER_FILES_ENGINE} Engine/src/scriptBinding/BoundScript.hpp Engine/src/scriptBinding/BoundScript.cpp)
 target_link_libraries(test_sdl2_box2d SDL2 SDL2Main SDL2_image SDL2_ttf  Box2D)
 

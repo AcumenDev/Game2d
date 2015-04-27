@@ -8,14 +8,18 @@
 #include "gameObjects/GameObjectsFactory.hpp"
 #include "SceneManager.hpp"
 #include "BaseResourceManager.hpp"
+#include <rapidjson/document.h>
 
 using std::shared_ptr;
 using std::string;
+using namespace rapidjson;
 
 struct MapItem {
     objectId id;
     FPoint point;
 };
+
+enum itemType{ single = 0, sequence };
 
 class MapResourceManager : public BaseResourceManager<shared_ptr<SceneNode>> {
 public:
@@ -38,7 +42,7 @@ private:
 
     void _addMapItemsToSceneNode(shared_ptr<SceneNode> scene);
 
-    void _getMapItemsFromFile(std::ifstream &mapFile);
+    vector<MapItem> _generateSequence(objectId id, FPoint xy, FPoint hw);
 };
 
 #endif
