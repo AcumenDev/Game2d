@@ -1,9 +1,4 @@
-//
-// Created by akum on 05.04.2015.
-//
-
 #include "scriptBinding/Script.hpp"
-
 
 Script::Script(string path) {
     _luaState = luaL_newstate();
@@ -12,11 +7,9 @@ Script::Script(string path) {
     lua_pcall(_luaState, 0, 0, 0);
 }
 
-
 lua_State *Script::GetLuaState() {
     return _luaState;
 }
-
 
 Script::~Script() {
     lua_close(_luaState);

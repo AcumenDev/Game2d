@@ -101,7 +101,7 @@ int main(int argc, char* argv[])
         return 0;
     }
 
-   // weaponsManager->SetWeapon(gameObjFactory->CreateWeapon(objectId::weaponAkm));
+    weaponsManager->SetWeapon(gameObjFactory->CreateWeapon(objectId::weaponAkm));
 
 
     mainNode->AttachObject(item);
@@ -113,7 +113,7 @@ int main(int argc, char* argv[])
     auto debugNode = _sceneManager->AddChildNode("DebugNode", true);
 
     debugNode->AttachObject(drawDebugEngine);
-    MainLoop mainLoop(_sceneManager);
+    MainLoop mainLoop(_sceneManager); ////TODO Сделать глобальный обработчик клавиш( например чтобы пересоздавать плеера в реалтайме// )
 
     return mainLoop.Start();
 }

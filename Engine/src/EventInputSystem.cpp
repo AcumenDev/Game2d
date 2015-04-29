@@ -1,6 +1,5 @@
 #include "EventInputSystem.hpp"
 EventInputSystem::EventInputSystem() {
-    _mousePosition = IPoint();
 }
 
 
