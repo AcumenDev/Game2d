@@ -143,6 +143,7 @@ set(HEADER_FILES_ENGINE
     Engine/include/Utils/debugEngine/TraceEngineUtils.hpp
     Engine/include/scriptBinding/Script.hpp
     Engine/include/scriptBinding/PlayerScript.hpp
+    Engine/include/scriptBinding/BaseScriptBinding.hpp
     Engine/include/scriptBinding/weapons/AkmScript.hpp
     Engine/include/gameManagers/WeaponsManager.hpp
 )
@@ -190,6 +191,7 @@ set(SOURCE_FILES_ENGINE
     Engine/src/ObjectsDrawing/Utils/debugEngine/TraceEngineUtils.cpp
     Engine/src/scriptBinding/Script.cpp
     Engine/src/scriptBinding/PlayerScript.cpp
+    Engine/src/scriptBinding/BaseScriptBinding.cpp
     Engine/src/scriptBinding/weapons/AkmScript.cpp
     )
 

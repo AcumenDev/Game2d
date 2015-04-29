@@ -1,26 +1,25 @@
-//
-// Created by akum on 05.04.2015.
-//
-
 #ifndef GAME_PLAYERSCRIPT_HPP
 #define GAME_PLAYERSCRIPT_HPP
 
 #include <memory>
-#include "Script.hpp"
+#include "BaseScriptBinding.hpp"
 
 using std::shared_ptr;
 
-class PlayerScript {
+class PlayerScript : public BaseScriptBinding {
 
 public:
     PlayerScript(shared_ptr<Script> script);
 
-    int GetJuamSize();
+    int GetJuamSize() const;
 
-    int GetStepSIze();
+    int GetStepSIze() const;
 
-private:
-    shared_ptr<Script> _script;
+    int GetWidth() const;
+
+    int GetHeight() const;
+
+    string GetSpriteAnimationName() const;
 };
 
 #endif //GAME_PLAYERSCRIPT_HPP

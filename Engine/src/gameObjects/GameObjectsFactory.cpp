@@ -42,13 +42,11 @@ shared_ptr<WeaponBase> GameObjectsFactory::CreateWeapon(objectId id) {
 }
 
 shared_ptr<Player> GameObjectsFactory::createPlayer(FPoint point) {
-    ////TODO Загружать пути ресурсов из луа скрипта
-    auto playerFooTexture = _texturesResourceManager->getResourse(string("foo.png"));
-    auto playerPhysic = make_shared<PlayerPhysic>(_world, playerFooTexture->getWidth(), playerFooTexture->getHeight(),
-                                                  point);
-    auto playerSpriteAnimation = _spriteAnimationResourceManager->getResourse(string("player"));
-    auto playerGraphic = make_shared<PlayerGraphic>(playerSpriteAnimation);
     auto playerScript = make_shared<PlayerScript>(_scriptResourceManager->getResourse("Player"));
+    auto playerPhysic = make_shared<PlayerPhysic>(_world, playerScript->GetWidth(), playerScript->GetHeight(), point);
+    auto playerSpriteAnimation = _spriteAnimationResourceManager->getResourse(playerScript->GetSpriteAnimationName());
+    auto playerGraphic = make_shared<PlayerGraphic>(playerSpriteAnimation);
+
     return make_shared<Player>(playerPhysic, playerGraphic, playerScript);
 }
 

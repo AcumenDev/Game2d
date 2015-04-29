@@ -1,19 +1,24 @@
-//
-// Created by akum on 05.04.2015.
-//
-
 #include "scriptBinding/PlayerScript.hpp"
 
 PlayerScript::PlayerScript(shared_ptr<Script> script)
-        : _script(script) { }
+        : BaseScriptBinding(script, "PlayerScript") { }
 
-
-int PlayerScript::GetJuamSize() {
-    LuaRef s = getGlobal(_script->GetLuaState(), "jumpSize");
-    return s.cast<int>();
+int PlayerScript::GetJuamSize() const {
+    return GetGlobalVar<int>((string) "jumpSize");
 }
 
-int PlayerScript::GetStepSIze() {
-    LuaRef s = getGlobal(_script->GetLuaState(), "stepSize");
-    return s.cast<int>();
+int PlayerScript::GetStepSIze() const {
+    return GetGlobalVar<int>((string) "stepSize");
+}
+
+int PlayerScript::GetWidth() const {
+    return GetGlobalVar<int>((string) "width");
+}
+
+int PlayerScript::GetHeight() const {
+    return GetGlobalVar<int>((string) "height");
+}
+
+string PlayerScript::GetSpriteAnimationName() const {
+    return GetGlobalVar<string>((string) "spriteAnimationName");
 }
