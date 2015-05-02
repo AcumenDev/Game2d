@@ -3,18 +3,16 @@
 
 #include <iostream>
 #include <memory>
-#include "scriptBinding/Script.hpp"
+#include "scriptBinding/BaseScriptBinding.hpp"
 
 using std::string;
 using std::shared_ptr;
-class AkmScript{
+class AkmScript : public BaseScriptBinding{
 public:
     AkmScript(shared_ptr<Script> script);
 
     string getTextureName();
 
-private:
-    shared_ptr<Script> _script;
 };
 
 #endif //GAME_AKMSCRIPT_HPP

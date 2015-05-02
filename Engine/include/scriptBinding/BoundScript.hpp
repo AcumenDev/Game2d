@@ -6,19 +6,20 @@
 #include "BaseScriptBinding.hpp"
 
 using std::shared_ptr;
+using std::string;
 
-class BoundScript : public BaseScriptBinding{
+class BoundScript : public BaseScriptBinding {
 public:
     BoundScript(shared_ptr<Script> script);
 
     ~BoundScript();
 
-    int GetWidth();
+    int getWidth();
 
-    int GetHeight();
+    int getHeight();
 
-private:
-    shared_ptr<Script> _script;
+    string getTextureName();
+
 };
 
 #endif //GAME_BOUNDSCRIPT_HPP

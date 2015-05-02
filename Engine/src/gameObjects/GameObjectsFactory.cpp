@@ -58,9 +58,10 @@ shared_ptr<Akm> GameObjectsFactory::createWeapon() {
 
 shared_ptr<Bound> GameObjectsFactory::createBound(FPoint point) {
 
-    auto boundTexture = _texturesResourceManager->getResourse(string("Bound.png"));
-    auto boundGraphic = make_shared<TextureDrawing>(boundTexture);
-    auto boundPhysic = make_shared<BoundPhysic>(_world, boundTexture->getWidth(), boundTexture->getHeight(), point);
+    auto boundScript = make_shared<BoundScript>(_scriptResourceManager->getResourse("Bound"));
+    auto boundGraphic = make_shared<TextureDrawing>(_texturesResourceManager->getResourse(
+            boundScript->getTextureName()));
+    auto boundPhysic = make_shared<BoundPhysic>(_world, boundScript->getWidth(), boundScript->getHeight(), point);
     return make_shared<Bound>(boundGraphic, boundPhysic);
 }
 

@@ -4,10 +4,14 @@ BoundScript::BoundScript(shared_ptr<Script> script) : BaseScriptBinding(script, 
 
 BoundScript::~BoundScript() { };
 
-int BoundScript::GetHeight() {
+int BoundScript::getHeight() {
     return GetGlobalVar<int>((string) "height");
 }
 
-int BoundScript::GetWidth() {
+int BoundScript::getWidth() {
     return GetGlobalVar<int>((string) "width");
+}
+
+string BoundScript::getTextureName() {
+    return GetGlobalVar<string>("texture");
 }

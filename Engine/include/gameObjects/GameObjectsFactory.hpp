@@ -12,6 +12,7 @@
 #include "resourceManagers/ScriptResourceManager.hpp"
 #include "scriptBinding/weapons/AkmScript.hpp"
 #include "gameObjects/weapons/Akm.hpp"
+#include "scriptBinding/BoundScript.hpp"
 #include "gameManagers/WeaponsManager.hpp"
 
 using std::make_shared;

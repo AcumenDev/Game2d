@@ -1,10 +1,8 @@
 #include "scriptBinding/weapons/AkmScript.hpp"
 
-AkmScript::AkmScript(shared_ptr<Script> script) {
-    _script = script;
+AkmScript::AkmScript(shared_ptr<Script> script) : BaseScriptBinding(script, "AkmScript") {
 }
 
 string AkmScript::getTextureName() {
-    LuaRef s = getGlobal(_script->GetLuaState(), "texture");
-    return s.cast<string>();
+    return GetGlobalVar<string>("texture");
 }

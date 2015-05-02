@@ -65,8 +65,8 @@ void MapResourceManager::_addMapItemsToSceneNode(shared_ptr<SceneNode> scene) {
 void MapResourceManager::_generateSequence(objectId id, FPoint xy, FPoint hw) {
     auto scriptManager = make_shared<ScriptResourceManager>(_systemSettings);
     auto boundScript = make_shared<BoundScript>(scriptManager->getResourse("Bound"));
-    int boundBlockHeight = boundScript->GetHeight();
-    int boundBlockWidth = boundScript->GetWidth();
+    int boundBlockHeight = boundScript->getHeight();
+    int boundBlockWidth = boundScript->getWidth();
     if ((int) (hw.x - xy.x) % boundBlockWidth != 0 || (int) (hw.y - xy.y) % boundBlockHeight != 0) {
         Logger::Get()->Error(_name,
                              "Cannot fill area:" + std::to_string((int) xy.x) + " " + std::to_string((int) xy.y) + ";" +
