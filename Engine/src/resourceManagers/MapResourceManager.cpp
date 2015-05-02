@@ -68,9 +68,10 @@ void MapResourceManager::_generateSequence(objectId id, FPoint xy, FPoint hw) {
     int boundBlockHeight = boundScript->GetHeight();
     int boundBlockWidth = boundScript->GetWidth();
     if ((int) (hw.x - xy.x) % boundBlockWidth != 0 || (int) (hw.y - xy.y) % boundBlockHeight != 0) {
-        Logger::Get()->Error(_name, "Cannot fill area:" + std::to_string(xy.x) + std::to_string(xy.y) + ";" +
-                                    std::to_string(hw.x) + std::to_string(hw.y) + "by objects" +
-                                    std::to_string((int) id));
+        Logger::Get()->Error(_name,
+                             "Cannot fill area:" + std::to_string((int) xy.x) + " " + std::to_string((int) xy.y) + ";" +
+                             std::to_string((int) hw.x) + std::to_string((int) hw.y) + "by objects: " +
+                             std::to_string(id));
         return;
     }
     for (int y = xy.y; y < hw.y, y < hw.y; y += boundBlockHeight) {

@@ -1,17 +1,13 @@
-//
-// Created by ִלטענטי on 27.04.2015.
-//
-
 #ifndef GAME_BOUNDSCRIPT_HPP
 #define GAME_BOUNDSCRIPT_HPP
 
 
 #include <memory>
-#include "Script.hpp"
+#include "BaseScriptBinding.hpp"
 
 using std::shared_ptr;
 
-class BoundScript {
+class BoundScript : public BaseScriptBinding{
 public:
     BoundScript(shared_ptr<Script> script);
 
