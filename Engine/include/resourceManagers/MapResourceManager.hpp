@@ -8,7 +8,10 @@
 #include "gameObjects/GameObjectsFactory.hpp"
 #include "SceneManager.hpp"
 #include "BaseResourceManager.hpp"
+#include "resourceManagers/ScriptResourceManager.hpp"
+#include "scriptBinding/BoundScript.hpp"
 #include <rapidjson/document.h>
+
 
 using std::shared_ptr;
 using std::string;
@@ -19,7 +22,9 @@ struct MapItem {
     FPoint point;
 };
 
-enum itemType{ single = 0, sequence };
+enum itemType : int {
+    single = 0, sequence
+};
 
 class MapResourceManager : public BaseResourceManager<shared_ptr<SceneNode>> {
 public:
@@ -42,7 +47,7 @@ private:
 
     void _addMapItemsToSceneNode(shared_ptr<SceneNode> scene);
 
-    vector<MapItem> _generateSequence(objectId id, FPoint xy, FPoint hw);
+    void _generateSequence(objectId id, FPoint xy, FPoint hw);
 };
 
 #endif

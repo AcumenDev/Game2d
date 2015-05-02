@@ -206,7 +206,7 @@ set(SOURCE_FILES_GAME
     main.cpp
     )
 
-add_executable(${PROJECT_NAME}  ${SOURCE_FILES_ENGINE} ${SOURCE_FILES_GAME}  ${HEADER_FILES_ENGINE}  ${HEADER_FILES_GAME} Engine/include/scriptBinding/BoundScript.hpp Engine/include/scriptBinding/BoundScript.hpp)
+add_executable(${PROJECT_NAME}  ${SOURCE_FILES_ENGINE} ${SOURCE_FILES_GAME}  ${HEADER_FILES_ENGINE}  ${HEADER_FILES_GAME})
 target_link_libraries(${PROJECT_NAME} SDL2 SDL2Main SDL2_image SDL2_ttf Box2D LUA)
 
 
@@ -216,7 +216,5 @@ target_link_libraries(test_box2d Box2D)
 add_executable(test_openGl_3 test/OpenGl/rectangle_shaders/test_openGl_3.cpp)
 target_link_libraries(test_openGl_3 SDL2 SDL2Main  opengl32 GLEW GLM )
 
-add_executable(test_sdl2_box2d test/sdl2_box2d/sdl2_box2d.cpp
- ${SOURCE_FILES_ENGINE} ${HEADER_FILES_ENGINE} Engine/src/scriptBinding/BoundScript.hpp Engine/src/scriptBinding/BoundScript.cpp)
+add_executable(test_sdl2_box2d test/sdl2_box2d/sdl2_box2d.cpp)
 target_link_libraries(test_sdl2_box2d SDL2 SDL2Main SDL2_image SDL2_ttf  Box2D)
-

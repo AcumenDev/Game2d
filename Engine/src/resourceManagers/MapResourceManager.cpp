@@ -30,16 +30,23 @@ shared_ptr<SceneNode> MapResourceManager::getResourse(string lvl) {
     const Value &map = doc["map"];
 
     for (SizeType i = 0; i < map.Size(); i++) {
-        MapItem params;
+
         objectId id = (objectId) map[i]["id"].GetInt();
         FPoint xy = FPoint(map[i]["x"].GetInt(), map[i]["y"].GetInt());
+
         if (map[i].HasMember("type")) {
-            FPoint hw(xy.x + map[i]["w"].GetInt(), xy.y + map[i]["h"].GetInt());
-            _generateSequence(id, xy, hw);
+            if (map[i]["type"].GetInt() == itemType::sequence) {
+                //TODO Р—Р°РІРµСЃС‚Рё enum РґР»СЏ С‚РёРїРѕРІ РѕР±СЉРµРєС‚РѕРІ
+                FPoint hw(xy.x + map[i]["w"].GetInt(), xy.y + map[i]["h"].GetInt());
+                _generateSequence(id, xy, hw);
+            }
         }
-        params.id = id;
-        params.point = xy;
-        _mapItems.push_back(params);
+        else {
+            MapItem params;
+            params.id = id;
+            params.point = xy;
+            _mapItems.push_back(params);
+        }
     }
 
     mapFile.close();
@@ -55,9 +62,23 @@ void MapResourceManager::_addMapItemsToSceneNode(shared_ptr<SceneNode> scene) {
     }
 }
 
-vector<MapItem> MapResourceManager::_generateSequence(objectId id, FPoint xy, FPoint hw) {
-    std::vector<MapItem> result;
-// TODO Здесь будет заполнение необходимой области объектами
-    // TODO размер объекта будет браться из lua-скрипта нужно это сделать на подобии playerScript
-    return result;
+void MapResourceManager::_generateSequence(objectId id, FPoint xy, FPoint hw) {
+    auto scriptManager = make_shared<ScriptResourceManager>(_systemSettings);
+    auto boundScript = make_shared<BoundScript>(scriptManager->getResourse("Bound"));
+    int boundBlockHeight = boundScript->GetHeight();
+    int boundBlockWidth = boundScript->GetWidth();
+    if ((int) (hw.x - xy.x) % boundBlockWidth != 0 || (int) (hw.y - xy.y) % boundBlockHeight != 0) {
+        Logger::Get()->Error(_name, "Cannot fill area:" + std::to_string(xy.x) + std::to_string(xy.y) + ";" +
+                                    std::to_string(hw.x) + std::to_string(hw.y) + "by objects" +
+                                    std::to_string((int) id));
+        return;
+    }
+    for (int y = xy.y; y < hw.y, y < hw.y; y += boundBlockHeight) {
+        for (int x = xy.x; x < hw.x, x < hw.x; x += boundBlockWidth) {
+            MapItem item;
+            item.id = id;
+            item.point = FPoint(x, y);
+            _mapItems.push_back(item);
+        }
+    }
 }

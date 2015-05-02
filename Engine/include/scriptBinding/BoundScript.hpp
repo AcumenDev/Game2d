@@ -5,6 +5,7 @@
 #ifndef GAME_BOUNDSCRIPT_HPP
 #define GAME_BOUNDSCRIPT_HPP
 
+
 #include <memory>
 #include "Script.hpp"
 
@@ -16,7 +17,7 @@ public:
 
     ~BoundScript();
 
-    int GetWeight();
+    int GetWidth();
 
     int GetHeight();
 
