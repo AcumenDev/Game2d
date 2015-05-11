@@ -4,7 +4,7 @@
 #include <physics/BoundPhysic.hpp>
 #include "GameObjectBase.hpp"
 
-class Bound : public GameObjectBase {
+class Bound : public virtual GameObjectBase {
 
 public:
     Bound(std::shared_ptr<Graphic::ObjectDrawingBase> graphic, std::shared_ptr<Physic::BoundPhysic> physic) ;

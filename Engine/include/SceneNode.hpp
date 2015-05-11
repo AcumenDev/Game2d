@@ -32,6 +32,8 @@ public:
 
     void AttachObject(shared_ptr<GameObjectBase> gameObjectBase);
 
+    bool DeleteObjectForId(unsigned int objectId);
+
 protected:
 private:
     string _nameNode;

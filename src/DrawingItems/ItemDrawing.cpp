@@ -18,7 +18,7 @@ void ItemDrawing::Update(UpdateEventDto updateEventDto) {
         return;
     }
 
-    auto event = updateEventDto.eventInputSystem->event;
+    auto event = updateEventDto.eventInputSystem->GetEvent();
     switch (event.type) {
         case SDL_MOUSEBUTTONDOWN : {
            // auto cameraPosition = Render::Get()->GetCamera()->GetPosition();

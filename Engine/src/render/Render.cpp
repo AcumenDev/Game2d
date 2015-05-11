@@ -41,7 +41,8 @@ void Render::DrawLines(vector<SDL_Point> points) {
 
 void Render::DrawLine(FPoint point1, FPoint point2) {
     FPoint positionCamera = _camera->GetPosition();
-    SDL_RenderDrawLine(_sdlRender, point1.x + positionCamera.x, point1.y + positionCamera.y, point2.x + positionCamera.x, point2.y + positionCamera.y);
+    SDL_RenderDrawLine(_sdlRender, point1.x + positionCamera.x, point1.y + positionCamera.y,
+                       point2.x + positionCamera.x, point2.y + positionCamera.y);
 }
 
 shared_ptr<Render> Render::Get() {
@@ -80,4 +81,12 @@ void Render::RenderTolocal() {
 
 void Render::RenderToGlobal() {
     _localFixed = false;
+}
+
+void Render::RenderClear() {
+    SDL_RenderClear(_sdlRender);
+}
+
+void Render::RenderPresent() {
+    SDL_RenderPresent(_sdlRender);
 }

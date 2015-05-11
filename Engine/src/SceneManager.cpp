@@ -1,11 +1,9 @@
 #include "SceneManager.hpp"
 
 SceneManager::SceneManager(
-        SDL_Renderer *renderer,
         shared_ptr<b2World> physicWorld,
         shared_ptr<NotificationServices> notificationServices,
         shared_ptr<DebugEngineBase> debugEngineBase) {
-    _renderer = renderer;
     _notificationServices = notificationServices;
     _physicWorld = physicWorld;
     _debugEngineBase = debugEngineBase;
@@ -23,17 +21,15 @@ shared_ptr<SceneNode> SceneManager::AddChildNode(string name, bool fixedCord) {
 
 void SceneManager::Draw() {
     _debugEngineBase->SetRenderTime(calkTimeExecute([this] {
-        SDL_SetRenderDrawColor(_renderer, 255, 255, 255, 255);
-
-        SDL_RenderClear(_renderer);
+        Render::Get()->SetRenderDrawColor(1, 1, 1, 1);
+        Render::Get()->RenderClear();
         for (const auto &node : _childNodes) {
             node->Draw();
         }
-
-
         _physicWorld->DrawDebugData();
         _calcFps();
-        SDL_RenderPresent(_renderer);
+        Render::Get()->RenderPresent();
+
     }));
 }
 
@@ -57,5 +53,22 @@ void SceneManager::Update(float delta, shared_ptr<EventInputSystem> eventInputSy
 
         _debugEngineBase->SetFps(_fps_current);
         _debugEngineBase->Update(updateEventDto);
+        if (_sceneController) {
+            _sceneController->Update(eventInputSystem);
+        }
     }));
+}
+
+void SceneManager::SetController(shared_ptr<SceneController> sceneController) {
+    _sceneController = sceneController;
+    _sceneController->SetSceneManager(shared_from_this());
+}
+
+bool SceneManager::DeleteObjectForId(unsigned int objectId) {
+    for (const auto &node : _childNodes) {
+        if (node->DeleteObjectForId(objectId)) {
+            return true;
+        }
+    }
+    return false;
 }

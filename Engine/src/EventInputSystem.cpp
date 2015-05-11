@@ -1,49 +1,46 @@
 #include "EventInputSystem.hpp"
+
 EventInputSystem::EventInputSystem() {
 }
 
-
 void EventInputSystem::Update(SDL_Event event) {
-    this->event = event;
+    this->_event = event;
 }
 
 EventInputSystem::~EventInputSystem() {
 }
 
 bool EventInputSystem::IsJump() const {
-    return checkInpunt(SDLK_UP);
+    return _checkInpunt(SDLK_UP);
 }
 
 bool EventInputSystem::IsLeft() const {
-    return checkInpunt(SDLK_LEFT);
+    return _checkInpunt(SDLK_LEFT);
 }
 
 bool EventInputSystem::IsRight() const {
-    return checkInpunt(SDLK_RIGHT);
+    return _checkInpunt(SDLK_RIGHT);
 }
-
 
 bool EventInputSystem::IsShot() const {
-    return checkInpunt(SDLK_SPACE);
+    return _checkInpunt(SDLK_SPACE);
 }
 
-IPoint EventInputSystem::getMousePosition()
-{
-    switch (event.type) {
+IPoint EventInputSystem::getMousePosition() {
+    switch (_event.type) {
         case SDL_MOUSEMOTION : {
-            _mousePosition = IPoint(event.motion.x,event.motion.y);
+            _mousePosition = IPoint(_event.motion.x, _event.motion.y);
             return _mousePosition;
         }
         default:
             return _mousePosition;
     }
-
 }
 
-bool EventInputSystem::checkInpunt(SDL_Keycode keycode)const {
-    switch (event.type) {
+bool EventInputSystem::_checkInpunt(SDL_Keycode keycode) const {
+    switch (_event.type) {
         case SDL_KEYDOWN : {
-            if (event.key.keysym.sym == keycode) {
+            if (_event.key.keysym.sym == keycode) {
                 return true;
             }
         }
@@ -51,3 +48,10 @@ bool EventInputSystem::checkInpunt(SDL_Keycode keycode)const {
     return false;
 }
 
+SDL_Event EventInputSystem::GetEvent() {
+    return _event;
+}
+
+bool EventInputSystem::IsRestartPlayer() const {
+    return _checkInpunt(SDLK_r);
+}

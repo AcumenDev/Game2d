@@ -67,7 +67,8 @@ int main(int argc, char* argv[])
     auto inventory = make_shared<Inventory>(inventoryTexture, itemsFactory, FPoint(0, 0), 6, 5);
 
     inventory->AddItemForId(0);
-    auto test_font = make_shared<Font>(render, resFolder + "fonts/DejaVuSans.ttf", 40, FPoint(70, 50));
+    auto test_font = make_shared<Font>(render, resFolder + "fonts/DejaVuSans.ttf", 40,
+                                       FPoint(70, 50)); ////TODO перенести в ресурс менеджер
     test_font->SetText("Тест");
 
     /// b2World world(b2Vec2(0, -2));
@@ -90,8 +91,9 @@ int main(int argc, char* argv[])
     auto drawDebugEngine = std::make_shared<DrawDebugEngine>(
             make_shared<Font>(render, resFolder + "fonts/DejaVuSans.ttf", 14, FPoint(SCREEN_WIDTH - 200, 10),
                               TTF_STYLE_NORMAL));
-    auto _sceneManager = std::make_shared<SceneManager>(render, world, notificationServices, drawDebugEngine);
-
+    auto _sceneManager = std::make_shared<SceneManager>(world, notificationServices, drawDebugEngine);
+     shared_ptr<SceneController> sceneController = make_shared<SceneController>(gameObjFactory);
+    _sceneManager->SetController(sceneController);
     auto mapResourceManager = make_shared<MapResourceManager>(_sceneManager, gameObjFactory, systemSettings);
     auto backgroundNode = _sceneManager->AddChildNode("BackGroundNode");
     backgroundNode->AttachObject(background);
@@ -101,8 +103,9 @@ int main(int argc, char* argv[])
         return 0;
     }
 
-    weaponsManager->SetWeapon(gameObjFactory->CreateWeapon(objectId::weaponAkm));
+    sceneController->SetTargetNode(mainNode);
 
+    weaponsManager->SetWeapon(gameObjFactory->CreateWeapon(objectId::weaponAkm));
 
     mainNode->AttachObject(item);
 
@@ -113,7 +116,8 @@ int main(int argc, char* argv[])
     auto debugNode = _sceneManager->AddChildNode("DebugNode", true);
 
     debugNode->AttachObject(drawDebugEngine);
-    MainLoop mainLoop(_sceneManager); ////TODO Сделать глобальный обработчик клавиш( например чтобы пересоздавать плеера в реалтайме// )
+    MainLoop mainLoop(
+            _sceneManager); ////TODO Сделать глобальный обработчик клавиш( например чтобы пересоздавать плеера в реалтайме// )
 
     return mainLoop.Start();
 }

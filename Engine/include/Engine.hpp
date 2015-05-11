@@ -59,5 +59,7 @@
 #include "ObjectsDrawing/Utils/DrawDebugEngine.hpp"
 
 #include "gameManagers/WeaponsManager.hpp"
+#include "scene/SceneController.hpp"
+
 
 #endif // ENGINE_HPP_INCLUDED
