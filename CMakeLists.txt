@@ -147,6 +147,7 @@ set(HEADER_FILES_ENGINE
     Engine/include/scriptBinding/BoundScript.hpp
     Engine/include/scriptBinding/weapons/AkmScript.hpp
     Engine/include/gameManagers/WeaponsManager.hpp
+    Engine/include/scene/SceneController.hpp
 )
 
 set(SOURCE_FILES_ENGINE
@@ -195,6 +196,7 @@ set(SOURCE_FILES_ENGINE
     Engine/src/scriptBinding/BaseScriptBinding.cpp
     Engine/src/scriptBinding/BoundScript.cpp
     Engine/src/scriptBinding/weapons/AkmScript.cpp
+    Engine/src/scene/SceneController.cpp
     )
 
 set(HEADER_FILES_GAME

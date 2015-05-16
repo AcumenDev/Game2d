@@ -10,7 +10,7 @@
 #include "ObjectDrawingBase.hpp"
 
 namespace Graphic {
-    class Font : public ObjectDrawingBase {
+    class Font : public ObjectDrawingBase { ////TODO Отделить шрифт от его вывода
     public:
         Font(SDL_Renderer *render, std::string path, int size, FPoint point, int style = TTF_STYLE_NORMAL);
 
@@ -20,7 +20,7 @@ namespace Graphic {
 
         void SetPosition(FPoint const &fPoint) override;
 
-        void SetText(std::string text, int sizeRow = -1);
+        void SetText(std::string text,unsigned int sizeRow = 0);
 
     protected:
     private:

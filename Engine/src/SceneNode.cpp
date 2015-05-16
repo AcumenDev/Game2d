@@ -84,3 +84,32 @@ void SceneNode::AttachObject(shared_ptr<GameObjectBase> gameObjectBase) {
 
     gameObjectBase->SetSceneNone(shared_from_this());
 }
+
+bool SceneNode::DeleteObjectForId(unsigned int objectId) {
+
+    bool status = false;
+    _gameObjects.erase(
+            std::remove_if(_gameObjects.begin(), _gameObjects.end(),
+                           [this, objectId, &status](std::shared_ptr<GameObjectBase> item) -> bool {
+                               if (item->getObjectId() == objectId) {
+                                   Logger::Get()->Debug("SceneNode",
+                                                        "Deleted game object: " + std::to_string(objectId) +
+                                                        " from node: " + _nameNode);
+                                   status = true;
+                                   return true;
+                               }
+                               return false;
+                           }), _gameObjects.end()
+    );
+
+    if (status) {
+        return true;
+    }
+
+    for (const auto &node : _childNodes) {
+        if (node->DeleteObjectForId(objectId)) {
+            return true;
+        }
+    }
+    return false;
+}

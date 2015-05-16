@@ -23,8 +23,9 @@ void Akm::Shot() {
 
 
 void Akm::SetPosition(FPoint point) {
-    point.y+=40;
-    point.x+=10;
+    auto position = _script->getPosition();
+    point.y += position.y;
+    point.x += position.x;
 
     _graphic->SetPosition(point);
 

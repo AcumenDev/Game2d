@@ -1,8 +1,12 @@
 #include "scriptBinding/weapons/AkmScript.hpp"
 
-AkmScript::AkmScript(shared_ptr<Script> script) : BaseScriptBinding(script, "AkmScript") {
+AkmScript::AkmScript(shared_ptr<Script> script)
+        : BaseScriptBinding(script, "PlayerScript") { }
+
+string AkmScript::getTextureName() const {
+    return GetGlobalVar<string>((string) "texture");
 }
 
-string AkmScript::getTextureName() {
-    return GetGlobalVar<string>("texture");
+IPoint AkmScript::getPosition() const {
+    return IPoint(GetGlobalVar<int>((string) "positionx"), GetGlobalVar<int>((string) "positiony"));
 }

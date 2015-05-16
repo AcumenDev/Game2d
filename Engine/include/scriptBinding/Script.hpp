@@ -1,7 +1,3 @@
-//
-// Created by akum on 05.04.2015.
-//
-
 #ifndef GAME_SCRIPT_HPP
 #define GAME_SCRIPT_HPP
 
@@ -17,13 +13,17 @@ extern "C" {
 using std::string;
 using namespace luabridge;
 
-class Script{
+class Script {
 public:
     Script(string path);
-    lua_State*  GetLuaState();
-~Script();
+
+    lua_State *GetLuaState();
+
+    ~Script();
+
 private:
-    lua_State* _luaState;
+    lua_State *_luaState;
 
 };
+
 #endif //GAME_SCRIPT_HPP

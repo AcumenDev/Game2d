@@ -17,7 +17,7 @@ namespace Graphic {
         }
     }
 
-    void Font::SetText(std::string text, int sizeRow) {
+    void Font::SetText(std::string text, unsigned int sizeRow) {
         SDL_Color color = {0, 0, 0};
         SDL_Surface *text_surface;
         if (sizeRow > 0) {

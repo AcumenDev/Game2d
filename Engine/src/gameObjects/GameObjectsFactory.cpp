@@ -21,7 +21,7 @@ shared_ptr<GameObjectBase> GameObjectsFactory::CreateGameObjectByIdAndPoint(obje
     switch (id) {
         case player_id: {
             auto player = createPlayer(point);
-            _weaponsManager->SetPlayer(player);
+        //    _weaponsManager->SetPlayer(player); ////TODO из за ссылки на плеера после удаления со сцены он не удаляеться
             return player;
         };
         case bound_id:
@@ -46,8 +46,9 @@ shared_ptr<Player> GameObjectsFactory::createPlayer(FPoint point) {
     auto playerPhysic = make_shared<PlayerPhysic>(_world, playerScript->GetWidth(), playerScript->GetHeight(), point);
     auto playerSpriteAnimation = _spriteAnimationResourceManager->getResourse(playerScript->GetSpriteAnimationName());
     auto playerGraphic = make_shared<PlayerGraphic>(playerSpriteAnimation);
-
-    return make_shared<Player>(playerPhysic, playerGraphic, playerScript);
+    auto player = make_shared<Player>(playerPhysic, playerGraphic, playerScript);
+    player->setObjectId(objectId::player_id);
+    return player;
 }
 
 shared_ptr<Akm> GameObjectsFactory::createWeapon() {
@@ -57,7 +58,6 @@ shared_ptr<Akm> GameObjectsFactory::createWeapon() {
 }
 
 shared_ptr<Bound> GameObjectsFactory::createBound(FPoint point) {
-
     auto boundScript = make_shared<BoundScript>(_scriptResourceManager->getResourse("Bound"));
     auto boundGraphic = make_shared<TextureDrawing>(_texturesResourceManager->getResourse(
             boundScript->getTextureName()));

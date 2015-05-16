@@ -9,17 +9,20 @@ Player::Player(shared_ptr<PlayerPhysic> physic, shared_ptr<PlayerGraphic> graphi
     _camera = Render::Get()->GetCamera();
     _playerScript = playerScript;
     _updateGraficPosition();
+    _className = "Player";
 }
 
 Player::~Player() {
-
+///TODO Удялять оружее со сцены
+    Logger::Get()->Debug(_className, "Delete");
 }
 
 void Player::Update(UpdateEventDto updateEventDto) {
     auto position = _physic->GetPosition();
     _graphic->SetPosition(position);
-    if(_weapon) {
-        _weapon->SetPosition(position);
+    if (_weapon) {
+        _weapon->SetPosition(
+                position); ////TODO непонятно кто кого должен обновлять плеер оружее или оружее само себя беря координаты плеера второе мне нравиться больше
     }
     _camera->CenterToPoint(position);
     _graphic->Update(updateEventDto.delta);
@@ -47,8 +50,8 @@ void Player::Update(UpdateEventDto updateEventDto) {
         return;
     }
     if (updateEventDto.eventInputSystem->IsShot()) {
-        _graphic->RunOneSiries("sword_attack");
-       // _weapon->Shot();
+        // _graphic->RunOneSiries("sword_attack");
+        _weapon->Shot();
         return;
     }
     _graphic->SetSeries("stay");

@@ -1,4 +1,4 @@
-#include <DrawingObject.hpp>
+#include "DrawingObject.hpp"
 
 DrawingObject::DrawingObject(std::shared_ptr<Texture> texture, FPoint point){
     _texture = texture;
@@ -13,4 +13,8 @@ void DrawingObject::Draw() {
 
 bool DrawingObject::IsLive() {
     return _isLive;
+}
+
+DrawingObject::~DrawingObject() {
+
 }

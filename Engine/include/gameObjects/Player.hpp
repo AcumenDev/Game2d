@@ -34,6 +34,7 @@ private:
 
     shared_ptr<WeaponBase> _weapon;
     shared_ptr<SceneNode> _sceneNode;
+    string _className;
 };
 
 #endif // PLAYER_H

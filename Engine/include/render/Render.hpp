@@ -31,8 +31,15 @@ public:
 
     shared_ptr<Camera> GetCamera();
 
+    void RenderClear();
+
+    void RenderPresent();
+
     FPoint ToWorldCoordinate(FPoint point);
-    IPoint ToWorldCoordinate(IPoint point);////todo обобщить
+
+    IPoint ToWorldCoordinate(IPoint point);
+
+    ////todo обобщить
     FPoint ToLocalCoordinate(FPoint point);
 
     void RenderTolocal();

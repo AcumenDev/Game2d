@@ -15,7 +15,7 @@ using std::string;
 
 class SpriteSeries {
 public:
-    SpriteSeries(vector<shared_ptr<Texture>> textures, double animationSpeed) {
+    SpriteSeries(vector<shared_ptr<Texture>> textures, float animationSpeed) {
         _textures = textures;
         _animationSpeed = animationSpeed;
     }
