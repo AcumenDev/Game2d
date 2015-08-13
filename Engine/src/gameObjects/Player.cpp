@@ -10,6 +10,7 @@ Player::Player(shared_ptr<PlayerPhysic> physic, shared_ptr<PlayerGraphic> graphi
     _playerScript = playerScript;
     _updateGraficPosition();
     _className = "Player";
+    _isOnGround = false;
 }
 
 Player::~Player() {
